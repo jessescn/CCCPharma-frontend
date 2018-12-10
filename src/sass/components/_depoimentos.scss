@@ -1,0 +1,61 @@
+.depoimentos {
+    background-color: $cor-principal;
+    background-image: url('../img/cabecalho-pagina-bg.jpg');
+    background-attachment: fixed;
+    color: white;
+    padding: 30px 0;
+    overflow: auto;
+    
+    &__item {
+        padding: 0 15px;
+        max-width: 750px;
+        margin: 0 auto;
+    }
+    
+    &__img {
+        display: block;
+        margin: 0 auto;
+        box-shadow: 3px 3px 0 black;
+        margin-bottom: 30px;
+    }
+    
+    &__texto {
+        line-height: 24px;
+        margin-bottom: 25px;
+    }
+    
+    &__texto::before {
+        background-image: url('../img/aspas.png');
+        background-repeat: no-repeat;
+        content: '';
+        display: inline-block;
+        width: 26px;
+        height: 23px;
+        margin-right: 5px;
+    
+    }
+    
+    &__pessoa { 
+        text-align: center;
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    @media(min-width: $breakpoint-lg) {
+        padding: 120px 0;
+
+        &__img {
+            float: left;
+            overflow: auto;
+            margin-right: 20px;
+        }
+
+        &__texto {
+            padding: 15px 0;
+        }
+
+        &__pessoa {
+            text-align: left;
+        }
+    }
+}

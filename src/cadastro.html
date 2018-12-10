@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="sass/style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="container">
+        <h1 class="logo">Desing responsivo</h1>
+        <nav class="menu-principal menu-principal--fechar">
+        <button class="menu-principal__btn">Abrir/fechar menu</button>
+        <ul class="menu-principal__lista">
+            <li><a class="menu-principal__item menu-principal__item--atual" href="index.html">Home</a></li>
+            <li><a class="menu-principal__item" href="sobre.html">Relatório Geral</a></li>
+            <li><a class="menu-principal__item" href="contato.html">Login</a></li>
+        </ul>
+        </nav>
+        </div>
+    </header>
+    <main>
+        <header class="pagina-cabecalho">
+            <h1 class="pagina-cabecalho__titulo">Cadastro</h1>
+        </header>
+        <section class="container pagina-conteudo">
+            <form action="#" class="formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="nome">Nome</label>
+                    <input class="formulario__campo" name="nome" type="text" id="nome">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="sobrenome">Sobrenome</label>
+                    <input class="formulario__campo" name="sobrenome" type="text" id="sobrenome">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="email">E-mail</label>
+                    <input class="formulario__campo" type="email" name="email" id="email">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="password">Senha</label>
+                    <input class="formulario__campo" type="password" name="senha" id="senha">
+                </div>
+                <input class="formulario__botao" type="submit" value="Enviar">
+                <p class="desaparecer formulario__notificacao">Login inválido</p>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
