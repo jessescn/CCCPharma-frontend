@@ -12,7 +12,6 @@
         <div class="container">
         <h1 class="logo"></h1>
         <nav class="menu-principal menu-principal--fechar">
-        <!-- <button class="menu-principal__btn">Abrir/fechar menu</button> -->
         <ul class="menu-principal__lista">
             <li><a class="menu-principal__item menu-principal__item--atual" href="../index.html">Home</a></li>
             <li><a class="menu-principal__item" href="sobre.html">Relatório Geral</a></li>
@@ -22,10 +21,11 @@
     </header>
     <main>
         <header class="pagina-cabecalho">
-            <h1 class="pagina-cabecalho__titulo">Login</h1>
+            <h1 class="pagina-cabecalho__titulo">Autenticação</h1>
         </header>
         <section class="autenticacao container pagina-conteudo">
-            <form action="#" class="formulario">
+            <form action="#" class="formulario" name="registerForm">
+                <h2 class="auth-title">Cadastro</h2>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="nome">Nome</label>
                     <input class="formulario__campo" name="nome" type="text" id="nome">
@@ -42,11 +42,12 @@
                     <label class="formulario__label" for="password">Senha</label>
                     <input class="formulario__campo" type="password" name="senha" id="senha">
                 </div>
-                <input class="formulario__botao" type="submit" value="Enviar">
+                <input class="formulario__botao" type="submit" value="Enviar" onclick="register()">
                 <p class="desaparecer formulario__notificacao">Login inválido</p>
             </form>
 
-            <form action="#" class="formulario">
+            <form action="#" class="formulario" name="loginForm">
+                <h2 class="auth-title">Login</h2>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="email">E-mail</label>
                     <input class="formulario__campo" type="email" name="email" id="email">
@@ -55,11 +56,12 @@
                     <label class="formulario__label" for="password">Senha</label>
                     <input class="formulario__campo" type="password" name="senha" id="senha">
                 </div>
-                <input class="formulario__botao" type="submit" value="Enviar">
+                <input class="formulario__botao" type="submit" value="Enviar" onclick="login()">
                 <p class="desaparecer formulario__notificacao">Login inválido</p>
             </form>
             
         </section>
     </main>
+    <script src="autenticacao.js"></script>
 </body>
 </html>
