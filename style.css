@@ -717,6 +717,7 @@ body {
   right: 15px;
 }
 
+
 @media (min-width: 767px) {
   .menu-principal__btn {
     display: none;
