@@ -444,13 +444,25 @@ body {
   }
 }
 
+.logado-cliente a {
+  display: none;
+}
+
+.logado-adm #botao-login {
+  display: none;
+}
+
+.nao-logado .botao-adm {
+  display: none;
+}
+
 .rodape {
   color: white;
 }
 
 .rodape__linha-1 {
   overflow: auto;
-  background-image: url(../img/cabecalho-home-bg-md.jpg);
+  background-image: url('img/cabecalho-home-bg-md.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #303030;
@@ -514,7 +526,7 @@ body {
 
 @media (min-width: 768px) {
   .container {
-    width: 720px;
+    width: 770px;
   }
 }
 
@@ -537,7 +549,7 @@ body {
 .depoimentos {
   background-color: #3399ff
   ;
-  background-image: url("../img/cabecalho-pagina-bg.jpg");
+  background-image: url("img/cabecalho-pagina-bg.jpg");
   background-attachment: fixed;
   color: white;
   padding: 30px 0;
@@ -564,7 +576,7 @@ body {
 }
 
 .depoimentos__texto::before {
-  background-image: url("../img/aspas.png");
+  background-image: url("img/aspas.png");
   background-repeat: no-repeat;
   content: '';
   display: inline-block;
@@ -646,7 +658,7 @@ body {
 }
 
 .logo {
-  background-image: url("../img/logotipo-preto.png");
+  background-image: url("img/logotipo-preto.png");
   background-repeat: no-repeat;
   display: block;
   width: 120px;
@@ -657,7 +669,7 @@ body {
 }
 
 .logo--branco {
-  background-image: url("../img/logotipo-branco.png");
+  background-image: url("img/logotipo-branco.png");
   margin-bottom: 20px;
 }
 
