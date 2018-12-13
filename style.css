@@ -370,6 +370,7 @@ body {
   border: 1px solid #3399ff
   ;
   border-radius: 5px;
+  margin-bottom: 25px;
 }
 
 .relatorio__linhas {
@@ -415,6 +416,25 @@ body {
   background-color: rgb(83, 204, 83);
   cursor: pointer;
 }
+
+.relatorio__modal {
+  text-decoration: none;
+  border: 3px solid #3399ff
+  ;
+  padding: 10px 13px;
+  border-radius: 300px;
+  background-color: white;
+  color: #3399ff
+  ;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal__label {
+  width: 50px;
+}
+
+
 
 .relatorio__cor2 {
   background-color: #ff9933;
@@ -540,6 +560,17 @@ body {
   .container {
     width: 1140px;
   }
+}
+
+#modal {
+  display: none;
+  width: 100%;
+  max-width: 600px;
+}
+
+#modal > div {
+  max-height: calc(100vh - 100px);
+  overflow: auto;
 }
 
 .text-center {

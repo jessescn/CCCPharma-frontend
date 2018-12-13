@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Desing responsivo</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../jquery.fancybox.min.css">
 </head>
 
 <body>
@@ -44,10 +45,34 @@
                     </div>
                 </section>
                 <div>
-                    <button class="relatorio__botao__add relatorio__cor2">Adicionar produto</button>
+                    <a data-fancybox data-touch="false" href="#modal" class="relatorio__modal">Adicionar produto</a>
+                </div>
+                <div id="modal">
+                    <div>
+                        <h3 class="text-center">Adicionar Produto</h3>
+                        <form class="formulario__modal">
+                            <div class="text-center">
+                                <span class="modal__label">Nome: </span>
+                                <input class="modal__input" name="nome" type="text">
+                            </div>
+                            <div class="text-center">
+                                <span class="modal__label">Preço: </span>
+                                <input class="modal__input" type="text" name="preco">
+                            </div>
+                            <div class="text-center">
+                                <span class="modal__label">Lote: </span>
+                                <input class="modal__input" type="text" name="lote">
+                            </div>
+                            <div class="text-center">
+                                <input class="modal__input" type="submit" value="enviar">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </section>
         </article>
     </main>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../jquery.fancybox.min.js"></script>
 </body>
 </html>
