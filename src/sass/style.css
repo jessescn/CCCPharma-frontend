@@ -1037,5 +1037,10 @@ select{
   color:#8d8d8d;
 }
 
+.autenticacaO{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 
 /*# sourceMappingURL=style.css.map */

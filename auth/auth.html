@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="sass/style.css">
+    <link rel="stylesheet" href="auth.css">
 </head>
 <body>
     <header class="cabecalho">
@@ -16,7 +16,7 @@
         <ul class="menu-principal__lista">
             <li><a class="menu-principal__item menu-principal__item--atual" href="index.html">Home</a></li>
             <li><a class="menu-principal__item" href="sobre.html">Relatório Geral</a></li>
-            <li><a class="menu-principal__item" href="contato.html">Login</a></li>
+            <li><a class="menu-principal__item" href="auth.html">Login</a></li>
         </ul>
         </nav>
         </div>
@@ -25,7 +25,27 @@
         <header class="pagina-cabecalho">
             <h1 class="pagina-cabecalho__titulo">Login</h1>
         </header>
-        <section class="container pagina-conteudo">
+        <section class="autenticacao container pagina-conteudo">
+            <form action="#" class="formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="nome">Nome</label>
+                    <input class="formulario__campo" name="nome" type="text" id="nome">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="sobrenome">Sobrenome</label>
+                    <input class="formulario__campo" name="sobrenome" type="text" id="sobrenome">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="email">E-mail</label>
+                    <input class="formulario__campo" type="email" name="email" id="email">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="password">Senha</label>
+                    <input class="formulario__campo" type="password" name="senha" id="senha">
+                </div>
+                <input class="formulario__botao" type="submit" value="Enviar">
+                <p class="desaparecer formulario__notificacao">Login inválido</p>
+            </form>
             <form action="#" class="formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="email">E-mail</label>
