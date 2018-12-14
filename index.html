@@ -32,7 +32,7 @@
                 </div>
                 <div class="filter-options">
                     <span class="filter-text filter-categoria">Selecione uma categoria:</span>
-                    <select class="select-caracteristica filter">
+                    <select onchange="povoar()" class="select-caracteristica filter">
                         <option>Melhores Ofertas</option>
                         <option>Menor Preço</option>
                         <option>Maior Preço</option>
@@ -50,20 +50,10 @@
                 </div>
 
                 <section class="products-container">
-                    <div class="produto">
-                        <div class="imagem-produto"></div>
-                        <p>Nome do Produto</p>
-                        <p>Preco:20</p>
-                        <p>Preco:20</p>
-                    </div>
-                    <div class="produto"></div>
-                    <div class="produto"></div>
-                    <div class="produto"></div>
-                    <div class="produto"></div>
-                    <div class="produto"></div>
                 </section>
             </div>
         </section>
     </main>
-</body>
+    <script src="app.js"></script>
+</body> 
 </html>
