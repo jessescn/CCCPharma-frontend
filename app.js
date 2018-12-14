@@ -1,4 +1,4 @@
-import {addProduct, getProduct, products} from './services/productsService';
+import {addProduct, getProduct, products} from './services/productsService.js';
 
 const $produtos = document.querySelector(".products-container");
 

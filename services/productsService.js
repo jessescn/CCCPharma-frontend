@@ -1,7 +1,7 @@
 const url = "https://shielded-headland-49703.herokuapp.com/products";
 
 // WORKING
-export async function products(){
+async function products(){
     const response = await fetch(url);
     const json = await response.json();
     return json;
