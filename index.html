@@ -32,25 +32,18 @@
                 </div>
                 <div class="filter-options">
                     <span class="filter-text filter-categoria">Selecione uma categoria:</span>
-                    <select onchange="povoar()" class="select-caracteristica filter">
-                        <option>Melhores Ofertas</option>
-                        <option>Menor Preço</option>
-                        <option>Maior Preço</option>
-                        <option>A-Z</option>
-                        <option>Z-A</option>
-                    </select>
-                    <select class="categoria">
+                    <select id="input-categoria" class="categoria" onchange="update()">
                         <option>Categorias</option>
                         <option>Medicamentos</option>
                         <option>Higiene Pessoal</option>
-                        <option>Alimentos</option>
                         <option>Cosméticos</option>
+                        <option>Alimentos</option>
                     </select>
-                    <span class="filter filter-text">Filtrar por: </span>
                 </div>
 
                 <section class="products-container">
                 </section>
+                <h2 id="not-found-message" class="desaparecer">Nenhum produto encontrado.</h2>
             </div>
         </section>
     </main>

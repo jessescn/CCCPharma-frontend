@@ -981,13 +981,13 @@ body {
   text-transform: uppercase;
   color:white;
   font-size: 26px;
-  padding-top: 80px;
+  padding-top: 18px;
 }
 
 .home_div{
   background-color:#3399ff;
   margin-top: 50px;
-  height: 210px;  
+  height: 80px;  
 }
 
 .home-titulo::after {
@@ -1050,8 +1050,7 @@ body {
 .produto{
   margin: 30px;
   height: 380px;
-  border: 1px solid grey;
-  border-radius: 8px;
+  border-radius: 8px
 
 }
 
@@ -1093,31 +1092,13 @@ select{
   background: transparent;
 }
 
-.imagem{
-  position: relative;
-  margin: 10px;
-  height: 200px;
-  background-color: #3399ff
-  ;
-}
-
-.preco{
-  position: relative;
-  height: 30px
-}
-
 .products-container{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .imagem-produto{
-  margin: 10px;
-  border: 1px solid grey;
-  border-radius: 8px;
-  background-color: #3399ff
-  ;
-  height: 250px;
+  height: 220px;
 
 }
 .produto{
@@ -1125,10 +1106,44 @@ select{
   color:#8d8d8d;
 }
 
-.autenticacaO{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+
+.produto > .nome{
+  font-size: 20px;
+  color:blue;
 }
 
+.produto .preco-atual{
+  font-size: 18px;
+  color:   #07113e  ;
 
-/*# sourceMappingURL=style.css.map */
+}
+
+.produto .preco-antigo{
+  font-size: 14px;
+  text-decoration: line-through;
+}
+
+.produto > .desconto{
+  position: absolute;
+  margin-left: 220px;
+  padding-top: 15px;
+  width: 40px;
+  height: 50px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  color: white;
+  background-color:#f14747;
+  font-size: 16px;
+}
+
+.escolha{
+  background-color: #3399ff;
+  height: 30px;
+  color: white;
+  padding-top: 5px;
+  border-radius: 8px;
+}
+
+#not-found-message{
+  text-align:center;
+}
