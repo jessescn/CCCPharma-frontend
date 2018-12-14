@@ -442,6 +442,10 @@ body {
   margin-right: -40px; 
 }
 
+.modal__titulo {
+  margin-left: 35px; 
+}
+
 .modal__label {
   display: inline-block;
   width: 100px;
@@ -451,7 +455,7 @@ body {
 
 .modal__input {
   border-radius: 5px;
-  margin: 4px 5px;
+  margin: 4px 7px;
   border: 1px solid #c4c4c4;
   border-radius: 5px;
   padding: 5px;
@@ -459,7 +463,8 @@ body {
 
 .modal__formulario {
   display: block;
-  margin-left: -45px; 
+  margin-left: -45px;
+  text-decoration: none; 
 }
 
 .modal__promocao {
@@ -467,11 +472,20 @@ body {
 }
 
 .modal__select {
-  padding-left: -5px;
+  width: 210px;
+}
+
+.modal__situacao {
+  margin-right: 50px;
 }
 
 .fas {
   color: #303030;
+}
+
+.fa-window-close {
+  margin: 0 auto;
+  cursor: pointer;
 }
 
 .relatorio__cor2 {
@@ -483,6 +497,10 @@ body {
   padding: 6px;
   position: absolute;
   width: 100%;
+}
+
+.zapzap {
+  padding: 40px 0;
 }
 
 @media (min-width: 768px) {
@@ -502,16 +520,16 @@ body {
   }
 }
 
-.logado-cliente a {
+.menu-principal a {
   display: none;
 }
 
-.logado-adm #botao-login {
-  display: none;
+.logado-adm .botao-adm {
+  display: block;
 }
 
-.nao-logado .botao-adm {
-  display: none;
+.nao-logado #botao-login {
+  display: block;
 }
 
 .rodape {
@@ -616,7 +634,7 @@ body {
 #promocao {
   display: none;
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   background-color: rgb(209, 239, 245); 
   border-radius: 10px;
 }
@@ -635,6 +653,19 @@ body {
 }
 
 #alterar > div {
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+}
+
+#venda {
+  display: none;
+  width: 100%;
+  max-width: 400px;
+  background-color: rgb(209, 239, 245); 
+  border-radius: 10px;
+}
+
+#venda > div {
   max-height: calc(100vh - 100px);
   overflow: auto;
 }
@@ -747,20 +778,26 @@ body {
 .formulario__botao {
   display: block;
   margin: 0 auto;
-  border: 3px solid #3399ff
-  ;
+  border: 3px solid #3399ff;
   padding: 5px 20px;
   border-radius: 300px;
   background-color: white;
-  color: #3399ff
-  ;
+  color: #3399ff;
   cursor: pointer;
   font-weight: bold;
 }
 
 .formulario__radio {
-  margin-top: 10px;
+  margin: 0;
+  margin-top: 20px;
 }
+
+.formulario__vendas {
+  /* margin: 0; */
+  border: 3px solid rgb(104, 182, 104);
+  color: rgb(104, 182, 104);
+}
+
 
 .logo {
   background-image: url("img/logotipo-preto.png");
@@ -869,6 +906,10 @@ body {
   ;
 }
 
+#menu-principal__home {
+  display: block;
+}
+
 .pagina-cabecalho {
   padding-top: 140px;
   padding-bottom: 40px;
@@ -941,8 +982,8 @@ body {
   }
 }
 
-#servicos {
-  padding: 30px 0;
+main {
+  padding: 25px 0;
   overflow: auto;
 }
 

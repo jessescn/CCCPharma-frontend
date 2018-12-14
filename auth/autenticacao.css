@@ -25,6 +25,30 @@ textarea {
 
 /* end configurations */
 
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../fonts/SourceSansPro-Regular.otf");
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../fonts/SourceSansPro-Bold.otf");
+  font-weight: bold;
+}
+
+body {
+  font-family: "Source Sans Pro";
+}
+
+main {
+  padding: 25px 0;
+  overflow: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
 .cabecalho {
     min-width: 100px;
 }
@@ -59,7 +83,7 @@ textarea {
 
 .cabecalho {
     background: white;
-    padding: 15px;
+    padding: 6px;
     position: fixed;
     width: 100%;
 }
@@ -157,11 +181,12 @@ textarea {
 }
 
 .menu-principal__item {
+    padding-right: 25px; 
     display: block;
     text-decoration: none;
     font-weight: bold;
-    height: 20px;
-    font-size: 18px;
+    height: 15px;
+    font-size: 16px;
     color: #343434;
 }
 
@@ -195,6 +220,7 @@ textarea {
 }
 
 .formulario__grupo {
+    margin-left: -90px;
     margin-bottom: 15px;
 }
 
@@ -204,20 +230,41 @@ textarea {
 }
 
 
+.formulario__label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    color: #303030;
+}
+
 .formulario__campo {
-    display: block;
-    margin: 0 auto;
-    width: 75%;
+    border-radius: 5px;
+    margin: 4px 7px;
     border: 1px solid #c4c4c4;
     border-radius: 5px;
     padding: 5px;
 }
 
-.formulario__label {
-    margin: 10px;
-    display: block;
-    text-align: center;
-    color: #343434;
+@media (max-width: 920px) {
+    .formulario__campo {
+        display: block;
+        margin: 0 auto;
+        width: 75%;
+        border: 1px solid #c4c4c4;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    .formulario__label {
+        margin: 10px;
+        display: block;
+        text-align: center;
+    }
+
+    .formulario__grupo {
+        margin-left: 0px;
+    }
+    
 }
 
 .formulario__botao {
@@ -240,4 +287,27 @@ textarea {
 .auth-title{
     text-align: center;
     margin: 30px;
+}
+
+.home_div{
+  background-color:#3399ff;
+  margin-top: 50px;
+  height: 80px;  
+}
+
+.home-titulo {
+  text-align: center;
+  text-transform: uppercase;
+  color:white;
+  font-size: 26px;
+  padding-top: 18px;
+}
+
+.home-titulo::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color:white;
+  margin: 10px auto;
 }

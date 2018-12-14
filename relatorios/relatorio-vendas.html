@@ -7,25 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Desing responsivo</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../jquery.fancybox.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+        crossorigin="anonymous">
 </head>
 <body>
     <header class="cabecalho">
-            <div class="container">
+        <div class="container">
             <h1 class="logo">Desing responsivo</h1>
             <nav class="menu-principal menu-principal--fechar">
-            <button class="menu-principal__btn">Abrir/fechar menu</button>
-            <ul class="menu-principal__lista">
-                    <li><a class="menu-principal__item menu-principal__item--atual" href="../index.html">Home</a></li>
-                    <li><a class="menu-principal__item" href="relatorio-lotes.html">Relatório Geral</a></li>
-                    <li><a class="menu-principal__item" href="../auth/autenticacao.html">Login</a></li>
-            </ul>
+                <button class="menu-principal__btn">Abrir/fechar menu</button>
+                <ul class="menu-principal__lista logado-adm">
+                    <li><a class="menu-principal__item" id="menu-principal__home" href="../index.html">Home</a></li>
+                    <li><a class="menu-principal__item botao-adm" href="relatorio-lotes.html">Relatório Geral</a></li>
+                    <li><a class="menu-principal__item botao-adm" href="relatorio-produtos.html">Gerenciar produtos</a></li>
+                    <li><a class="menu-principal__item botao-adm menu-principal__item--atual" href="relatorio-vendas.html">Gerenciar vendas</a></li>
+                    <li><a class="menu-principal__item" id="botao-login" href="../auth/autenticacao.html">Login</a></li>
+                </ul>
             </nav>
-            </div>
-        </header>
+        </div>
+    </header>
     <main>
         <article>
-            <header class="pagina-cabecalho">
-                <h1 class="pagina-cabecalho__titulo">Central vendas</h1>
+            <header class="home_div">
+                <h1 class="home-titulo">Central vendas</h1>
             </header>
             <section class="container pagina-cabecalho__conteudo">
                 <section class="relatorio__vendas">
@@ -39,16 +44,37 @@
                         <span class="relatorio__elemento">Sabao bonito</span>
                         <span class="relatorio__elemento">12</span>
                         <span class="relatorio__elemento">R$1000,00</span>
-                        <button class="relatorio__botao">X</button>
+                        <i class="fas fa-window-close fa-lg"></i>
+                        
                     </div>
                 </section>
-                <div>
-                    <button class="relatorio__botao__add">Adicionar produto</button>
-                </div>
+                <a data-fancybox data-touch="false" href="#venda" class="relatorio__modal formulario__vendas">Adicionar venda</a>
             </section>
+            <div id="venda">
+                <form action="#" class="modal__formulario" name="productForm">
+                    <div class="text-center">
+                        <h3 class="modal__titulo">Registrar venda</h3>
+                        <!-- <label class="modal__label">Produto</label>
+                        <select id="select-situacao" class="modal__select modal__input" onchange="update()">
+                            <option>Opções</option>
+                        </select> -->
+                        <label class="modal__label">Nome </label>
+                        <input class="modal__input" name="nome" type="text">
+                        <label class="modal__label">Nº de itens </label>
+                        <input class="modal__input" type="text" name="preco">
+                        <label class="modal__label">Valor total </label>
+                        <input class="modal__input" type="text" name="fabricante">
+                    </div>
+                    <div class="modal__botao">
+                        <input class="formulario__botao" type="submit" value="Enviar" onclick="addProduct()">
+                    </div>
+                </form>
+            </div>
         </article>
     </main>
     <script src="relatorios.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../jquery.fancybox.min.js"></script>
 </body> 
 
 </html>

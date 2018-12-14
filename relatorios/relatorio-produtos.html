@@ -16,18 +16,20 @@
         <h1 class="logo">Desing responsivo</h1>
         <nav class="menu-principal menu-principal--fechar">
         <button class="menu-principal__btn">Abrir/fechar menu</button>
-        <ul class="menu-principal__lista">
-            <li><a class="menu-principal__item menu-principal__item--atual" href="../index.html">Home</a></li>
-            <li><a class="menu-principal__item" href="relatorio-lotes.html">Relatório Geral</a></li>
-            <li><a class="menu-principal__item" href="../auth/autenticacao.html">Login</a></li>
+        <ul class="menu-principal__lista logado-adm">
+            <li><a class="menu-principal__item" id="menu-principal__home" href="../index.html">Home</a></li>
+            <li><a class="menu-principal__item botao-adm" href="relatorio-lotes.html">Relatório Geral</a></li>
+            <li><a class="menu-principal__item botao-adm menu-principal__item--atual" href="relatorio-produtos.html">Gerenciar produtos</a></li>
+            <li><a class="menu-principal__item botao-adm" href="relatorio-vendas.html">Gerenciar vendas</a></li>
+            <li><a class="menu-principal__item" id="botao-login" href="../auth/autenticacao.html">Login</a></li>
         </ul>
         </nav>
         </div>
     </header>
     <main>
         <article>
-            <header class="pagina-cabecalho">
-                <h1 class="pagina-cabecalho__titulo">Central produtos</h1>
+            <header class="home_div">
+                <h1 class="home-titulo">Central produtos</h1>
             </header>
             <section class="container pagina-cabecalho__conteudo">
                 <section class="relatorio__vendas">
@@ -53,52 +55,48 @@
                     </div>
                 </section>
                 <div id="alterar">
-                    <h3 class="text-center titulo__alterar">Alterar preço</h3>
+                    <h3 class="text-center modal__titulo">Alterar preço</h3>
                     <form action="#" class="modal__formulario">
                         <div class="text-center">
                             <label class="modal__label">Novo preço</label>
                             <input class="modal__input" name="nome" type="text">
                         </div>
+                        <div class="modal__botao">
+                            <input class="formulario__botao" type="submit" value="Enviar">
+                        </div>
                     </form>
                 </div>
                 <div id="promocao">
-                    <h3 class="text-center">Adicionar promoção</h3>
-                    <form action="#">
-                        <div class="text-center">
-                            <input class="radio__btn" type="radio" name="promo" value="zero"> Sem desconto<br>
-                            <input class="radio__btn" type="radio" name="promo" value="nice"> Bom desconto (10%)<br>
-                            <input class="radio__btn" type="radio" name="promo" value="great"> Ótimo desconto (25%)<br>
-                            <input class="radio__btn" type="radio" name="promo" value="super"> Super desconto (50%)<br>
-                        </div>
+                    <h3>Adicionar promoção</h3>
+                    <form action="#"> 
+                        <input class="radio__btn" type="radio" name="promo" value="zero"> Sem desconto<br>
+                        <input class="radio__btn" type="radio" name="promo" value="nice"> Bom desconto (10%)<br>
+                        <input class="radio__btn" type="radio" name="promo" value="great"> Ótimo desconto (25%)<br>
+                        <input class="radio__btn" type="radio" name="promo" value="super"> Super desconto (50%)<br>
                         <input class="formulario__botao formulario__radio" type="submit" value="Enviar">
+                        
                     </form>
                 </div>
-                <div>
-                    <a data-fancybox data-touch="false" href="#modal" class="relatorio__modal">Adicionar produto</a>
-                </div>
+                <a data-fancybox data-touch="false" href="#modal" class="relatorio__modal">Adicionar produto</a>
                 <div id="modal"> 
                     <h3 class="text-center">Adicionar Produto</h3>
                     <form action="#" class="modal__formulario" name="productForm">
                         <div class="text-center">
                             <label class="modal__label">Nome </label>
                             <input class="modal__input" name="nome" type="text">
-                        </div>
-                        <div class="text-center">
                             <label class="modal__label">Preço </label>
                             <input class="modal__input" type="text" name="preco">
-                        </div>
-                        <div class="text-center">
                             <label class="modal__label">Fabricante </label>
                             <input class="modal__input" type="text" name="fabricante">
-                        </div>
-                        <div class="text-center">
                             <label class="modal__label">Situação </label>
-                            <input class="modal__input" type="text" name="lote">
-                        </div>
-                        <div class="text-center modal__select">
+                            <select id="select-situacao" class="modal__select modal__input" onchange="update()">
+                                <option>Opções</option>
+                                <option>Disponível</option>
+                                <option>Indisponível</option>
+                            </select>
                             <label class="modal__label">Categoria</label>
-                            <select id="input-categoria" class="categoria modal__input modal__select" onchange="update()">
-                                <option>Categorias</option>
+                            <select id="select-categoria" class="modal__select modal__input" onchange="update()">
+                                <option>Opções</option>
                                 <option>Medicamentos</option>
                                 <option>Higiene Pessoal</option>
                                 <option>Cosméticos</option>

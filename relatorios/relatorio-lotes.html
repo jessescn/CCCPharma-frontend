@@ -1,4 +1,4 @@
-p<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -10,21 +10,23 @@ p<!DOCTYPE html>
 <body>
     <header class="cabecalho">
         <div class="container">
-        <h1 class="logo">Desing responsivo</h1>
-        <nav class="menu-principal menu-principal--fechar">
-        <button class="menu-principal__btn">Abrir/fechar menu</button>
-        <ul class="menu-principal__lista">
-            <li><a class="menu-principal__item menu-principal__item--atual" href="../index.html">Home</a></li>
-            <li><a class="menu-principal__item" href="relatorio-lotes.html">Relatório Geral</a></li>
-            <li><a class="menu-principal__item" href="../auth/autenticacao.html">Login</a></li>
-        </ul>
-        </nav>
+            <h1 class="logo">Desing responsivo</h1>
+            <nav class="menu-principal menu-principal--fechar">
+                <button class="menu-principal__btn">Abrir/fechar menu</button>
+                <ul class="menu-principal__lista logado-adm">
+                    <li><a class="menu-principal__item" id="menu-principal__home" href="../index.html">Home</a></li>
+                    <li><a class="menu-principal__item botao-adm menu-principal__item--atual" href="relatorio-lotes.html">Relatório Geral</a></li>
+                    <li><a class="menu-principal__item botao-adm" href="relatorio-produtos.html">Gerenciar produtos</a></li>
+                    <li><a class="menu-principal__item botao-adm" href="relatorio-vendas.html">Gerenciar vendas</a></li>
+                    <li><a class="menu-principal__item" id="botao-login" href="../auth/autenticacao.html">Login</a></li>
+                </ul>
+            </nav>
         </div>
-        </header>
+    </header>
     <main>
         <article>
-            <header class="pagina-cabecalho">
-                <h1 class="pagina-cabecalho__titulo">Relatório geral</h1>
+            <header class="home_div">
+                <h1 class="home-titulo">Relatório geral</h1>
             </header>
             <section class="container pagina-cabecalho__conteudo">
                 <section class="relatorio__vendas">
