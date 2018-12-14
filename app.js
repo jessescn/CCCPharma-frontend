@@ -2,27 +2,25 @@ import {addProduct, getProduct, products} from './services/productsService.js';
 
 const $produtos = document.querySelector(".products-container");
 
-// async function products(){
-//     const response = await fetch("https://shielded-headland-49703.herokuapp.com/products");
-//     const json = await response.json();
-//     return json;
-// }
-
 let allProducts = [];
-
-let currentProducts = [];
 
 /* init home */
 
 (function(){
-    populateHome();
-    filterProducts();
     products().then(response => allProducts = response);
+    filterProducts();
+    setFunctions();
 })();
+
+
 
 function update(){
     filterProducts();
-    populateHome();
+}
+
+function setFunctions(){
+    let $select = document.querySelector("#input-categoria");
+    $select.onchange = update;
 }
 
 function filterProducts(){
@@ -39,9 +37,10 @@ function filterProducts(){
             }
         });
 
-    currentProducts = filteredProducts;
+    
+    populateHome(filteredProducts);
 
-    if(currentProducts.length > 0){
+    if(filteredProducts.length > 0){
         $messageNotFound.classList.add("desaparecer");
     }
 }
@@ -51,19 +50,19 @@ function redirectRouter(url){
 }
 
 
-function populateHome(){
+function populateHome(listaProdutos){
 
     while ($produtos.firstChild) {
         $produtos.removeChild($produtos.firstChild);
     }
     
-    currentProducts.forEach(element => {
-        let $product = document.createElement("div");
+    listaProdutos.forEach(element => {
+        let $produto = document.createElement("div");
         
         let discountPrice = calculateDiscount(element.price, element.category.discount);
 
         if(element.category.discount > 0){
-            $product.innerHTML = `
+            $produto.innerHTML = `
                 <div class="desconto"> -${element.category.discount * 100}%</div>
                 <img class="imagem-produto" src="img/${element.category.id}.jpg">
                 <p class="nome">${element.name}</p>
@@ -72,7 +71,7 @@ function populateHome(){
                 <div class="escolha" onclick = "redirectRouter('index.html')">Selecionar</div>
             `
         }else{
-            $product.innerHTML = `
+            $produto.innerHTML = `
                 <img class="imagem-produto" src="img/${element.category.id}.jpg">
                 <p class="nome">${element.name}</p>
                 <p class="preco-antigo"></p>
@@ -80,8 +79,8 @@ function populateHome(){
                 <div class="escolha" onclick = "redirectRouter('index.html')">Selecionar</div>
             `
         }
-        $product.classList.add("produto");
-        $produtos.appendChild($product);
+        $produto.classList.add("produto");
+        $produtos.appendChild($produto);
     });
 };
 
