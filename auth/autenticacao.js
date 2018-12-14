@@ -1,5 +1,11 @@
+import { submitRegister, submitLogin } from "../services/authService";
+
 const $registerForm = document.forms['registerForm'];
 const $loginForm = document.forms['loginForm'];
+
+function redirectRouter(url){
+    this.window.location.href= url;
+}
 
 function register(){
     let name = $registerForm["nome"].value;
@@ -13,7 +19,9 @@ function register(){
         email: email,
         senha: password
     }    
-    return user;
+    submitRegister(user).then(() => {
+        redirectRouter("../index.html");
+    });
 }
 
 function login(){
@@ -24,5 +32,7 @@ function login(){
         email: email,
         senha: password
     }    
-    return user;
+    submitLogin(user).then(() => {
+        redirectRouter("../index.html");
+    });
 }

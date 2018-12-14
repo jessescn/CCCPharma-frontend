@@ -1,28 +1,23 @@
+import {addProduct, getProduct, products} from './services/productsService';
+
 const $produtos = document.querySelector(".products-container");
 
-let produtoEx = [{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0.4}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 1,"name": "Higiene Pessoal","discount": 0}}];
+// async function products(){
+//     const response = await fetch("https://shielded-headland-49703.herokuapp.com/products");
+//     const json = await response.json();
+//     return json;
+// }
 
-let currentProducts = [{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 1,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0.4}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}}];
+let allProducts = [];
+
+let currentProducts = [];
 
 /* init home */
 
 (function(){
     populateHome();
     filterProducts();
+    products().then(response => allProducts = response);
 })();
 
 function update(){
@@ -37,7 +32,7 @@ function filterProducts(){
     let filteredProducts = [];
     let indexCategory = document.getElementById("input-categoria").selectedIndex;
 
-    produtoEx.forEach(product =>
+    allProducts.forEach(product =>
         {
             if(product.category.id == indexCategory || indexCategory == 0){
                 filteredProducts.push(product);
