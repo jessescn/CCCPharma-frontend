@@ -357,6 +357,7 @@ template {
           box-sizing: border-box;
 }
 
+
 img {
   max-width: 100%;
   height: auto;
@@ -376,7 +377,7 @@ body {
 .relatorio__linhas {
   margin: 10px 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-row-gap: 10px; 
 }
 
@@ -430,10 +431,6 @@ body {
   font-weight: bold;
 }
 
-#modal {
-  background-color: rgb(209, 239, 245); 
-  border-radius: 10px;
-}
 
 .modal__botao {
   margin-top: 15px;
@@ -458,6 +455,14 @@ body {
 .modal__formulario {
   display: block;
   margin-left: -45px; 
+}
+
+.modal__promocao {
+  margin: 0 auto;
+}
+
+.fas {
+  color: #303030;
 }
 
 .relatorio__cor2 {
@@ -590,6 +595,8 @@ body {
   display: none;
   width: 100%;
   max-width: 600px;
+  background-color: rgb(209, 239, 245); 
+  border-radius: 10px;
 }
 
 #modal > div {
@@ -597,6 +604,18 @@ body {
   overflow: auto;
 }
 
+#promocao {
+  display: none;
+  width: 100%;
+  max-width: 600px;
+  background-color: rgb(209, 239, 245); 
+  border-radius: 10px;
+}
+
+#promocao > div {
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+}
 .text-center {
   text-align: center;
 }
@@ -1031,7 +1050,7 @@ body {
 .produto{
   margin: 30px;
   height: 380px;
-  /* border: 1px solid  #e6dddd ; */
+  border: 1px solid grey;
   border-radius: 8px;
 
 }
@@ -1074,54 +1093,42 @@ select{
   background: transparent;
 }
 
+.imagem{
+  position: relative;
+  margin: 10px;
+  height: 200px;
+  background-color: #3399ff
+  ;
+}
+
+.preco{
+  position: relative;
+  height: 30px
+}
+
 .products-container{
   display: grid;
-  grid-template-columns:  1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .imagem-produto{
-  height: 220px;
+  margin: 10px;
+  border: 1px solid grey;
+  border-radius: 8px;
+  background-color: #3399ff
+  ;
+  height: 250px;
 
 }
 .produto{
-  position: relative;
   text-align: center;
   color:#8d8d8d;
 }
 
-.produto > .nome{
-  font-size: 20px;
-  color:blue;
+.autenticacaO{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-.produto > .preco-atual{
-  font-size: 18px;
-  color:   #07113e  ;
 
-}
-
-.produto > .preco-antigo{
-  font-size: 14px;
-  text-decoration: line-through;
-}
-
-.produto > .desconto{
-  position: absolute;
-  margin-left: 220px;
-  padding-top: 15px;
-  width: 40px;
-  height: 50px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  color: white;
-  background-color:#f14747;
-  font-size: 16px;
-}
-
-.escolha{
-  background-color: #3399ff;
-  height: 30px;
-  color: white;
-  padding-top: 5px;
-  border-radius: 8px;
-}
+/*# sourceMappingURL=style.css.map */

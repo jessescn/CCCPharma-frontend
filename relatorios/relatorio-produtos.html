@@ -8,6 +8,7 @@
     <title>Desing responsivo</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" type="text/css" href="../jquery.fancybox.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 </head>
 <body>
     <header class="cabecalho">
@@ -36,23 +37,31 @@
                         <span class="relatorio__titulo">Categoria</span>
                         <span class="relatorio__titulo">Validade</span>
                         <span class="relatorio__titulo">Adicionar promoção</span>
+                        <span class="relatorio__titulo">Alterar Preço</span>
                         <span class="relatorio__elemento">123456</span>
                         <span class="relatorio__elemento">Sabao bonito</span>
                         <span class="relatorio__elemento">12</span>
                         <span class="relatorio__elemento">R$1000,00</span>
-                        <button class="relatorio__botao relatorio__cor2"></button>
-                        <a data-fancybox data-touch="false" href="#promocao" class="modal__promocao"></a>
+                        <a data-fancybox data-touch="false" href="#promocao" class="modal__promocao">
+                            <i class="fas fa-dollar-sign"></i>
+                        </a>
+                        <a data-fancybox data-touch="false" href="#promocao" class="modal__promocao">
+                            <i class="fas fa-marker"></i>
+                        </a>
                     </div>
                     <div>
-
                     </div>
                 </section>
+                <div id="promocao">
+                    <h3 class="text-center">Alterar preço</h3>
+                    <form action=""></form>
+                </div>
                 <div>
                     <a data-fancybox data-touch="false" href="#modal" class="relatorio__modal">Adicionar produto</a>
                 </div>
                 <div id="modal"> 
                     <h3 class="text-center">Adicionar Produto</h3>
-                    <form class="modal__formulario">
+                    <form action="#" class="modal__formulario">
                         <div class="text-center">
                             <label class="modal__label">Nome </label>
                             <input class="modal__input" name="nome" type="text">
