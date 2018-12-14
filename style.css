@@ -377,8 +377,13 @@ body {
 .relatorio__linhas {
   margin: 10px 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-row-gap: 10px; 
+}
+
+.relatorio__linhas__extra {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .relatorio__titulo {
@@ -439,14 +444,14 @@ body {
 
 .modal__label {
   display: inline-block;
-  width: 50px;
+  width: 100px;
   text-align: right;
   color: #303030;
 }
 
 .modal__input {
   border-radius: 5px;
-  margin: 5px 0;
+  margin: 4px 5px;
   border: 1px solid #c4c4c4;
   border-radius: 5px;
   padding: 5px;
@@ -459,6 +464,10 @@ body {
 
 .modal__promocao {
   margin: 0 auto;
+}
+
+.modal__select {
+  padding-left: -5px;
 }
 
 .fas {
@@ -594,7 +603,7 @@ body {
 #modal {
   display: none;
   width: 100%;
-  max-width: 600px;
+  max-width: 400px;
   background-color: rgb(209, 239, 245); 
   border-radius: 10px;
 }
@@ -607,7 +616,7 @@ body {
 #promocao {
   display: none;
   width: 100%;
-  max-width: 600px;
+  max-width: 400px;
   background-color: rgb(209, 239, 245); 
   border-radius: 10px;
 }
@@ -616,6 +625,20 @@ body {
   max-height: calc(100vh - 100px);
   overflow: auto;
 }
+
+#alterar {
+  display: none;
+  width: 100%;
+  max-width: 400px;
+  background-color: rgb(209, 239, 245); 
+  border-radius: 10px;
+}
+
+#alterar > div {
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+}
+
 .text-center {
   text-align: center;
 }
@@ -696,6 +719,10 @@ body {
   margin-bottom: 15px;
 }
 
+.radio__btn {
+  display: inline-block;
+}
+
 .formulario__notificacao {
   text-align: center;
   color: red;
@@ -729,6 +756,10 @@ body {
   ;
   cursor: pointer;
   font-weight: bold;
+}
+
+.formulario__radio {
+  margin-top: 10px;
 }
 
 .logo {

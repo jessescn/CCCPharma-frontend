@@ -31,7 +31,7 @@
             </header>
             <section class="container pagina-cabecalho__conteudo">
                 <section class="relatorio__vendas">
-                    <div class="relatorio__linhas">
+                    <div class="relatorio__linhas relatorio__linhas__extra">
                         <span class="relatorio__titulo">Id do produto</span>
                         <span class="relatorio__titulo">Nome do produto</span>
                         <span class="relatorio__titulo">Categoria</span>
@@ -45,16 +45,33 @@
                         <a data-fancybox data-touch="false" href="#promocao" class="modal__promocao">
                             <i class="fas fa-dollar-sign"></i>
                         </a>
-                        <a data-fancybox data-touch="false" href="#promocao" class="modal__promocao">
+                        <a data-fancybox data-touch="false" href="#alterar" class="modal__promocao">
                             <i class="fas fa-marker"></i>
                         </a>
                     </div>
                     <div>
                     </div>
                 </section>
+                <div id="alterar">
+                    <h3 class="text-center titulo__alterar">Alterar preço</h3>
+                    <form action="#" class="modal__formulario">
+                        <div class="text-center">
+                            <label class="modal__label">Novo preço</label>
+                            <input class="modal__input" name="nome" type="text">
+                        </div>
+                    </form>
+                </div>
                 <div id="promocao">
-                    <h3 class="text-center">Alterar preço</h3>
-                    <form action=""></form>
+                    <h3 class="text-center">Adicionar promoção</h3>
+                    <form action="#">
+                        <div class="text-center">
+                            <input class="radio__btn" type="radio" name="promo" value="zero"> Sem desconto<br>
+                            <input class="radio__btn" type="radio" name="promo" value="nice"> Bom desconto (10%)<br>
+                            <input class="radio__btn" type="radio" name="promo" value="great"> Ótimo desconto (25%)<br>
+                            <input class="radio__btn" type="radio" name="promo" value="super"> Super desconto (50%)<br>
+                        </div>
+                        <input class="formulario__botao formulario__radio" type="submit" value="Enviar">
+                    </form>
                 </div>
                 <div>
                     <a data-fancybox data-touch="false" href="#modal" class="relatorio__modal">Adicionar produto</a>
@@ -78,9 +95,15 @@
                             <label class="modal__label">Situação </label>
                             <input class="modal__input" type="text" name="lote">
                         </div>
-                        <div class="text-center">
-                            <label class="modal__label">Categoria </label>
-                            <input class="modal__input" type="text" name="lote">
+                        <div class="text-center modal__select">
+                            <label class="modal__label">Categoria</label>
+                            <select id="input-categoria" class="categoria modal__input modal__select" onchange="update()">
+                                <option>Categorias</option>
+                                <option>Medicamentos</option>
+                                <option>Higiene Pessoal</option>
+                                <option>Cosméticos</option>
+                                <option>Alimentos</option>
+                            </select>
                         </div>
                         <div class="modal__botao">
                             <input class="formulario__botao" type="submit" value="Enviar">
