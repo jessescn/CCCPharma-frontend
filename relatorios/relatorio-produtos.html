@@ -78,7 +78,7 @@
                 </div>
                 <div id="modal"> 
                     <h3 class="text-center">Adicionar Produto</h3>
-                    <form action="#" class="modal__formulario">
+                    <form action="#" class="modal__formulario" name="productForm">
                         <div class="text-center">
                             <label class="modal__label">Nome </label>
                             <input class="modal__input" name="nome" type="text">
@@ -89,7 +89,7 @@
                         </div>
                         <div class="text-center">
                             <label class="modal__label">Fabricante </label>
-                            <input class="modal__input" type="text" name="lote">
+                            <input class="modal__input" type="text" name="fabricante">
                         </div>
                         <div class="text-center">
                             <label class="modal__label">Situação </label>
@@ -106,7 +106,7 @@
                             </select>
                         </div>
                         <div class="modal__botao">
-                            <input class="formulario__botao" type="submit" value="Enviar">
+                            <input class="formulario__botao" type="submit" value="Enviar" onclick="addProduct()">
                         </div>
                     </form>
                 </div>
@@ -115,5 +115,6 @@
     </main>
     <script src="../jquery-3.3.1.min.js"></script>
     <script src="../jquery.fancybox.min.js"></script>
+    <script src="relatorios.js"></script>
 </body>
 </html>

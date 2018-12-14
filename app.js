@@ -61,6 +61,7 @@ function populateHome(){
     while ($produtos.firstChild) {
         $produtos.removeChild($produtos.firstChild);
     }
+    
     currentProducts.forEach(element => {
         let $product = document.createElement("div");
         
@@ -92,39 +93,3 @@ function populateHome(){
 function calculateDiscount(price,discount){
     return (price - (price * discount)).toFixed(2);
 }
-
-// {
-//     "id": 3,
-//     "amount": 10,
-//     "expiration": "01-01-2018",
-//     "product": {
-//         "id": 2,
-//         "name": "Perfume",
-//         "producer": "KY",
-//         "barcode": "100002",
-//         "price": 52.59,
-//         "available": false,
-//         "category": {
-//             "id": 2,
-//             "name": "Higiene Pessoal",
-//             "discount": 0
-//         }
-//     }
-// }{
-//     "id": 3,
-//     "amount": 10,
-//     "expiration": "01-01-2018",
-//     "product": {
-//         "id": 2,
-//         "name": "Perfume",
-//         "producer": "KY",
-//         "barcode": "100002",
-//         "price": 52.59,
-//         "available": false,
-//         "category": {
-//             "id": 2,
-//             "name": "Higiene Pessoal",
-//             "discount": 0
-//         }
-//     }
-// }
