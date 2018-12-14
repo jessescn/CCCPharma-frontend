@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" type="text/css" href="../jquery.fancybox.min.css">
 </head>
-
 <body>
-<header class="cabecalho">
+    <header class="cabecalho">
         <div class="container">
         <h1 class="logo">Desing responsivo</h1>
         <nav class="menu-principal menu-principal--fechar">
@@ -23,7 +22,7 @@
         </ul>
         </nav>
         </div>
-        </header>
+    </header>
     <main>
         <article>
             <header class="pagina-cabecalho">
@@ -42,32 +41,42 @@
                         <span class="relatorio__elemento">12</span>
                         <span class="relatorio__elemento">R$1000,00</span>
                         <button class="relatorio__botao relatorio__cor2"></button>
+                        <a data-fancybox data-touch="false" href="#promocao" class="modal__promocao"></a>
+                    </div>
+                    <div>
+
                     </div>
                 </section>
                 <div>
                     <a data-fancybox data-touch="false" href="#modal" class="relatorio__modal">Adicionar produto</a>
                 </div>
-                <div id="modal">
-                    <div>
-                        <h3 class="text-center">Adicionar Produto</h3>
-                        <form class="formulario__modal">
-                            <div class="text-center">
-                                <span class="modal__label">Nome: </span>
-                                <input class="modal__input" name="nome" type="text">
-                            </div>
-                            <div class="text-center">
-                                <span class="modal__label">Preço: </span>
-                                <input class="modal__input" type="text" name="preco">
-                            </div>
-                            <div class="text-center">
-                                <span class="modal__label">Lote: </span>
-                                <input class="modal__input" type="text" name="lote">
-                            </div>
-                            <div class="text-center">
-                                <input class="modal__input" type="submit" value="enviar">
-                            </div>
-                        </form>
-                    </div>
+                <div id="modal"> 
+                    <h3 class="text-center">Adicionar Produto</h3>
+                    <form class="modal__formulario">
+                        <div class="text-center">
+                            <label class="modal__label">Nome </label>
+                            <input class="modal__input" name="nome" type="text">
+                        </div>
+                        <div class="text-center">
+                            <label class="modal__label">Preço </label>
+                            <input class="modal__input" type="text" name="preco">
+                        </div>
+                        <div class="text-center">
+                            <label class="modal__label">Fabricante </label>
+                            <input class="modal__input" type="text" name="lote">
+                        </div>
+                        <div class="text-center">
+                            <label class="modal__label">Situação </label>
+                            <input class="modal__input" type="text" name="lote">
+                        </div>
+                        <div class="text-center">
+                            <label class="modal__label">Categoria </label>
+                            <input class="modal__input" type="text" name="lote">
+                        </div>
+                        <div class="modal__botao">
+                            <input class="formulario__botao" type="submit" value="Enviar">
+                        </div>
+                    </form>
                 </div>
             </section>
         </article>

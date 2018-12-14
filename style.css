@@ -430,11 +430,35 @@ body {
   font-weight: bold;
 }
 
-.modal__label {
-  width: 50px;
+#modal {
+  background-color: rgb(209, 239, 245); 
+  border-radius: 10px;
 }
 
+.modal__botao {
+  margin-top: 15px;
+  margin-right: -40px; 
+}
 
+.modal__label {
+  display: inline-block;
+  width: 50px;
+  text-align: right;
+  color: #303030;
+}
+
+.modal__input {
+  border-radius: 5px;
+  margin: 5px 0;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.modal__formulario {
+  display: block;
+  margin-left: -45px; 
+}
 
 .relatorio__cor2 {
   background-color: #ff9933;
@@ -442,8 +466,8 @@ body {
 
 .cabecalho {
   background: white;
-  padding: 15px;
-  position: fixed;
+  padding: 6px;
+  position: absolute;
   width: 100%;
 }
 
@@ -785,8 +809,8 @@ body {
   display: block;
   text-decoration: none;
   font-weight: bold;
-  height: 20px;
-  font-size: 18px;
+  height: 15px;
+  font-size: 16px;
   color: #343434;
 }
 
@@ -938,11 +962,12 @@ body {
   text-transform: uppercase;
   color:white;
   font-size: 26px;
-  padding-top: 105px;
+  padding-top: 80px;
 }
 
 .home_div{
   background-color:#3399ff;
+  margin-top: 50px;
   height: 210px;  
 }
 
