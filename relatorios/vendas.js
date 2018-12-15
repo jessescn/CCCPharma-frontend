@@ -1,4 +1,5 @@
 import * as orderService from '../services/ordersService.js';
+import * as productsService from '../services/productsService.js';
 
 const $vendaForm = document.forms['productForm'];
 const $vendas  = document.querySelector("#produtos");
@@ -8,25 +9,16 @@ let vendas = [];
     orderService.orders()
     .then(orders => {
         vendas = orders;
-    }).then(() =>{ 
+    }).then(() => { 
         povoarVendas();
-        setFunctions();
+        productsService.products().then(products => {
+            setOptions(products);
+        }) 
     })
 })();
 
-// function removerVenda(){
-//     console.log("ola");
-//     //orderService.removeOrder(id);
-// }
-
-function setFunctions(){
-    const $botao = document.querySelector(".formulario__botao");
-    $botao.onclick = addVenda;
-}
-
 
 function povoarVendas(){
-
     vendas.forEach(venda => {
         let $venda = document.createElement("div");
 
@@ -41,9 +33,23 @@ function povoarVendas(){
     })
 }
 
-function Venda(){
+function setOptions(produtos){
+    const $select = document.getElementById("select-products");
     
+    produtos.forEach(produto =>{
+
+        let option = document.createElement("option");
+        option.text = produto.name;
+        option.value = produto.id;
+        $select.add(option);
+    })
 }
+
+// function adicionarVenda(){
+//     let $vendaForm
+// }
+
+
 
 
 
