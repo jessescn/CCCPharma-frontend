@@ -3,93 +3,87 @@ const url = "https://cccpharma-api-jjlm.herokuapp.com/products";
 // WORKING GET ALL PRODUCTS
 async function products(){
     const response = await fetch(url);
-    if(response.ok){
+
+    try{
         const json = await response.json();
-        return json;  
-    }else{
-        throw new Error("Nenhum produto encontrado");
-    }
+        return json;
+    }catch(e){
+        console.log(e);
+    }  
 }
 
 // WORKING GET PRODUCT
 async function getProduct(id){
-    let produtoUrl = url + "/" + id; 
+    const produtoUrl = url + "/" + id; 
     const response = await fetch(produtoUrl);
-    if(response.ok){
-        const json = await response.json();
-        return json;
-    }else{
-        throw new Error("Nenhum produto encontrado")
-    }
+    const json = await response.json();
+
+    return json;
 }
 
 
 // WORKING ADD PRODUCT
 async function addProduct(produto){
-    const response = await fetch(url,{method:'POST', body: produto});
-    if(response.ok){
-        const json = await response.json(); 
-        return json;
-    }else{
-        throw new Error("Erro ao adicionar produto");
+    const config = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(produto)
     }
+    const response = await fetch(url,config);
+    const json = await response.json(); 
+
+    return json;
+
 }
 
 // WORKING UPDATE PRODUCT
 async function updateProduct(produto){
-    let produtoUrl = url + "/" + produto.id; 
-    const response = await fetch(produtoUrl, {method: 'PUT', body: produto});
-    if(response.ok){
-        const json = await response.json();
-        return json;
-    }else{
-        throw new Error("Produto não existe");
+    const config = {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(produto)
     }
+
+    const produtoUrl = url + "/" + produto.id; 
+    const response = await fetch(produtoUrl, config);
+    const json = await response.json();
+
+    return json;
+
 }
 
-// NOT WORKING REMOVE PRODUCT (SERVER ERROR)
+// NOT WORKING REMOVE PRODUCT (SERVER NOT SUPPORTED)
 async function deleteProduct(id){
-    let produtoUrl = url + "/" + produto.id;
-    const response = await fetch(produtoUrl,{method:'DELETE'});
-    if(response.ok){
-        const json = await response.json();
-        return json;
-    }else{
-        throw new Error("Produto não existe");
+    const config = {
+        method: 'DELETE'
     }
+
+    const produtoUrl = url + "/" + produto.id;
+    const response = await fetch(produtoUrl,config);
+    const json = await response.json();
+
+    return json;
+
 }
 
 // WORKING GET CATEGORIES
 async function categories(){
     const response = await fetch("https://cccpharma-api-jjlm.herokuapp.com/categories");
-    if(response.ok){
+    try{
         const json = await response.json();
         return json;
-    }else{
-        throw new Error("Erro ao acessar categorias");
+
+    }catch(e){
+        return "Não foram encontradas categorias";
     }
 }
 
 
-export { addProduct, getProduct, products, updateProduct, deleteProduct, categories};
+export { addProduct, getProduct, products, updateProduct, categories};
 
-
-
-
-
-
-
-// {
-//     "id": 1,
-//     "name": "Soap",
-//     "producer": "Clean it all S.A.",
-//     "barcode": "1111-2000",
-//     "price": 1.99,
-//     "amount": 100,
-//     "available": true,
-//     "category": {
-//         "id": 1,
-//         "name": "Medicamentos",
-//         "discount": 0
-//     }
-// }

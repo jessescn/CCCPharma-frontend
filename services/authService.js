@@ -1,32 +1,38 @@
-function submitForm(url, form){
-    fetch(url, {
-        method: 'PUT',
-        body: form
+const url = "https://cccpharma-api-jjlm.herokuapp.com/users";
 
-    }).then(response => response.json())
+// WORKING SIGN-UP
+async function signUp(registerForm){
+    const config = {
+        method:'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(registerForm)
+    }
+    const registerUrl = url + "sign-up"; 
+    const response = await fetch(registerUrl, config);
+    const json = response.json();
+
+    return json;
 }
 
-function submitLogin(loginForm){
-    let url = "";
-    submitForm(url, loginForm)
-    .then((json) =>
-    {
-        console.log(json + " logado com sucesso!");
-    })
-    .catch(error => error);
+// WORKING SIGN-IN (SERVER ERROR VALIDATION PASSWORD)
+async function signIn(loginForm){
+    const config = {
+        method:'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginForm)
+    }
+    const loginUrl = url + "sign-in";
+    const response = await fetch(loginUrl,config);
+    const json  = await response.json();
+
+    return json;
+   
 }
 
-function submitRegister(registerForm){
-    let url = "";
-    submitForm(url, registerForm)
-    .then((json) =>
-    {
-        console.log(json + "registrado com sucesso!");
-    })
-    .catch(error => error);
-}
-
-module.exports = {
-    register : submitRegister,
-    login: submitLogin
-}
+export { signIn, signUp };

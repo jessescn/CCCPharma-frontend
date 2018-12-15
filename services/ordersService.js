@@ -20,3 +20,5 @@ function addOrder(orderForm) {
 
     return fetch(url, config).then(r => r.json());
 }
+
+export { orders , addOrder };
