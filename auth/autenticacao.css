@@ -65,14 +65,14 @@ main {
 }
   
 .logo {
-    background-image: url("../img/logotipo-preto.png");
-    background-repeat: no-repeat;
-    display: block;
-    width: 120px;
-    height: 53px;
-    text-indent: -9999px;
-    margin: 0;
-    margin-right: 50px;
+  background-image: url("../img/logo_nova.png");
+  background-repeat: no-repeat;
+  display: block;
+  width: 260px;
+  height: 60px;
+  text-indent: -9999px;
+  margin: 0;
+  margin-right: 50px;
 }
 
 .logo--branco {

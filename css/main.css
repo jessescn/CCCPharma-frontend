@@ -22,6 +22,19 @@ body > header {
     justify-content: space-between;
 }
 
+.logo {
+  background-image: url("../img/logo_nova.png");
+  background-repeat: no-repeat;
+  display: block;
+  width: 260px;
+  height: 60px;
+  text-indent: -9999px;
+  margin: 0;
+  margin-right: 50px;
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
 nav {
     display: flex;
     flex-direction: row-reverse;
