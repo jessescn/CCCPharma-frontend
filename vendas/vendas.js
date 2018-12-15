@@ -50,8 +50,10 @@ async function sendNewOrder(){
         "productOrders": cart
     }
 
-    let response = await orderService.addOrder({venda});
-    console.log(response)
+    console.log(venda);
+    
+    let response = await orderService.addOrder([venda]);
+    console.log(response);
     $.fancybox.close(true);
 }
 
