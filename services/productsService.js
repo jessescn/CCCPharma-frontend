@@ -1,4 +1,5 @@
-const url = "https://cccpharma-api-jjlm.herokuapp.com/products";
+const api = "https://cccpharma-api-jjlm.herokuapp.com";
+const url = api + "/products";
 
 // WORKING GET ALL PRODUCTS
 async function products(){
@@ -85,9 +86,9 @@ async function categories(){
 }
 
 async function addDiscount(category){
-    const categoryUrl = url + "/" + category.id;
+    const categoryUrl = `https://cccpharma-api-jjlm.herokuapp.com/categories/${category.id}`;
     const config = {
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

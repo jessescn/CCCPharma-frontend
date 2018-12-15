@@ -12,6 +12,9 @@ function init() {
 function setupListeners() {
     const $btnAdicionar = document.querySelector("#adicionar input[type=submit]");
     $btnAdicionar.onclick = saveProduct;
+
+    const $btnDiscount = document.querySelector("#promocao input[type=submit]");
+    $btnDiscount.onclick = addDiscount;
 }
 
 function loadProducts() {
@@ -80,6 +83,16 @@ function saveProduct(){
     productService.addProduct(product);
     appendProduct(product);
     // loadProducts();
+    $.fancybox.close(true);
+}
+
+function addDiscount() {
+    const $radio = document.querySelector("#promocao input[type=radio]:checked");
+    let discount = $radio.value;
+    let categoryIndex = document.querySelector("#adicionar .select-categoria").selectedIndex;
+    let category = categories[categoryIndex];
+    category.discount = discount;
+    productService.addDiscount(category);
     $.fancybox.close(true);
 }
 
