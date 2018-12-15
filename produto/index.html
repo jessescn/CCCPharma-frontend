@@ -18,10 +18,10 @@
         <button class="menu-principal__btn">Abrir/fechar menu</button>
         <ul class="menu-principal__lista logado-adm">
             <li><a class="menu-principal__item" id="menu-principal__home" href="../index.html">Home</a></li>
-            <li><a class="menu-principal__item botao-adm" href="relatorio-lotes.html">Relatório Geral</a></li>
-            <li><a class="menu-principal__item botao-adm menu-principal__item--atual" href="relatorio-produtos.html">Gerenciar produtos</a></li>
-            <li><a class="menu-principal__item botao-adm" href="relatorio-vendas.html">Gerenciar vendas</a></li>
-            <li><a class="menu-principal__item" id="botao-login" href="../auth/autenticacao.html">Login</a></li>
+            <li><a class="menu-principal__item botao-adm" href="../relatorios/index.html">Relatório Geral</a></li>
+            <li><a class="menu-principal__item botao-adm menu-principal__item--atual" href="index.html">Gerenciar produtos</a></li>
+            <li><a class="menu-principal__item botao-adm" href="../vendas/index.html">Gerenciar vendas</a></li>
+            <li><a class="menu-principal__item" id="botao-login" href="../auth/index.html">Login</a></li>
         </ul>
         </nav>
         </div>
@@ -40,15 +40,6 @@
                         <span>Validade</span>
                         <span>Alterar Preço</span>
                     </header>
-                    <div>
-                        <span>123456</span>
-                        <span>Sabao bonito</span>
-                        <span>12</span>
-                        <span>R$1000,00</span>
-                        <a data-fancybox data-touch="false" href="#alterar" class="modal__promocao">
-                            <i class="fas fa-marker"></i>
-                        </a>
-                    </div>
                 </section>
                 <div id="alterar">
                     <h3 class="text-center modal__titulo">Alterar preço</h3>
@@ -64,7 +55,15 @@
                 </div>
                 <div id="promocao">
                     <h3>Adicionar promoção</h3>
-                    <form action="#"> 
+                    <form action="#">
+                        <label class="modal__label">Categoria</label>
+                        <select id="select-categoria" class="modal__select modal__input">
+                            <option>Opções</option>
+                            <option>Medicamentos</option>
+                            <option>Higiene Pessoal</option>
+                            <option>Cosméticos</option>
+                            <option>Alimentos</option>
+                        </select>
                         <input class="radio__btn" type="radio" name="promo" value="zero"> Sem desconto<br>
                         <input class="radio__btn" type="radio" name="promo" value="nice"> Bom desconto (10%)<br>
                         <input class="radio__btn" type="radio" name="promo" value="great"> Ótimo desconto (25%)<br>
@@ -85,13 +84,13 @@
                             <label class="modal__label">Fabricante </label>
                             <input class="modal__input" type="text" name="fabricante">
                             <label class="modal__label">Situação </label>
-                            <select id="select-situacao" class="modal__select modal__input" onchange="update()">
+                            <select id="select-situacao" class="modal__select modal__input">
                                 <option>Opções</option>
                                 <option>Disponível</option>
                                 <option>Indisponível</option>
                             </select>
                             <label class="modal__label">Categoria</label>
-                            <select id="select-categoria" class="modal__select modal__input" onchange="update()">
+                            <select id="select-categoria" class="modal__select modal__input">
                                 <option>Opções</option>
                                 <option>Medicamentos</option>
                                 <option>Higiene Pessoal</option>
@@ -100,15 +99,15 @@
                             </select>
                         </div>
                         <div class="modal__botao">
-                            <input class="formulario__botao" type="submit" value="Enviar" onclick="addProduct()">
+                            <input id="adicionar-produto"class="formulario__botao" type="submit" value="Enviar">
                         </div>
                     </form>
                 </div>
             </section>
         </article>
     </main>
+    <script type="module" src="produtos.js"></script>
     <script src="../jquery-3.3.1.min.js"></script>
     <script src="../jquery.fancybox.min.js"></script>
-    <script src="relatorios.js"></script>
 </body>
 </html>

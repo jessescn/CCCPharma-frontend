@@ -84,6 +84,22 @@ async function categories(){
     }
 }
 
+async function addDiscount(category){
+    const categoryUrl = url + "/" + category.id;
+    const config = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(category)
+    }
 
-export { addProduct, getProduct, products, updateProduct, categories};
+    const response = await fetch(categoryUrl,config);
+    const json = await response.json();
+    return json;
+}
+
+
+export { addProduct, getProduct, products, updateProduct, categories, addDiscount };
 
