@@ -374,65 +374,35 @@ body {
   margin-bottom: 25px;
 }
 
-.relatorio__linhas {
-  margin: 10px 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-row-gap: 10px; 
+#produtos {
+  padding: 5px;
 }
 
-.relatorio__linhas__extra {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-.relatorio__titulo {
-  text-align: center;
+#produtos > header {
   font-weight: bold;
+  border: none;
+  padding: 0;
+  margin: 0;
 }
 
-.relatorio__elemento  {
+#produtos > * {
   padding: 5px 0;
+  margin-top: 8px;
+  display: grid;
+  border-top: 1px solid #3399ff;
+  grid-template-columns: repeat(5, 1fr);
   text-align: center;
-  border-top: 1px solid #3399ff
-  ;
-}
-
-.relatorio__botao {
-  width: 25px;
-  height: 25px;
-  margin: 0 auto;
-  background-color: red;
-  cursor: pointer;
-}
-
-.relatorio__botao {
-  width: 25px;
-  height: 25px;
-  margin: 0 auto;
-  background-color: red;
-  cursor: pointer;
-}
-
-
-.relatorio__botao__add {
-  margin-top: 15px;
-  width: 150px;
-  height: 30px;
-  background-color: rgb(83, 204, 83);
-  cursor: pointer;
 }
 
 .relatorio__modal {
   text-decoration: none;
-  border: 3px solid #3399ff
-  ;
-  padding: 10px 13px;
+  border: 3px solid #3399ff;
+  padding: 10px;
   border-radius: 300px;
   background-color: white;
-  color: #3399ff
-  ;
+  color: #3399ff;
   cursor: pointer;
+  margin-right: 15px;
   font-weight: bold;
 }
 

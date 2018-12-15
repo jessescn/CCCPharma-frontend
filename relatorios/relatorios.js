@@ -44,15 +44,6 @@ function povoateGeneralRelactory(){
     
 }
 
-
-
-
-
-
-
-
-
-
 // {
 //     "id": 3,
 //     "amount": 10,

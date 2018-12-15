@@ -33,19 +33,20 @@
                 <h1 class="home-titulo">Central vendas</h1>
             </header>
             <section class="container pagina-cabecalho__conteudo">
-                <section class="relatorio__vendas">
-                    <div class="relatorio__linhas">
-                        <span class="relatorio__titulo">Id do produto</span>
-                        <span class="relatorio__titulo">Nome do produto</span>
-                        <span class="relatorio__titulo">Quantidade</span>
-                        <span class="relatorio__titulo">Valor arrecadado</span>
-                        <span class="relatorio__titulo">Cancelar venda</span>
-                        <span class="relatorio__elemento">123456</span>
-                        <span class="relatorio__elemento">Sabao bonito</span>
-                        <span class="relatorio__elemento">12</span>
-                        <span class="relatorio__elemento">R$1000,00</span>
+                <section id="produtos" class="relatorio__vendas">
+                    <header>
+                        <span >Id do produto</span>
+                        <span>Nome do produto</span>
+                        <span>Quantidade</span>
+                        <span>Valor arrecadado</span>
+                        <span>Cancelar venda</span>
+                    </header>
+                    <div>
+                        <span>123456</span>
+                        <span>Sabao bonito</span>
+                        <span>12</span>
+                        <span>R$1000,00</span>
                         <i class="fas fa-window-close fa-lg"></i>
-                        
                     </div>
                 </section>
                 <a data-fancybox data-touch="false" href="#venda" class="relatorio__modal formulario__vendas">Adicionar venda</a>

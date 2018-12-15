@@ -32,26 +32,23 @@
                 <h1 class="home-titulo">Central produtos</h1>
             </header>
             <section class="container pagina-cabecalho__conteudo">
-                <section class="relatorio__vendas">
-                    <div class="relatorio__linhas relatorio__linhas__extra">
-                        <span class="relatorio__titulo">Id do produto</span>
-                        <span class="relatorio__titulo">Nome do produto</span>
-                        <span class="relatorio__titulo">Categoria</span>
-                        <span class="relatorio__titulo">Validade</span>
-                        <span class="relatorio__titulo">Adicionar promoção</span>
-                        <span class="relatorio__titulo">Alterar Preço</span>
-                        <span class="relatorio__elemento">123456</span>
-                        <span class="relatorio__elemento">Sabao bonito</span>
-                        <span class="relatorio__elemento">12</span>
-                        <span class="relatorio__elemento">R$1000,00</span>
-                        <a data-fancybox data-touch="false" href="#promocao" class="modal__promocao">
-                            <i class="fas fa-dollar-sign"></i>
-                        </a>
+                <section id="produtos" class="relatorio__vendas">
+                    <header>
+                        <span>Id do produto</span>
+                        <span>Nome do produto</span>
+                        <span>Categoria</span>
+                        <span>Validade</span>
+                        <span>Adicionar promoção</span>
+                        <span>Alterar Preço</span>
+                    </header>
+                    <div>
+                        <span>123456</span>
+                        <span>Sabao bonito</span>
+                        <span>12</span>
+                        <span>R$1000,00</span>
                         <a data-fancybox data-touch="false" href="#alterar" class="modal__promocao">
                             <i class="fas fa-marker"></i>
                         </a>
-                    </div>
-                    <div>
                     </div>
                 </section>
                 <div id="alterar">
@@ -73,11 +70,11 @@
                         <input class="radio__btn" type="radio" name="promo" value="nice"> Bom desconto (10%)<br>
                         <input class="radio__btn" type="radio" name="promo" value="great"> Ótimo desconto (25%)<br>
                         <input class="radio__btn" type="radio" name="promo" value="super"> Super desconto (50%)<br>
-                        <input class="formulario__botao formulario__radio" type="submit" value="Enviar">
-                        
+                        <input class="formulario__botao formulario__radio" type="submit" value="Enviar">       
                     </form>
                 </div>
                 <a data-fancybox data-touch="false" href="#modal" class="relatorio__modal">Adicionar produto</a>
+                <a data-fancybox data-touch="false" href="#promocao" class="relatorio__modal">Adicionar promoção</a>
                 <div id="modal"> 
                     <h3 class="text-center">Adicionar Produto</h3>
                     <form action="#" class="modal__formulario" name="productForm">
