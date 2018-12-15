@@ -2,55 +2,71 @@ import * as orderService from '../services/ordersService.js';
 import * as productsService from '../services/productsService.js';
 
 const $vendas  = document.getElementsByClassName("tabela")[0];
+const $message = document.getElementsByClassName("mensagem-sucesso")[0];
 let vendas = [];
-let produtos = [];
-let carrinho = [];
+let cart = [];
 
-(function(){
-    orderService.orders()
-    .then(orders => {
+function init(){
+    setupListeners();
+    loadOrders();
+    loadProducts();
+}
+
+function loadOrders(){
+    orderService.orders().then(function(orders){
         vendas = orders;
-        addFunctions();
+        povoateOrders();
     })
-    .then(() =>{
-        povoarVendas();
-    })
-})();
+}
 
-
-(function(){
-    productsService.products().then(products => {
-        produtos = products;
+function loadProducts(){
+    productsService.products().then(function(products){
         setOptions(products);
-    }) 
-})();
-
-function novaVenda(){
-    carrinho = [];
-}
-
-function addFunctions(){    
-    let $addProduct = document.querySelector("#add-produto");
-    let $chooseProduct = document.querySelector("#select-products");
-
-    let id = $chooseProduct.value;
-    let selectedProduct = getProduct(id);
-    $addProduct.onclick = function(){ adicionaItemAoCarrinho(selectedProduct); };
-
-}
-
-
-function getProduct(id){
-    produtos.forEach(produto =>
-    {
-        if(produto.id == id){
-            return produto;
-        }
     })
 }
 
-// POVOAR TABELA VENDAS FUNCIONANDO !!
-function povoarVendas(){
+function newOrder(){ 
+    cart = [];
+}
+
+function setupListeners(){
+    let $sentOrder = document.querySelector("#enviar-venda");
+    let $addProduct = document.querySelector("#add-produto");
+    let $openCart = document.querySelector("#add-prod");
+    let $addProductButton = document.querySelector("#add-venda");
+
+    $openCart.onclick = function(){$message.classList.add("escondido")};
+    $addProductButton.onclick = newOrder;
+    $addProduct.onclick = addProductToCart;
+    $sentOrder.onclick = sendNewOrder;
+
+}
+
+async function sendNewOrder(){
+    let precoTotal = await sumAll(cart);
+
+    const venda = {
+        "price": precoTotal,
+        "productOrders": cart
+    }
+
+    let response = await orderService.addOrder({venda});
+    console.log(response)
+    $.fancybox.close(true);
+}
+
+
+function sumAll(produtos){
+    let total = 0;
+
+    produtos.forEach(produto => {
+        total += produto.product.price;
+    });
+
+    return total;
+}
+
+function povoateOrders(){
     vendas.forEach(venda => {
         let $venda = document.createElement("div");
 
@@ -65,7 +81,6 @@ function povoarVendas(){
     })
 }
 
-// ADICIONAR ITENS AO SELECT FUNCIONANDO !!
 function setOptions(produtos){
     const $select = document.getElementById("select-products");
     
@@ -78,52 +93,23 @@ function setOptions(produtos){
     })
 }
 
+async function addProductToCart(){
+    let $chooseProduct = document.querySelector("#select-products");
+    let $amount = document.querySelector("#amount");
 
-function adicionaItemAoCarrinho(produto,amount){
-    console.log("entro");
-    
-    const $carrinho = document.querySelector("grid-produtos");
+    let id = $chooseProduct.value;
+    let produto = await productsService.getProduct(id);
+    let amount = $amount.value;
 
-    let $produto = document.createElement("div");
-
-    $produto.innerHTML = `
-                <span>${produto.name}</span>
-                <span>${amount}</span>
-    `
-
-    $produto.classList.add("" + produto.id);
-    $carrinho.appendChild($produto);
-
-    let novoProduto = {
-        nome: produto.name,
-        id: produto.id,
-        amount: amount
+    const novoProduto = {
+        "quantity": parseInt(amount, 10),
+        "product": produto
     }
 
-    carrinho.push(novoProduto);
+    if(produto.name != undefined){        
+        cart.push(novoProduto);
+    }
+    $message.classList.remove("escondido");
 }
 
-function removeItemDoCarrinho(id){
-    let classe = "" + id;
-
-    const $carrinho = document.querySelector("grid-produtos");
-    let childs = $carrinho.childNodes;
-
-    for(let i = 0; i < childs.length; i++){
-        if(childs[i].classList[0] == classe){
-            childs.splice(i,1);
-        }
-    }
-
-    $carrinho.childNodes = childs;
-
-    let produtos = carrinho;
-
-    for(let i = 0; i < produtos.length; i++){
-        if(produtos[i].id == id){
-            produtos.splice(i,1);
-        }
-    }
-
-    carrinho = produtos;
-}
+init();

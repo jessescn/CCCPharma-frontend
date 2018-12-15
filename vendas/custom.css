@@ -148,3 +148,7 @@ a {
 .fas {
     color: black;
 }
+
+.escondido{
+    display: none;
+}

@@ -37,8 +37,8 @@
             </header>
         </section>
         <section class="botoes">
-            <a data-fancybox data-touch="false" href="#venda" id="add-venda">
-                <button class="button">Adicionar venda</button>
+            <a data-fancybox data-touch="false" href="#venda">
+                <button id="add-venda" class="button">Adicionar venda</button>
             </a>
         </section>
         <section>
@@ -49,8 +49,8 @@
                         <a data-fancybox data-touch="false" href="#carrinho">
                             <button class="button" id="add-prod">Adicionar produto</button>
                         </a>
-                        <div class="grid-produtos"></div>
-                        <input class="button" type="submit" value="Enviar">
+                        <!-- <div class="grid-produtos"></div> -->
+                        <button id="enviar-venda"class="button">Enviar</button>
                     </div>
                 </div>
             </div>
@@ -58,28 +58,17 @@
                 <div action="#" class="formulario" name=" ">
                     <div class="text-center">
                         <h3>Produtos</h3>
-                        <label>Produto</label>
-                        <select id="select-products" class="modal__select modal__input" onchange="update()">
+                        <label>Nome</label>
+                        <select id="select-products" class="modal__select modal__input">
                             <option>Opções</option>
                         </select><br>
                         <label>Quantidade</label>
-                        <button>+</button>
-                        <input class="numero-itens" type="text" name="amount">
-                        <button>-</button>
-                        <input class="button" id="add-produto" type="submit" value="Adicionar">
+                        <input id= "amount" class="numero-itens" type="text">
+                        <button class="button" id="add-produto" type="submit" href="#carrinho">Adicionar</button>
+                        <p class="mensagem-sucesso escondido">Adicionado!</p>
                     </div>
                     <div>
                     </div>
-                </div>
-            </div>
-            <div id="itens" class="modal">
-                <div class="text-center lista-itens">
-                    <h3>Lista de produtos</h3>
-                    <ul>
-                        <li>Batata</li>
-                        <li>Feijao</li>
-                        <li>Batata</li>
-                    </ul>
                 </div>
             </div>
         </section>
