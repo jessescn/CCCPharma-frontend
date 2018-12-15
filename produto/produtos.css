@@ -121,3 +121,9 @@ a {
 .botoes {
     margin-top: 10px;
 }
+
+#select-categoria {
+    width: 160px;
+    margin-top: 10px;
+    margin-left: 0px;
+}
