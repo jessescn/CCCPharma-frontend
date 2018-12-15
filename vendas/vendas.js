@@ -2,7 +2,8 @@ import * as orderService from '../services/ordersService.js';
 import * as productsService from '../services/productsService.js';
 
 const $vendas  = document.getElementsByClassName("tabela")[0];
-const $message = document.getElementsByClassName("mensagem-sucesso")[0];
+const $messageSucess = document.getElementsByClassName("mensagem-sucesso")[0];
+const $messageError = document.getElementsByClassName("mensagem-erro")[0];
 let vendas = [];
 let cart = [];
 
@@ -35,7 +36,7 @@ function setupListeners(){
     let $openCart = document.querySelector("#add-prod");
     let $addProductButton = document.querySelector("#add-venda");
 
-    $openCart.onclick = function(){$message.classList.add("escondido")};
+    $openCart.onclick = function(){$messageSucess.classList.add("escondido"); $messageError.classList.add("escondido")};
     $addProductButton.onclick = newOrder;
     $addProduct.onclick = addProductToCart;
     $sentOrder.onclick = sendNewOrder;
@@ -52,7 +53,7 @@ async function sendNewOrder(){
 
     console.log(venda);
     
-    let response = await orderService.addOrder([venda]);
+    let response = await orderService.addOrder(cart);
     console.log(response);
     $.fancybox.close(true);
 }
@@ -108,10 +109,17 @@ async function addProductToCart(){
         "product": produto
     }
 
-    if(produto.name != undefined){        
+    if(produto.name != undefined && amount){        
         cart.push(novoProduto);
     }
-    $message.classList.remove("escondido");
+    
+    if(!amount){
+        $messageError.classList.remove("escondido");
+    }else{
+        $messageError.classList.add("escondido");
+        $messageSucess.classList.remove("escondido");
+    }
+    
 }
 
 init();

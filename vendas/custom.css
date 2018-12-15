@@ -152,3 +152,7 @@ a {
 .escondido{
     display: none;
 }
+
+.mensagem-erro{
+    color:red;
+}
