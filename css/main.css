@@ -73,3 +73,10 @@ main > header {
     margin-bottom: 40px;
 }
 
+select {
+    background: transparent;
+    color: #8d8d8d;
+    width: 210px;
+}
+
+

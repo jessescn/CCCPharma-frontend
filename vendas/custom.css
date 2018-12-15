@@ -1,0 +1,150 @@
+.tabela {
+    border: 2px solid #3399ff;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+.tabela > .linha {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-flow: column;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.tabela > .linha a {
+    color: #3399ff;
+}
+
+.tabela > div {
+    border-top: px solid #3399ff;
+}
+
+.tabela > header.linha {
+    font-weight: bold;
+}
+
+.button {
+    border: 2px solid #3399ff;
+    border-radius: 50px;
+    background-color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #3399ff;
+}
+
+.button:hover {
+    transition-duration: 0.33s;
+    color: white;
+    background-color: #3399ff;
+}
+
+a {
+    text-decoration: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#carrinho {
+  display: none;
+  width: 100%;
+  max-width: 400px;
+  background-color: rgb(209, 239, 245); 
+  border-radius: 10px;
+}
+
+#venda {
+  display: none;
+  width: 100%;
+  max-width: 400px;
+  background-color: rgb(209, 239, 245); 
+  border-radius: 10px;
+}
+
+#itens {
+  display: none;
+  width: 100%;
+  max-width: 300px;
+  background-color: rgb(209, 239, 245); 
+  border-radius: 10px;
+}
+
+.modal > div {
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+}
+
+.modal h3 {
+    text-align: center;
+    font-weight: bold;
+    margin-left: 35px;
+    margin-bottom: 38px;
+}
+
+.modal a {
+    margin-right: -38px;
+}
+
+.formulario {
+    display: block;
+    margin-left: -45px;
+    text-decoration: none;
+}
+
+.formulario label {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  color: #303030;
+}
+
+.input, select {
+  border-radius: 5px;
+  margin: 4px 7px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.formulario select {
+    width: 210px;
+}
+
+.formulario .button {
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-right: 110px;
+}
+
+.botoes {
+    margin-top: 10px;
+}
+
+#add-prod {
+    margin-right: 75px;
+}
+
+.numero-itens {
+    border-radius: 5px;
+    margin: 4px 7px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    padding: 5px;
+    width: 50px;
+}
+
+.lista-itens > h3 {
+    margin-left: 0px;
+}
+
+.lista-itens > ul {
+    padding: 0;
+}
+
+
+.fas {
+    color: black;
+}

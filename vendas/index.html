@@ -6,103 +6,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CCC Pharma</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="custom.css">
     <link rel="stylesheet" type="text/css" href="../jquery.fancybox.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
         crossorigin="anonymous">
 </head>
+
 <body>
-    <header class="cabecalho">
-        <div class="container">
-            <h1 class="logo">Desing responsivo</h1>
-            <nav class="menu-principal menu-principal--fechar">
-                <button class="menu-principal__btn">Abrir/fechar menu</button>
-                <ul class="menu-principal__lista logado-adm">
-                    <li><a class="menu-principal__item" id="menu-principal__home" href="../index.html">Home</a></li>
-                    <li><a class="menu-principal__item botao-adm" href="../relatorios/index.html">Relatório Geral</a></li>
-                    <li><a class="menu-principal__item botao-adm" href="../produto/index.html">Gerenciar produtos</a></li>
-                    <li><a class="menu-principal__item botao-adm menu-principal__item--atual" href="index.html">Gerenciar vendas</a></li>
-                    <li><a class="menu-principal__item" id="botao-login" href="../auth/index.html">Login</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header>
+        <h1>LOGO</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Relatório Geral</a></li>
+                <li><a href="#" class="active">Gerenciar produtos</a></li>
+                <li><a href="#">Gerenciar vendas</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
-        <article>
-            <header class="home_div">
-                <h1 class="home-titulo">Central vendas</h1>
+        <header>CENTRAL VENDAS</header>
+        <section class="tabela">
+            <header class="linha">
+                <span>Id do produto</span>
+                <span>Nome do produto</span>
+                <span>Categoria</span>
+                <span>Valor arrecadado</span>
+                <span>Cancelar venda</span>
             </header>
-            <section class="container pagina-cabecalho__conteudo">
-                <section id="produtos" class="relatorio__vendas">
-                    <header>
-                        <span >Id do produto</span>
-                        <span>Nome do produto</span>
-                        <span>Quantidade</span>
-                        <span>Valor arrecadado</span>
-                        <span>Cancelar venda</span>
-                    </header>
-                </section>
-                <a data-fancybox data-touch="false" href="#venda" class="relatorio__modal formulario__vendas" id="add-order">Adicionar venda</a>
-            </section>
-            <div id="venda">
-                <form action="#" class="modal__formulario" name=" ">
+            <div class="linha">
+                <span>123456</span>
+                <a data-fancybox data-touch="false" href="#itens" id="add-order">
+                    <i class="fas fa-align-justify"></i>
+                </a>
+                <span>Higiene</span>
+                <span>R$1000,00</span>
+                <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="linha">
+                <span>123456</span>
+                <span>Sabao bonito</span>
+                <span>Higiene</span>
+                <span>R$1000,00</span>
+                <i class="fas fa-times-circle"></i>
+            </div>
+        </section>
+        <section class="botoes">
+            <a data-fancybox data-touch="false" href="#venda" id="add-order">
+                <button class="button">Adicionar venda</button>
+            </a>
+        </section>
+        <section>
+            <div id="venda" class="modal">
+                <div action="#" class="formulario" name="">
                     <div class="text-center">
-                        <h3 class="modal__titulo">Registrar venda</h3>
+                        <h3>Registrar venda</h3>
                         <!-- <label class="modal__label">Produto</label>
-                        <select id="select-products" class="modal__select modal__input" onchange="update()">
-                            <option>Opções</option>
-                        </select>
-                        <label class="modal__label">Nº de itens </label>
-                        <input class="modal__input" type="text" name="preco">
-                        <label class="modal__label">Produtos </label>
-                        <input class="modal__input" type="text" name="fabricante"> -->
+                                    <select id="select-products" class="modal__select modal__input" onchange="update()">
+                                        <option>Opções</option>
+                                    </select>
+                                    <label class="modal__label">Nº de itens </label>
+                                    <input class="modal__input" type="text" name="preco">
+                                    <label class="modal__label">Produtos </label>
+                                    <input class="modal__input" type="text" name="fabricante"> -->
 
-                        <a data-fancybox data-touch="false" href="#carrinho" >Adicionar produto</a>
+                        <a data-fancybox data-touch="false" href="#carrinho">
+                            <button class="button" id="add-prod">Adicionar produto</button>
+                        </a>
                         <div class="grid-produtos"></div>
+                        <input class="button" type="submit" value="Enviar">
                     </div>
-                    <div class="modal__botao">
-                        <input class="formulario__botao" type="submit" value="Enviar">
-                    </div>
-                </form>
+                </div>
             </div>
-            <div id="carrinho">
-                <form action="#" class="modal__formulario" name=" ">
+            <div id="carrinho" class="modal">
+                <div action="#" class="formulario" name=" ">
                     <div class="text-center">
-                        <h3 class="modal__titulo">Produtos</h3>
-                        <label class="modal__label">Produto</label>
+                        <h3>Produtos</h3>
+                        <label>Produto</label>
                         <select id="select-products" class="modal__select modal__input" onchange="update()">
                             <option>Opções</option>
-                        </select>
-                        <label class="modal__label">Quantidade</label>
-                        <button >+</button>
+                        </select><br>
+                        <label>Quantidade</label>
+                        <button>+</button>
                         <input class="numero-itens" type="text" name="amount">
-                        <button >-</button>
+                        <button>-</button>
+                        <input class="button" id="add-produto" type="submit" value="Adicionar">
                     </div>
-                    <div class="modal__botao">
-                        <input class="formulario__botao" id="add-produto" type="submit" value="Adicionar">
+                    <div>
                     </div>
-                </form>
+                </div>
             </div>
-        </article>
+            <div id="itens" class="modal">
+                <div class="text-center lista-itens">
+                    <h3>Lista de produtos</h3>
+                    <ul>
+                        <li>Batata</li>
+                        <li>Feijao</li>
+                        <li>Batata</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </main>
-    <script type="module" src="vendas.js"></script>
+    <script type="module" src="../vendas.js"></script>
     <script src="../jquery-3.3.1.min.js"></script>
     <script src="../jquery.fancybox.min.js"></script>
-</body> 
+</body>
 
 </html>
-
-<!-- 
-<div class="text-center">
-    <h3 class="modal__titulo">Registrar venda</h3>
-    <label class="modal__label">Produto</label>
-    <select id="select-products" class="modal__select modal__input" onchange="update()">
-        <option>Opções</option>
-    </select>
-    <label class="modal__label"></label>
-    <input class="modal__input" name="nome" type="text">
-    <label class="modal__label">Nº de itens </label>
-    <input class="modal__input" type="text" name="preco">
-    <label class="modal__label">Valor total </label>
-    <input class="modal__input" type="text" name="fabricante">
-</div> -->
