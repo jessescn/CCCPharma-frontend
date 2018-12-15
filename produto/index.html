@@ -36,24 +36,6 @@
                 <span>Validade</span>
                 <span>Alterar Preço</span>
             </header>
-            <div class="linha">
-                <span>123456</span>
-                <span>Sabao bonito</span>
-                <span>Higiene</span>
-                <span>R$1000,00</span>
-                <a data-fancybox data-touch="false" href="#alterar">
-                    <i class="fas fa-marker"></i>
-                </a>
-            </div>
-            <div class="linha">
-                <span>123456</span>
-                <span>Sabao bonito</span>
-                <span>Higiene</span>
-                <span>R$1000,00</span>
-                <a data-fancybox data-touch="false" href="#alterar">
-                    <i class="fas fa-marker"></i>
-                </a>
-            </div>
         </section>
         <section>
             <div id="adicionar" class="modal">
@@ -67,13 +49,13 @@
                         <label>Fabricante </label>
                         <input class="input" type="text" name="fabricante"><br>
                         <label>Situação </label>
-                        <select id="select-situacao" class="input" onchange="update()">
+                        <select id="select-situacao" class="input">
                             <option>Opções</option>
                             <option>Disponível</option>
                             <option>Indisponível</option>
                         </select><br>
                         <label class="modal-label">Categoria</label>
-                        <select id="select-categoria" class="input" onchange="update()">
+                        <select id="select-categoria" class="input" >
                             <option>Opções</option>
                             <option>Medicamentos</option>
                             <option>Higiene Pessoal</option>
@@ -81,7 +63,7 @@
                             <option>Alimentos</option>
                         </select>
                     </div>
-                    <input class="button" type="submit" value="Enviar" onclick="addProduct()">
+                    <input class="button" type="submit" value="Enviar">
                 </div>
             </div>
             <div id="alterar" class="modal">
@@ -99,7 +81,7 @@
                     <input type="radio" name="promo" value="nice"> Bom desconto (10%)<br>
                     <input type="radio" name="promo" value="great"> Ótimo desconto (25%)<br>
                     <input type="radio" name="promo" value="super"> Super desconto (50%)<br>
-                    <select id="select-categoria" class="input" onchange="update()">
+                    <select id="select-categoria" class="input">
                         <option>Categoria</option>
                         <option>Medicamentos</option>
                         <option>Higiene Pessoal</option>
@@ -122,6 +104,6 @@
 
     <script src="../jquery-3.3.1.min.js"></script>
     <script src="../jquery.fancybox.min.js"></script>
-    <script src="produtos.js"></script>
+    <script type="module" src="produtos.js"></script>
 </body>
 </html>
