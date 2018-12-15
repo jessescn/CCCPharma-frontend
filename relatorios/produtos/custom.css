@@ -12,12 +12,16 @@
     margin-top: 5px;
 }
 
-.tabela > header.linha {
-    font-weight: bold;
+.tabela > .linha a {
+    color: #3399ff;
 }
 
-.botoes {
-    margin-top: 10px;
+.tabela > div {
+    border-top: px solid #3399ff;
+}
+
+.tabela > header.linha {
+    font-weight: bold;
 }
 
 .button {
@@ -35,6 +39,85 @@
     background-color: #3399ff;
 }
 
-.tabela > .linha a {
-    color: #3399ff;
+a {
+    text-decoration: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#adicionar {
+  display: none;
+  width: 100%;
+  max-width: 400px;
+  background-color: rgb(209, 239, 245); 
+  border-radius: 10px;
+}
+
+#alterar {
+  display: none;
+  width: 100%;
+  max-width: 400px;
+  background-color: rgb(209, 239, 245); 
+  border-radius: 10px;
+}
+
+#promocao {
+    display: none;
+    width: 100%;
+    max-width: 300px;
+    background-color: rgb(209, 239, 245); 
+    border-radius: 10px;
+}
+
+.modal > div {
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+}
+
+.modal h3 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.formulario {
+    display: block;
+    margin-left: -45px;
+    text-decoration: none;
+}
+
+.formulario label {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  color: #303030;
+}
+
+.input {
+  border-radius: 5px;
+  margin: 4px 7px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.formulario select {
+    width: 210px;
+}
+
+.radio {
+    margin-top: 25px;
+}
+
+.formulario .button {
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-right: 110px;
+}
+
+
+.botoes {
+    margin-top: 10px;
 }
