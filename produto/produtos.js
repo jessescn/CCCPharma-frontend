@@ -16,21 +16,22 @@ productService.categories().then(function(data){
 
 function populate() {
     if (all_products != []) {
-        const $container = $("#produtos");
+        const $container = $(".tabela");
 
         all_products.forEach(product => {
             let template = `
-            <div>
+            <div class="linha">
                 <span>${product.id}</span>
                 <span>${product.name}</span>
                 <span>${product.category.name}</span>
-                <span>${product.price}</span>
+                <span>R$ ${product.price}</span>
                 <a data-fancybox data-touch="false" href="#alterar">
                     <i class="fas fa-marker"></i>
                 </a>
             </div>
             `;
             let $product = $(template);
+
             $product.appendTo($container);
         });
     }
@@ -42,8 +43,7 @@ function populate() {
 })
 
 export function adicionarProduto(){
-    console.log("ooo");
-    
+   
     let nome = $productForm["nome"].value;
     let preco = $productForm["preco"].value;
     let fabricante = $productForm["fabricante"].value;

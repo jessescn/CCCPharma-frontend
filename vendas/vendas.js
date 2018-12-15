@@ -1,8 +1,7 @@
 import * as orderService from '../services/ordersService.js';
 import * as productsService from '../services/productsService.js';
 
-const $vendaForm = document.forms['productForm'];
-const $vendas  = document.querySelector("#produtos");
+const $vendas  = document.getElementsByClassName("tabela")[0];
 let vendas = [];
 let produtos = [];
 let carrinho = [];
@@ -12,13 +11,18 @@ let carrinho = [];
     .then(orders => {
         vendas = orders;
         addFunctions();
-    }).then(() => { 
-        povoarVendas();
-        productsService.products().then(products => {
-            produtos = products;
-            setOptions(products);
-        }) 
     })
+    .then(() =>{
+        povoarVendas();
+    })
+})();
+
+
+(function(){
+    productsService.products().then(products => {
+        produtos = products;
+        setOptions(products);
+    }) 
 })();
 
 function novaVenda(){
@@ -26,13 +30,10 @@ function novaVenda(){
 }
 
 function addFunctions(){    
-    let $addOrder = document.querySelector("#add-order");
-    $addOrder.onclick = novaVenda;
-
     let $addProduct = document.querySelector("#add-produto");
     let $chooseProduct = document.querySelector("#select-products");
 
-    $chooseProduct.value = id;
+    let id = $chooseProduct.value;
     let selectedProduct = getProduct(id);
     $addProduct.onclick = function(){ adicionaItemAoCarrinho(selectedProduct); };
 
@@ -48,22 +49,23 @@ function getProduct(id){
     })
 }
 
-
+// POVOAR TABELA VENDAS FUNCIONANDO !!
 function povoarVendas(){
     vendas.forEach(venda => {
         let $venda = document.createElement("div");
 
         $venda.innerHTML = `    
             <span>${venda.id}</span>
-            <span>100</span>
             <span>${venda.numberOfProducts}</span>
-            <span>${venda.price}</span>
+            <span>R$ ${venda.price.toFixed(2)}</span>
             <i class="fas fa-window-close fa-lg delete"></i>
         `
+        $venda.classList.add("linha");
         $vendas.appendChild($venda);
     })
 }
 
+// ADICIONAR ITENS AO SELECT FUNCIONANDO !!
 function setOptions(produtos){
     const $select = document.getElementById("select-products");
     
@@ -125,9 +127,3 @@ function removeItemDoCarrinho(id){
 
     carrinho = produtos;
 }
-
-
-
-
-
-

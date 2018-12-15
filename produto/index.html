@@ -58,7 +58,7 @@
         <section>
             <div id="adicionar" class="modal">
                 <h3 class="text-center">Adicionar Produto</h3>
-                <form action="#" class="formulario" name="productForm">
+                <div action="#" class="formulario" name="productForm">
                     <div class="text-center">
                         <label>Nome</label>
                         <input class="input" name="nome" type="text"><br>
@@ -82,25 +82,32 @@
                         </select>
                     </div>
                     <input class="button" type="submit" value="Enviar" onclick="addProduct()">
-                </form>
+                </div>
             </div>
             <div id="alterar" class="modal">
                 <h3>Alterar preço</h3>
-                <form action="#" class="formulario">
+                <div action="#" class="formulario">
                     <label>Novo preço</label>
                     <input class="input" name="nome" type="text">
                     <input class="button" type="submit" value="Enviar">
-                </form>
+                </div>
             </div>
             <div id="promocao" class="modal">
                 <h3 class="radio">Adicionar promoção</h3>
-                <form action="#">
+                <div action="#">
                     <input type="radio" name="promo" value="zero"> Sem desconto<br>
                     <input type="radio" name="promo" value="nice"> Bom desconto (10%)<br>
                     <input type="radio" name="promo" value="great"> Ótimo desconto (25%)<br>
                     <input type="radio" name="promo" value="super"> Super desconto (50%)<br>
+                    <select id="select-categoria" class="input" onchange="update()">
+                        <option>Categoria</option>
+                        <option>Medicamentos</option>
+                        <option>Higiene Pessoal</option>
+                        <option>Cosméticos</option>
+                        <option>Alimentos</option>
+                    </select>
                     <input class="button radio" type="submit" value="Enviar">
-                </form>
+                </div>
             </div>
         </section>
         <section class="botoes">
