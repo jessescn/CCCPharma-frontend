@@ -6,12 +6,13 @@ let allProducts = [];
 
 /* init home */
 
-(function(){
-    products().then(response => allProducts = response);
-    filterProducts();
-    setFunctions();
+(function(){ 
+    products().then(response => allProducts = response)
+    .then(() => {
+        setFunctions();
+        filterProducts();
+    });
 })();
-
 
 
 function update(){
@@ -21,6 +22,7 @@ function update(){
 function setFunctions(){
     let $select = document.querySelector("#input-categoria");
     $select.onchange = update;
+    $select.value = 1;
 }
 
 function filterProducts(){

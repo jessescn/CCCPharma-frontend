@@ -21,4 +21,13 @@ function addOrder(orderForm) {
     return fetch(url, config).then(r => r.json());
 }
 
-export { orders , addOrder };
+function removeOrder(orderId){
+    const removeUrl = url + "/" + orderId;
+    const config = {
+        method: 'DELETE'
+    };
+    
+    return fetch(removeUrl, config).then(r => r.json());
+}
+
+export { orders , addOrder, removeOrder };
