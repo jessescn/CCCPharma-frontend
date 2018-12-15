@@ -30,10 +30,10 @@
         <header>CENTRAL PRODUTOS</header>
         <section class="tabela">
             <header class="linha">
-                <span>Id do produto</span>
                 <span>Nome do produto</span>
                 <span>Categoria</span>
-                <span>Validade</span>
+                <span>Quantidade</span>
+                <span>Preço</span>
                 <span>Alterar Preço</span>
             </header>
         </section>
@@ -48,15 +48,11 @@
                         <input class="input" type="text" name="preco"><br>
                         <label>Fabricante </label>
                         <input class="input" type="text" name="fabricante"><br>
-                        <label>Situação </label>
-                        <select id="select-situacao" class="input">
-                            <option>Opções</option>
-                            <option>Disponível</option>
-                            <option>Indisponível</option>
-                        </select><br>
+                        <label>Quantidade </label>
+                        <input class="input" type="text" name="amount">
+                        <br>
                         <label class="modal-label">Categoria</label>
-                        <select id="select-categoria" class="input" >
-                            <option>Opções</option>
+                        <select class="select-categoria" class="input">
                             <option>Medicamentos</option>
                             <option>Higiene Pessoal</option>
                             <option>Cosméticos</option>
@@ -81,7 +77,7 @@
                     <input type="radio" name="promo" value="nice"> Bom desconto (10%)<br>
                     <input type="radio" name="promo" value="great"> Ótimo desconto (25%)<br>
                     <input type="radio" name="promo" value="super"> Super desconto (50%)<br>
-                    <select id="select-categoria" class="input">
+                    <select class="select-categoria" class="input">
                         <option>Categoria</option>
                         <option>Medicamentos</option>
                         <option>Higiene Pessoal</option>

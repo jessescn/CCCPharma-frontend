@@ -2,67 +2,85 @@ import * as productService from '../services/productsService.js';
 
 let all_products = [];
 let categories = [];
-const $productForm = document.forms['productForm'];
 
+function init() {
+    loadCategories();
+    loadProducts();
+    setupListeners();
+}
 
-productService.products().then(function(data) {
-    all_products = data;
-    populate();
-});
+function setupListeners() {
+    const $btnAdicionar = document.querySelector("#adicionar input[type=submit]");
+    $btnAdicionar.onclick = saveProduct;
+}
 
-productService.categories().then(function(data){
-    categories = data;
-})
+function loadProducts() {
+     productService.products().then(function(data) {
+        all_products = data;
+        populate();
+    });
+ }
+
+function loadCategories() {
+    productService.categories().then(function(data){
+        categories = data;
+    });
+}
+
+function appendProduct(product) {
+    const $container = $(".tabela");   
+    let template = `
+    <div class="linha">
+        <span>${product.name}</span>
+        <span>${product.category.name}</span>
+        <span>${product.amount}</span>
+        <span>R$ ${product.price}</span>
+        <a data-fancybox data-touch="false" href="#alterar">
+            <i class="fas fa-marker"></i>
+        </a>
+    </div>
+    `;
+    let $product = $(template);
+
+    $product.appendTo($container);
+}
 
 function populate() {
     if (all_products != []) {
-        const $container = $(".tabela");
-
         all_products.forEach(product => {
-            let template = `
-            <div class="linha">
-                <span>${product.id}</span>
-                <span>${product.name}</span>
-                <span>${product.category.name}</span>
-                <span>R$ ${product.price}</span>
-                <a data-fancybox data-touch="false" href="#alterar">
-                    <i class="fas fa-marker"></i>
-                </a>
-            </div>
-            `;
-            let $product = $(template);
-
-            $product.appendTo($container);
+            appendProduct(product);
         });
     }
 }
 
-(function(){
-    populate();
-   $productForm.onsubmit = adicionarProduto;
-})
-
-export function adicionarProduto(){
-   
-    let nome = $productForm["nome"].value;
-    let preco = $productForm["preco"].value;
-    let fabricante = $productForm["fabricante"].value;
-    let barcode = "1111-2000";
-    let $categoriaIndex = document.getElementById("select-categoria").selectedIndex;
-    let categoria = categories[$categoriaIndex - 1];
-
-    const produto = {
-        "name": nome,
-        "producer": fabricante,
-        "barcode": "0000-0000",
-        "price": preco,
-        "amount": 100,
-        "category": categoria
-    };
-
-    productService.addProduct(produto);
+function getModalValue(id, name) {
+    let query = `#${id} input[name=${name}]`;
+    const $component = document.querySelector(query);
+    return $component.value;
 }
 
+function saveProduct(){   
+    let name = getModalValue("adicionar", "nome");
+    let price = getModalValue("adicionar", "preco");
+    let producer = getModalValue("adicionar", "fabricante");
+    let amount = getModalValue("adicionar", "amount");
 
+    let categoryIndex = document.querySelector("#adicionar .select-categoria").selectedIndex;
+    let category = categories[categoryIndex];
 
+    const product = {
+        "name": name,
+        "producer": producer,
+        "barcode": "0000-0000",
+        "price": price,
+        "amount": amount,
+        "category": category
+    };
 
+    productService.addProduct(product);
+    appendProduct(product);
+    // loadProducts();
+    $.fancybox.close(true);
+}
+
+init();
