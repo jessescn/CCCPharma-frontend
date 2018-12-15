@@ -431,6 +431,15 @@ body {
   padding: 5px;
 }
 
+.numero-itens{
+  border-radius: 5px;
+  margin: 4px 7px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  padding: 5px;
+  width: 50px;
+}
+
 .modal__formulario {
   display: block;
   margin-left: -45px;
@@ -628,6 +637,14 @@ body {
 }
 
 #venda {
+  display: none;
+  width: 100%;
+  max-width: 400px;
+  background-color: rgb(209, 239, 245); 
+  border-radius: 10px;
+}
+
+#carrinho{
   display: none;
   width: 100%;
   max-width: 400px;
@@ -1188,4 +1205,9 @@ select{
 
 #not-found-message{
   text-align:center;
+}
+
+.grid-produtos{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

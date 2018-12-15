@@ -23,7 +23,7 @@
             <h1 class="home-titulo">Autenticação</h1>
         </header>
         <section class="autenticacao container pagina-conteudo">
-            <form action="#" class="formulario text-center" name="registerForm">
+            <form action="#" class="formulario cadastro text-center" name="registerForm">
                 <h2 class="auth-title">Cadastro</h2>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="nome">Nome</label>
@@ -41,11 +41,11 @@
                     <label class="formulario__label" for="password">Senha</label>
                     <input class="formulario__campo" type="password" name="senha" id="senha">
                 </div>
-                <input class="formulario__botao" type="submit" value="Enviar" onclick="register()">
-                <p class="desaparecer formulario__notificacao">Login inválido</p>
+                <input class="formulario__botao" type="submit" value="Enviar" id="signUp">
+                <p class="desaparecer formulario__notificacao">Login Invalido</p>
             </form>
 
-            <form action="#" class="formulario text-center" name="loginForm">
+            <form action="#" class="formulario login text-center" name="loginForm">
                 <h2 class="auth-title">Login</h2>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="email">E-mail</label>
@@ -55,13 +55,12 @@
                     <label class="formulario__label" for="password">Senha</label>
                     <input class="formulario__campo" type="password" name="senha" id="senha">
                 </div>
-                <input class="formulario__botao" type="submit" value="Enviar" onclick="login()">
+                <input class="formulario__botao" type="submit" value="Enviar" id="signIn">
                 <p class="desaparecer formulario__notificacao">Login inválido</p>
             </form>
             
         </section>
     </main>
-    <script type="module" src="../services/authService.js"></script>
     <script type="module" src="autenticacao.js"></script>
 </body>
 </html>

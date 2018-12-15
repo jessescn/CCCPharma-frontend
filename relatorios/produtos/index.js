@@ -1,4 +1,4 @@
-import {addProduct, getProduct, products} from '../services/productsService.js';
+import { addProduct, getProduct, products} from '../services/productsService.js';
 
 let all_products = [];
 

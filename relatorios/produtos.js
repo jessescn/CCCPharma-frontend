@@ -23,7 +23,6 @@ function populate() {
                 </a>
             </div>
             `;
-
             let $product = $(template);
             $product.appendTo($container);
         });

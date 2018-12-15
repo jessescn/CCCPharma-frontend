@@ -1,10 +1,22 @@
-import { submitRegister, submitLogin } from "../services/authService";
+import * as authService from "../services/authService.js";
 
 const $registerForm = document.forms['registerForm'];
 const $loginForm = document.forms['loginForm'];
 
 function redirectRouter(url){
-    this.window.location.href= url;
+    this.window.location.href = url;
+}
+
+(function(){
+    setFunctions();
+})
+
+function setFunctions(){
+    let $signUp = document.querySelector("#signUp");
+    $signUp.onclick = register;
+
+    let $signIn = document.querySelector("signIn");
+    $signIn.onclick = login;
 }
 
 function register(){
@@ -14,14 +26,14 @@ function register(){
     let password = $registerForm["senha"].value;
     
     const user = {
-        nome: name,
-        sobrenome: lastName,
-        email: email,
-        senha: password
-    }    
-    submitRegister(user).then(() => {
-        redirectRouter("../index.html");
-    });
+        "firstName": name,
+        "lastName": lastName,
+        "email": email,
+        "password": password,
+        "role":"admin"
+    };
+
+    authService.signUp(user);
 }
 
 function login(){
@@ -29,10 +41,9 @@ function login(){
     let password = $loginForm["senha"].value;
     
     const user = {
-        email: email,
-        senha: password
-    }    
-    submitLogin(user).then(() => {
-        redirectRouter("../index.html");
-    });
+        "email": email,
+        "password": password
+    };
+    
+    authService.signIn(user);
 }

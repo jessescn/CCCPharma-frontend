@@ -42,26 +42,44 @@
                         <span>Cancelar venda</span>
                     </header>
                 </section>
-                <a data-fancybox data-touch="false" href="#venda" class="relatorio__modal formulario__vendas">Adicionar venda</a>
+                <a data-fancybox data-touch="false" href="#venda" class="relatorio__modal formulario__vendas" id="add-order">Adicionar venda</a>
             </section>
             <div id="venda">
                 <form action="#" class="modal__formulario" name=" ">
                     <div class="text-center">
                         <h3 class="modal__titulo">Registrar venda</h3>
                         <!-- <label class="modal__label">Produto</label>
-                        <select id="select-situacao" class="modal__select modal__input" onchange="update()">
+                        <select id="select-products" class="modal__select modal__input" onchange="update()">
                             <option>Opções</option>
-                        </select> -->
-                        <label class="modal__label">Produtos </label>
-                        <input class="modal__input" name="nome" type="text">
-                        <!-- <select id="select-products"></select> -->
+                        </select>
                         <label class="modal__label">Nº de itens </label>
                         <input class="modal__input" type="text" name="preco">
-                        <label class="modal__label">Valor total </label>
-                        <input class="modal__input" type="text" name="fabricante">
+                        <label class="modal__label">Produtos </label>
+                        <input class="modal__input" type="text" name="fabricante"> -->
+
+                        <a data-fancybox data-touch="false" href="#carrinho" >Adicionar produto</a>
+                        <div class="grid-produtos"></div>
                     </div>
                     <div class="modal__botao">
                         <input class="formulario__botao" type="submit" value="Enviar">
+                    </div>
+                </form>
+            </div>
+            <div id="carrinho">
+                <form action="#" class="modal__formulario" name=" ">
+                    <div class="text-center">
+                        <h3 class="modal__titulo">Produtos</h3>
+                        <label class="modal__label">Produto</label>
+                        <select id="select-products" class="modal__select modal__input" onchange="update()">
+                            <option>Opções</option>
+                        </select>
+                        <label class="modal__label">Quantidade</label>
+                        <button >+</button>
+                        <input class="numero-itens" type="text" name="amount">
+                        <button >-</button>
+                    </div>
+                    <div class="modal__botao">
+                        <input class="formulario__botao" id="add-produto" type="submit" value="Adicionar">
                     </div>
                 </form>
             </div>
@@ -73,3 +91,18 @@
 </body> 
 
 </html>
+
+<!-- 
+<div class="text-center">
+    <h3 class="modal__titulo">Registrar venda</h3>
+    <label class="modal__label">Produto</label>
+    <select id="select-products" class="modal__select modal__input" onchange="update()">
+        <option>Opções</option>
+    </select>
+    <label class="modal__label"></label>
+    <input class="modal__input" name="nome" type="text">
+    <label class="modal__label">Nº de itens </label>
+    <input class="modal__input" type="text" name="preco">
+    <label class="modal__label">Valor total </label>
+    <input class="modal__input" type="text" name="fabricante">
+</div> -->
