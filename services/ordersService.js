@@ -26,8 +26,11 @@ function removeOrder(orderId){
     const config = {
         method: 'DELETE'
     };
-    
-    return fetch(removeUrl, config).then(r => r.json());
+    try{
+        fetch(removeUrl, config);
+    }catch(e){
+        return "erro de rede";
+    }
 }
 
 export { orders , addOrder, removeOrder };
