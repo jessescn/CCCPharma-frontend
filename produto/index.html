@@ -34,7 +34,6 @@
                 <span>Categoria</span>
                 <span>Quantidade</span>
                 <span>Preço</span>
-                <span>Alterar Preço</span>
             </header>
         </section>
         <section>
@@ -65,6 +64,8 @@
             <div id="alterar" class="modal">
                 <h3>Alterar preço</h3>
                 <div action="#" class="formulario">
+                    <label for="products-select">Produtos</label>
+                    <select name="products-select" id="products-select"></select>
                     <label>Novo preço</label>
                     <input class="input" name="nome" type="text">
                     <input class="button" id="edit" type="submit" value="Enviar">
@@ -93,6 +94,9 @@
             </a>
             <a data-fancybox data-touch="false" href="#promocao">
                 <button class="button">Registrar desconto</button>
+            </a>
+            <a data-fancybox data-touch="false" href="#alterar">
+                <button class="button" id="alterar-preco">Alterar preço</button>
             </a>
         </section>
     </main>
