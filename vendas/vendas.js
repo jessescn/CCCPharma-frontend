@@ -1,29 +1,29 @@
 import * as orderService from '../services/ordersService.js';
 import * as productsService from '../services/productsService.js';
 
-const $vendas  = document.getElementsByClassName("tabela")[0];
-const $messageSucess = document.getElementsByClassName("mensagem-sucesso")[0];
-const $messageError = document.getElementsByClassName("mensagem-erro")[0];
-let vendas = [];
+const $orders  = document.querySelector(".tabela");
+const $messageSucess = document.querySelector(".mensagem-sucesso");
+const $messageError = document.querySelector(".mensagem-erro");
+
+let orders = [];
 let cart = [];
 
 function init(){
-    setupListeners();
-    loadOrders();
     loadProducts();
+    loadOrders();
 }
 
 function loadOrders(){
-    orderService.orders().then(function(orders){
-        vendas = orders;
+    orderService.orders().then(function(ordersList){
+        orders = ordersList;
         povoateOrders();
-    })
+    }).then(function(){setupDeleteListener()});
 }
 
 function loadProducts(){
     productsService.products().then(function(products){
         setOptions(products);
-    })
+    }).then(function(){setupListeners()});
 }
 
 function newOrder(){ 
@@ -43,6 +43,18 @@ function setupListeners(){
 
 }
 
+function setupDeleteListener(){
+    let $deleteOrders = document.getElementsByClassName("delete-button");
+
+    for(let i = 0; i < $deleteOrders.length; i++){
+        
+        let $order = $deleteOrders[i];
+        let id = $order.value;
+        $order.onclick = function(){ removeOrder(id) };
+    }
+    
+}
+
 async function sendNewOrder(){
     let precoTotal = await sumAll(cart);
 
@@ -50,12 +62,10 @@ async function sendNewOrder(){
         "price": precoTotal,
         "productOrders": cart
     }
-
-    console.log(venda);
     
-    let response = await orderService.addOrder(cart);
-    console.log(response);
+    orderService.addOrder(cart);
     $.fancybox.close(true);
+    appendOrder(venda);
 }
 
 
@@ -70,21 +80,41 @@ function sumAll(produtos){
 }
 
 function povoateOrders(){
-    vendas.forEach(venda => {
-        let $venda = document.createElement("div");
 
-        $venda.innerHTML = `    
-            <span>${venda.id}</span>
-            <span>${venda.numberOfProducts}</span>
-            <span>R$ ${venda.price.toFixed(2)}</span>
-            <i class="fas fa-window-close fa-lg delete"></i>
-        `
-        $venda.classList.add("linha");
-        $vendas.appendChild($venda);
-    })
+    if (orders != []) {
+        orders.forEach(_order => {
+            appendOrder(_order);
+        });
+    }
+}
+
+function appendOrder(order){
+    let template = `
+    <div class = "linha">    
+        <span>${order.id}</span>
+        <span>${order.numberOfProducts}</span>
+        <span>R$ ${order.price.toFixed(2)}</span>
+        <button class="delete-button delete" value=${order.id}>Deletar venda</button>
+    </div>
+    `
+    let $order = $(template);
+
+    $order.appendTo($orders);
+}
+
+function removeOrder(id){
+
+    for(let i = 0; i < orders.length; i++){
+        if(orders[i].id == id){
+            orders.splice(i,1);
+        }
+    }
+
+    orderService.removeOrder(id);
 }
 
 function setOptions(produtos){
+    
     const $select = document.getElementById("select-products");
     
     produtos.forEach(produto =>{
@@ -112,7 +142,7 @@ async function addProductToCart(){
     if(produto.name != undefined && amount){        
         cart.push(novoProduto);
     }
-    
+
     if(!amount){
         $messageError.classList.remove("escondido");
     }else{
