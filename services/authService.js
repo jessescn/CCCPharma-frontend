@@ -1,21 +1,31 @@
 const url = "https://cccpharma-api-jjlm.herokuapp.com";
 
 // WORKING SIGN-UP
-// async function signUp(registerForm){
-//     const config = {
-//         method:'POST',
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(registerForm)
-//     }
-//     const registerUrl = url + "sign-up"; 
-//     const response = await fetch(registerUrl, config);
-//     const json = response.json();
+export async function signUp(registerForm){
+    console.log(registerForm);
+    const config = {
+        method:'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(registerForm)
+    }
+    const registerUrl = url + "/signup"; 
+    const response = await fetch(registerUrl, config);
+    const json = await response.json();
 
-//     return json;
-// }
+    // IF SUCCESS
+    let success = false;
+    console.log(json);
+    if (json.id) {
+        success = true;
+        sessionStorage.setItem("currentUser", registerForm.email);
+        sessionStorage.setItem("isAdmin", json.admin);
+    }
+
+    return success;
+}
 
 // WORKING SIGN-IN (SERVER ERROR VALIDATION PASSWORD)
 
@@ -42,14 +52,6 @@ export async function signIn(loginForm){
 
     return success;
 }
-
-// function signIn(loginForm) {
-//     if (loginForm.email == "admin@admin.com" && loginForm.password == "admin") {
-//         sessionStorage.setItem("currentUser", "admin@admin.com");
-//     }
-// }
-
-// function signUp(loginForm) {}
 
 // function signOut() {
 //     sessionStorage.clear();

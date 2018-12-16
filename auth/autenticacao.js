@@ -1,8 +1,5 @@
 import * as authService from "../services/authService.js";
 
-const $registerForm = document.forms['registerForm'];
-const $loginForm = document.forms['loginForm'];
-
 function init() {
     if (authService.isAuth()) {
         redirectRouter("/");
@@ -30,20 +27,27 @@ function setupListeners() {
 }
 
 function register(){
-    let name = $registerForm["nome"].value;
-    let lastName = $registerForm["sobrenome"].value;
-    let email = $registerForm["email"].value;
-    let password = $registerForm["senha"].value;
+    console.log("register");
+    let email = getModalValue("cadastro", "email");
+    let password = getModalValue("cadastro", "senha");
     
     const user = {
-        "firstName": name,
-        "lastName": lastName,
         "email": email,
         "password": password,
-        "role":"admin"
     };
 
-    authService.signUp(user);
+    authService.signUp(user)
+    .then(function(success) {
+        console.log(success);
+        if (success) {
+            console.log("Signup ok!")
+            redirectRouter("/");
+        } else {
+            console.log("Signup failed");
+        }
+    }).catch(function(error) {
+        console.log(error);
+    });
 }
 
 function login(){
