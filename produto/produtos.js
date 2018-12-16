@@ -1,13 +1,30 @@
 import * as productService from '../services/productsService.js';
+import * as authService from '../services/authService.js';
 
 let all_products = [];
 let categories = [];
 
 function init() {
+    verifyPermission();
     loadCategories();
     loadProducts();
     setupListeners();
     // populateSelectChangePrice();
+}
+
+function signOut() {
+    if (authService.isAuth()) {
+        authService.signOut();
+        sendTo("/");
+    }
+}
+
+function verifyPermission() {
+    if (!authService.isAuth() || !authService.currentUserIsAdmin()) sendTo("/");
+}
+
+function sendTo(url) {
+    window.location.href = "/"
 }
 
 function setupListeners() {
@@ -19,6 +36,9 @@ function setupListeners() {
 
     const $btnAlterar = document.querySelector("#alterar input[type=submit]");
     $btnAlterar.onclick = changePriceProduct;
+
+    const $signOut = document.querySelector("#signOut");
+    $signOut.onclick = signOut;
 }
 
 function loadProducts() {

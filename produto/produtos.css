@@ -9,7 +9,12 @@
     grid-template-columns: repeat(4, 1fr);
     grid-auto-flow: column;
     text-align: center;
-    margin-top: 5px;
+    padding: 5px 0;
+}
+
+.tabela > .linha:hover {
+    font-weight: bold;
+    transition-duration: 0.5s;
 }
 
 .tabela > .linha a {
@@ -22,6 +27,11 @@
 
 .tabela > header.linha {
     font-weight: bold;
+}
+
+.tabela > .linha:nth-child(even) {
+    background: #3399ff;
+    color: white;
 }
 
 .button {
