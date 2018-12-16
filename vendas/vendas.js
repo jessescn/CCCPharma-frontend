@@ -1,5 +1,6 @@
 import * as orderService from '../services/ordersService.js';
 import * as productService from '../services/productsService.js';
+import * as authService from "../services/authService.js";
 
 const $orders  = document.querySelector(".tabela");
 const $orderProducts = document.querySelector(".grid-produtos");
@@ -12,8 +13,24 @@ let cart = [];
 let all_products
 
 function init(){
+    verifyPermission();
     loadOrders();
     loadProducts();
+}
+
+function signOut() {
+    if (authService.isAuth()) {
+        authService.signOut();
+        sendTo("/");
+    }
+}
+
+function verifyPermission() {
+    if (!authService.isAuth() || !authService.currentUserIsAdmin()) sendTo("/");
+}
+
+function sendTo(url) {
+    window.location.href = "/"
 }
 
 function loadOrders(){
@@ -90,12 +107,14 @@ function setupListeners(){
     const $openCart = document.getElementById("btn-prod");
     const $btnProduct = document.getElementById("btn-newOrder");
     const $selectProduct = document.getElementById("select-products");
+    const $signOut = document.querySelector("#signOut");
 
     $selectProduct.onchange = resetMessages;
     $openCart.onclick = resetMessages;
     $btnProduct.onclick = newOrder;
     $addProduct.onclick = addProductToCart;
     $sentOrder.onclick = sendNewOrder;
+    $signOut.onclick = signOut;
 }
 
 function resetMessages(){
