@@ -98,3 +98,7 @@ h1.logotipo { margin: 0; }
 h1.logotipo span {
   color: #3399ff;
 }
+
+.admin, .authenticated {
+    display: none;
+}
