@@ -15,6 +15,9 @@ function setupListeners() {
 
     const $btnDiscount = document.querySelector("#promocao input[type=submit]");
     $btnDiscount.onclick = addDiscount;
+
+    const $btnAlterar = document.querySelector("#alterar input[type=submit]");
+    $btnAlterar.onclick = changePriceProduct;
 }
 
 function loadProducts() {
@@ -94,6 +97,11 @@ function addDiscount() {
     category.discount = discount;
     productService.addDiscount(category);
     $.fancybox.close(true);
+}
+
+function changePriceProduct() {
+    const $newPrice = getModalValue("alterar", "nome");
+    alert ($newPrice);
 }
 
 init();
