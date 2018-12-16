@@ -11,7 +11,6 @@
 </head>
 <body>
     <header>
-        <!-- <h1 class="logo">Desing responsivo</h1> -->
         <h1 class="logotipo">
             <span>CCC</span>Pharma
         </h1>
@@ -26,52 +25,23 @@
             </ul>
         </nav>
     </header>
-<!--     <header class="cabecalho">
-        <div class="container">
-            <h1 class="logo">Desing responsivo</h1>
-            <nav class="menu-principal menu-principal--fechar">
-                <button class="menu-principal__btn">Abrir/fechar menu</button>
-                <ul class="menu-principal__lista">
-                    <li>
-                        <a class="menu-principal__item menu-principal__item--atual" id="menu-principal__home" href="">Home</a>
-                    </li>
-                    <li class="area-admin">
-                        <a class="menu-principal__item" href="geral/">Relatório Geral</a>
-                    </li>
-                    <li class="area-admin">
-                        <a class="menu-principal__item" href="produto/">Gerenciar produtos</a>
-                    </li>
-                    <li class="area-admin">
-                        <a class="menu-principal__item" href="vendas/">Gerenciar vendas</a>
-                    </li>
-                    <li>
-                        <a class="menu-principal__item" id="botao-login" href="auth/">Login | Cadastro</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header> -->
     <main>
+        <header>Produtos</header>
         <section id="servicos">
-            <div>
-                <div class="home_div">  
-                    <h2 class="home-titulo">Produtos</h2>
-                </div>
-                <div class="filter-options">
-                    <span class="filter-text filter-categoria">Selecione uma categoria:</span>
-                    <select id="input-categoria" class="categoria">
-                        <option value="1">Categorias</option>
-                        <option value="2">Medicamentos</option>
-                        <option value="3">Higiene Pessoal</option>
-                        <option value="4">Cosméticos</option>
-                        <option value="5">Alimentos</option>
-                    </select>
-                </div>
-
-                <section class="products-container">
-                </section>
-                <h2 id="not-found-message" class="desaparecer">Nenhum produto encontrado.</h2>
+            <div class="filter-options">
+                <span class="filter-text filter-categoria">Selecione uma categoria:</span>
+                <select id="input-categoria" class="categoria">
+                    <option value="1">Categorias</option>
+                    <option value="2">Medicamentos</option>
+                    <option value="3">Higiene Pessoal</option>
+                    <option value="4">Cosméticos</option>
+                    <option value="5">Alimentos</option>
+                </select>
             </div>
+
+            <section class="products-container">
+            </section>
+            <h2 id="not-found-message" class="desaparecer">Nenhum produto encontrado.</h2>
         </section>
     </main>
     <script src="jquery-3.3.1.min.js"></script>
