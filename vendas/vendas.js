@@ -5,6 +5,7 @@ const $orders  = document.querySelector(".tabela");
 const $orderProducs = document.querySelector(".grid-produtos");
 const $messageSucess = document.querySelector(".mensagem-sucesso");
 const $messageError = document.querySelector(".mensagem-erro");
+const $messageCarEmptyError = document.querySelector(".emptyCart-erro")
 
 let all_orders = [];
 let cart = [];
@@ -56,6 +57,7 @@ function setupListeners(){
 function resetMessages(){
     $messageSucess.classList.add("escondido");
     $messageError.classList.add("escondido");
+    $messageCarEmptyError.classList.add("escondido");
 }
 function appendFirst(){
     let template = `   
@@ -91,18 +93,15 @@ function setupDeleteListener(){
 }
 
 async function sendNewOrder(){
-    let totalPrice = await sumAll(cart);    
-
-    const order = {
-        "price": totalPrice,
-        "productOrders": cart
+    await sumAll(cart);    
+    
+    if(cart.length > 0){
+        const response = await orderService.addOrder(cart);
+        appendOrder(response);
+        $.fancybox.close(true);
+    }else{
+        $messageCarEmptyError.classList.remove("escondido");
     }
-    
-    const response = await orderService.addOrder(cart);
-    console.log(response);
-    
-    appendOrder(response);
-    $.fancybox.close(true);
 }
 
 
@@ -178,11 +177,10 @@ async function addProductToCart(){
         "product": product
     }
 
-    await appendProduct(newProduct);
-
     if(!amount || product.amount < amount || amount < 0){        
         $messageError.classList.remove("escondido");
     }else{
+        await appendProduct(newProduct);
         cart.push(newProduct);
         $messageError.classList.add("escondido");
         $messageSucess.classList.remove("escondido");

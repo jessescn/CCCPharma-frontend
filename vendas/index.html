@@ -51,28 +51,30 @@
                             <span class="cabecalho">N° de produtos</span>
                         </div>
                         <a data-fancybox data-touch="false" href="#carrinho">
-                            <button class="button" id="add-prod" >Adicionar produto</button>
+                            <button id="add-prod" class="btn-cart">Adicionar produto</button>
                         </a>
                         <a>
-                            <button id="enviar-venda"class="button">Finalizar Venda</button>
+                            <button id="enviar-venda"class="btn-cart">Finalizar Venda</button>
                         </a>
+                        <div class="alert">
+                            <p class="emptyCart-erro erro escondido">Carrinho Vazio</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div id="carrinho" class="modal">
                 <div action="#" class="formulario" name=" ">
                     <div class="text-center">
-                        <h3>Produtos</h3>
+                        <h3>Carrinho</h3>
                         <label>Nome</label>
                         <select id="select-products" class="modal__select modal__input">
                         </select><br>
                         <label>Quantidade</label>
                         <input id= "amount" class="numero-itens" type="text">
                         <button class="button" id="add-produto" type="submit" href="#carrinho">Adicionar</button>
-                        <div>
+                        <div class="alert">
                             <p class="mensagem-sucesso escondido">Adicionado!</p>
-                            <p class="mensagem-erro escondido">Quantidade inválida</p>
-                            <p class="mensagem-erro-opcao escondido">Opção inválida</p>
+                            <p class="mensagem-erro erro escondido">Quantidade inválida</p>
                         </div>
                     </div>
                     <div>
