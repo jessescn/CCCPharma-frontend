@@ -2,7 +2,7 @@ import * as orderService from '../services/ordersService.js';
 import * as productService from '../services/productsService.js';
 
 const $orders  = document.querySelector(".tabela");
-const $orderProducs = document.querySelector(".grid-produtos");
+const $orderProducts = document.querySelector(".grid-produtos");
 const $messageSucess = document.querySelector(".mensagem-sucesso");
 const $messageError = document.querySelector(".mensagem-erro");
 const $messageCarEmptyError = document.querySelector(".emptyCart-erro")
@@ -19,7 +19,7 @@ function init(){
 function loadOrders(){
     orderService.orders().then(function(data){
         all_orders = data;
-        povoateOrders();
+        povoateTable();
         setupDeleteListener();
     })
 }
@@ -33,20 +33,31 @@ function loadProducts(){
 }
 
 function newOrder(){
+    let $amount = document.getElementById("amount");
+    $amount.value = 0;
+
     cart = [];
-    while($orderProducs.childNodes.length != 1){        
-        $orderProducs.removeChild($orderProducs.lastChild);
+    
+    while($orderProducts.childNodes.length > 1){        
+        $orderProducts.removeChild($orderProducts.lastChild);
     }
-    appendFirst();
+
+    let template = `   
+        <span class="cabecalho">Produto</span>
+        <span class="cabecalho">Quantidade</span>
+    `
+    let $product = $(template);
+
+    $product.appendTo($orderProducts);
 }
 
-function reset(removeId){    
-    resetTable(removeId);
-    povoateOrders();    
+function redrawTable(id){    
+    clearTable(id);
+    povoateTable();    
     setupDeleteListener();
 }
 
-function resetTable(removeId){;
+function clearTable(id){;
       
     while($orders.childNodes.length != 0){        
         $orders.removeChild($orders.firstChild);
@@ -67,22 +78,22 @@ function resetTable(removeId){;
     $header.appendTo($container);
 
     for(let i = 0; i < all_orders.length; i++){
-        if(all_orders[i].id == removeId){
+        if(all_orders[i].id == id){
             all_orders.splice(i,1);
         }
     }
 }
 
 function setupListeners(){
-    const $sentOrder = document.querySelector("#enviar-venda");
-    const $addProduct = document.querySelector("#add-produto");
-    const $openCart = document.querySelector("#add-prod");
-    const $addProductButton = document.querySelector("#add-venda");
-    const $chooseProduct = document.querySelector("#select-products");
+    const $sentOrder = document.getElementById("enviar-venda");
+    const $addProduct = document.getElementById("btn-add");
+    const $openCart = document.getElementById("btn-prod");
+    const $btnProduct = document.getElementById("btn-newOrder");
+    const $selectProduct = document.getElementById("select-products");
 
-    $chooseProduct.onchange = resetMessages;
+    $selectProduct.onchange = resetMessages;
     $openCart.onclick = resetMessages;
-    $addProductButton.onclick = newOrder;
+    $btnProduct.onclick = newOrder;
     $addProduct.onclick = addProductToCart;
     $sentOrder.onclick = sendNewOrder;
 }
@@ -92,15 +103,6 @@ function resetMessages(){
     $messageError.classList.add("escondido");
     $messageCarEmptyError.classList.add("escondido");
 }
-function appendFirst(){
-    let template = `   
-        <span class="cabecalho">Produto</span>
-        <span class="cabecalho">Quantidade</span>
-    `
-    let $product = $(template);
-
-    $product.appendTo($orderProducs);
-}
 
 function appendProduct(product){
     let template = `   
@@ -109,8 +111,7 @@ function appendProduct(product){
     `
     let $product = $(template);
 
-    $product.appendTo($orderProducs);
-
+    $product.appendTo($orderProducts);
 }
 
 function setupDeleteListener(){
@@ -128,16 +129,16 @@ async function sendNewOrder(){
     await sumAll(cart);       
     
     if(cart.length > 0){        
+
         const response = await orderService.addOrder(cart);
         await appendOrder(response);
         setupDeleteListener();
         $.fancybox.close(true);
+
     }else{
         $messageCarEmptyError.classList.remove("escondido");
     }
-  
 }
-
 
 function sumAll(produtos){
     let total = 0;
@@ -149,7 +150,7 @@ function sumAll(produtos){
     return total;
 }
 
-function povoateOrders(){    
+function povoateTable(){    
     if (all_orders != []) {
         all_orders.forEach(_order => {
             appendOrder(_order);
@@ -170,32 +171,30 @@ function appendOrder(order){
     $order.appendTo($orders);   
 }
 
-async function removeOrder(id){
-    await orderService.removeOrder(id);
-    reset(id);
-    
+function removeOrder(id){
+    orderService.removeOrder(id);
+    redrawTable(id);  
 }
 
 function setOptions(){
     const $select = document.getElementById("select-products");
     
-    all_products.forEach(produto =>{
+    all_products.forEach(product =>{
         
-        if(produto.amount > 0){
+        if(product.amount > 0){
             let option = document.createElement("option");
-            option.text = produto.name;
-            option.value = produto.id;
+            option.text = product.name;
+            option.value = product.id;
             $select.add(option);
         }
     })
-
 }
 
 async function addProductToCart(){
-    let $chooseProduct = document.querySelector("#select-products");
-    let $amount = document.querySelector("#amount");
+    let $selectProduct = document.getElementById("select-products");
+    let $amount = document.getElementById("amount");
 
-    let id = $chooseProduct.value;
+    let id = $selectProduct.value;
     let product = await productService.getProduct(id);
     let amount = $amount.value;
 
@@ -204,15 +203,31 @@ async function addProductToCart(){
         "product": product
     }
 
-    if(!amount || product.amount < amount || amount < 0){        
-        $messageError.classList.remove("escondido");
-    }else{
-        await appendProduct(newProduct);
-        cart.push(newProduct);
+    if(amount > 0 && product.amount >= amount){     
+        addToCart(newProduct);
+        // cart.push(newProduct);
+        // appendProduct(newProduct);
         $messageError.classList.add("escondido");
-        $messageSucess.classList.remove("escondido");
+        $messageSucess.classList.remove("escondido");       
+    }else{
+        $messageError.classList.remove("escondido");
     }
+}
 
+function addToCart(newProduct){
+    let exist = false;
+
+    cart.forEach(product => {
+        if(product.product.id == newProduct.product.id){            
+            exist = true;
+            product.quantity += newProduct.quantity;
+        }
+    })
+
+    if(!exist){   
+        cart.push(newProduct);
+        appendProduct(newProduct);
+    }
 }
 
 init();
