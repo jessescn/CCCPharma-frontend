@@ -87,6 +87,42 @@ main > header {
     margin-bottom: 40px;
 }
 
+.tabela > .linha {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-flow: column;
+    text-align: center;
+    padding: 5px 0;
+    border-left: 2px solid #3399ff;
+    border-right: 2px solid #3399ff;
+}
+
+.tabela > .linha:last-child {
+    border-bottom: 2px solid #3399ff;
+}
+
+.tabela > .linha a {
+    color: #3399ff;
+}
+
+.tabela > div {
+    border-top: px solid #3399ff;
+}
+
+.tabela > .linha:nth-child(odd) {
+    background: #d6eaff;
+    color: #3399ff;
+}
+
+.tabela > header.linha {
+    font-weight: bold;
+    border: 2px solid #3399ff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    color: white !important;
+    background: #3399ff !important;
+}
+
 select {
     background: transparent;
     color: #8d8d8d;
