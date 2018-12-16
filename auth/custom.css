@@ -1,0 +1,64 @@
+#form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: auto;
+    justify-content: space-between;
+}
+
+#form header h3 {
+    margin: 0;
+    margin-bottom: 10px;
+    color: #3399ff;
+}
+
+#form input {
+    margin-bottom: 10px;
+    text-align: center;
+    border: none;
+    border: 2px solid lightgrey;
+    color: #3399ff;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+.buttons {
+    align-self: flex-end;
+}
+
+.button {
+    border: 2px solid #3399ff;
+    background-color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    color: #3399ff;
+}
+
+.button:hover {
+    transition-duration: 0.33s;
+    color: white;
+    background-color: #3399ff;
+}
+
+.message {
+    margin-top: 30px;
+    padding: 15px 0;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    border-left: 10px solid;
+}
+
+.success {
+    background-color: green;
+    border-color: darkgreen;
+}
+
+.error {
+    background-color: red;
+    border-color: darkred;
+}
+
+.hidden {
+    display: none;
+}
