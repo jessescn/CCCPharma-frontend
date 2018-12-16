@@ -7,6 +7,7 @@ function init() {
     loadCategories();
     loadProducts();
     setupListeners();
+    // populateSelectChangePrice();
 }
 
 function setupListeners() {
@@ -15,14 +16,30 @@ function setupListeners() {
 
     const $btnDiscount = document.querySelector("#promocao input[type=submit]");
     $btnDiscount.onclick = addDiscount;
+
+    const $btnAlterar = document.querySelector("#alterar input[type=submit]");
+    $btnAlterar.onclick = changePriceProduct;
 }
 
 function loadProducts() {
-     productService.products().then(function(data) {
-        all_products = data;
-        populate();
+    productService.products().then(function(data) {
+         all_products = data;
+         populate();
+    }).then(function() {
+        populateSelectChangePrice();
+        // função para popular o select de alterar preço
     });
  }
+
+ function populateSelectChangePrice() {
+    let productsSelect = document.querySelector('#products-select');
+
+    all_products.forEach(element => {
+        let option = document.createElement("option");
+        option.text = element.name;
+        productsSelect.add(option);
+    });
+}
 
 function loadCategories() {
     productService.categories().then(function(data){
@@ -38,9 +55,9 @@ function appendProduct(product) {
         <span>${product.category.name}</span>
         <span>${product.amount}</span>
         <span>R$ ${product.price}</span>
-        <a data-fancybox data-touch="false" href="#alterar">
+        <!-- <a data-fancybox data-touch="false" href="#alterar">
             <i class="fas fa-marker"></i>
-        </a>
+        </a> -->
     </div>
     `;
     let $product = $(template);
@@ -94,6 +111,19 @@ function addDiscount() {
     category.discount = discount;
     productService.addDiscount(category);
     $.fancybox.close(true);
+}
+
+function changePriceProduct() {
+    const $newPrice = getModalValue("alterar", "nome");
+    let productIndex = document.querySelector("#products-select").selectedIndex;
+
+    if ($newPrice && !isNaN($newPrice)) {
+        all_products[productIndex].price = $newPrice;
+        productService.updateProduct(all_products[productIndex]);
+    }
+
+    $.fancybox.close(true);
+    location.reload();
 }
 
 init();
