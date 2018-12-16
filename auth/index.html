@@ -5,55 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CCC Pharma</title>
-    <link rel="stylesheet" href="autenticacao.css">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="custom.css">
 </head>
 <body>
-    <header class="cabecalho">
-        <div class="container">
-        <h1 class="logo"></h1>
-        <nav class="menu-principal menu-principal--fechar">
-            <ul class="menu-principal__lista logado-adm">
-                    <li><a class="menu-principal__item" id="menu-principal__home" href="../">Home</a></li>
-                    <li><a class="menu-principal__item botao-adm" href="../geral/">Relatório Geral</a></li>
-                    <li><a class="menu-principal__item botao-adm menu-principal__item--atual" href="../produto/">Gerenciar produtos</a></li>
-                    <li><a class="menu-principal__item botao-adm" href="../vendas/">Gerenciar vendas</a></li>
+    <header>
+        <h1 class="logo">Desing responsivo</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
             </ul>
         </nav>
-        </div>
     </header>
     <main>
-        <header class="home_div">
-            <h1 class="home-titulo">Autenticação</h1>
-        </header>
-        <section class="autenticacao container pagina-conteudo">
-            <div class="formulario cadastro text-center" name="registerForm">
-                <h2 class="auth-title">Cadastro</h2>
-                <div class="formulario__grupo">
-                    <label class="formulario__label" for="email">E-mail</label>
-                    <input class="formulario__campo" type="email" name="email" id="email">
-                </div>
-                <div class="formulario__grupo">
-                    <label class="formulario__label" for="password">Senha</label>
-                    <input class="formulario__campo" type="password" name="senha" id="senha">
-                </div>
-                <input class="formulario__botao" type="submit" value="Enviar" id="signUp">
-                <p class="desaparecer formulario__notificacao">Login Invalido</p>
+        <header>Autenticação</header>
+        <section id="form">
+            <header><h3>Formulário</h3></header>
+            <input type="email" name="email" placeholder="e-mail">
+            <input type="password" name="password" placeholder="senha">
+            <div class="buttons">
+                <button id="signUp" class="button">Cadastrar</button>
+                <button id="signIn" class="button">Entrar</button>
             </div>
-
-            <div class="formulario login text-center" name="loginForm">
-                <h2 class="auth-title">Login</h2>
-                <div class="formulario__grupo">
-                    <label class="formulario__label" for="email">E-mail</label>
-                    <input class="formulario__campo" type="email" name="email" id="email">
-                </div>
-                <div class="formulario__grupo">
-                    <label class="formulario__label" for="password">Senha</label>
-                    <input class="formulario__campo" type="password" name="senha" id="senha">
-                </div>
-                <input class="formulario__botao" type="submit" value="Enviar" id="signIn">
-                <p class="desaparecer formulario__notificacao">Login inválido</p>
-            </div>
-            
+            <span class="message hidden"></span>
         </section>
     </main>
     <script type="module" src="autenticacao.js"></script>

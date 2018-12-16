@@ -17,13 +17,8 @@ export async function signUp(registerForm){
 
     // IF SUCCESS
     let success = false;
-    console.log(json);
-    if (json.id) {
+    if (json.id) 
         success = true;
-        sessionStorage.setItem("currentUser", registerForm.email);
-        sessionStorage.setItem("isAdmin", json.admin);
-    }
-
     return success;
 }
 

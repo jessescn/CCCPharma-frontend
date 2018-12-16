@@ -8,8 +8,8 @@ function init() {
     }
 }
 
-function getModalValue(id, name) {
-    let query = `.${id} input[name=${name}]`;
+function getInfo(name) {
+    let query = `#form input[name=${name}]`;
     const $component = document.querySelector(query);
     return $component.value;
 }
@@ -26,10 +26,21 @@ function setupListeners() {
     $signIn.onclick = login;
 }
 
+function showMessage(msg, status) {
+    const $msg = document.querySelector("#form .message");
+    console.log($msg);
+    $msg.classList.remove("hidden");
+    $msg.classList.remove("error");
+    $msg.classList.remove("success");
+    $msg.classList.add(status);
+
+    $msg.innerText = msg;
+}
+
 function register(){
     console.log("register");
-    let email = getModalValue("cadastro", "email");
-    let password = getModalValue("cadastro", "senha");
+    let email = getInfo("email");
+    let password = getInfo("password");
     
     const user = {
         "email": email,
@@ -40,10 +51,9 @@ function register(){
     .then(function(success) {
         console.log(success);
         if (success) {
-            console.log("Signup ok!")
-            redirectRouter("/");
+            showMessage("Conta criada com sucesso", "success");
         } else {
-            console.log("Signup failed");
+            showMessage("Falha ao criar conta. Verifique seus dados.", "error")
         }
     }).catch(function(error) {
         console.log(error);
@@ -51,8 +61,8 @@ function register(){
 }
 
 function login(){
-    let email = getModalValue("login", "email");
-    let password = getModalValue("login", "senha");
+    let email = getInfo("email");
+    let password = getInfo("password");
 
     const user = {
         "email": email,
@@ -61,11 +71,10 @@ function login(){
     
     authService.signIn(user)
     .then(function(success) {
-        console.log(success);
         if (success) {
             redirectRouter("/");
         } else {
-            console.log("Auth failed");
+            showMessage("A autenticação falhou! Por favor, verifique seus dados.", "error");
         }
     });
 }
