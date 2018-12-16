@@ -5,6 +5,7 @@ let all_orders = [];
 
 function init() {
     orderService.orders().then(function (data) {
+        console.log(data);
         all_orders = data;
         loadOrders();
     });
@@ -19,6 +20,12 @@ function loadOrders() {
 function setProducts(products) {
     products.forEach(function (product) {
         let prices = getAmount(product.product.id, products);
+        let available = "Indisponível";
+
+        if (product.product.available) {
+            available = "Disponível";
+        }
+
         let nSale = prices[0];
         let income = prices[1];
 
@@ -26,7 +33,7 @@ function setProducts(products) {
         <div class = "linha">
             <span>${product.product.name}</span>
             <span>${product.product.amount}</span>
-            <span>${product.product.available}</span>
+            <span>${available}</span>
             <span>${nSale}</span>
             <span>R$ ${income}</span>
         </div>
@@ -36,6 +43,14 @@ function setProducts(products) {
         $line.appendTo($orders);
     })
 }
+
+// function isAvailable(product) {
+//     if(product.product.available) {
+//         return "Disponível";
+//     } else {
+//         return "Indisponível";
+//     }
+// }
 
 function getAmount(id, orders) {
     let salesData = [0, 0];
