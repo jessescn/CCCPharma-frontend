@@ -1,45 +1,80 @@
 import * as orderService from '../services/ordersService.js';
-import * as productsService from '../services/productsService.js';
+import * as productService from '../services/productsService.js';
 
 const $orders  = document.querySelector(".tabela");
+const $orderProducs = document.querySelector(".grid-produtos");
 const $messageSucess = document.querySelector(".mensagem-sucesso");
 const $messageError = document.querySelector(".mensagem-erro");
 
-let orders = [];
+let all_orders = [];
 let cart = [];
+let all_products
 
-function init(){
+async function init(){
+    await loadOrders();
     loadProducts();
-    loadOrders();
 }
 
 function loadOrders(){
-    orderService.orders().then(function(ordersList){
-        orders = ordersList;
+    orderService.orders().then(function(data){
+        all_orders = data;
         povoateOrders();
-    }).then(function(){setupDeleteListener()});
+        setupDeleteListener();
+    })
 }
 
 function loadProducts(){
-    productsService.products().then(function(products){
-        setOptions(products);
-    }).then(function(){setupListeners()});
+    productService.products().then(function(data){
+        all_products = data;
+        setOptions();
+        setupListeners();
+    })
 }
 
-function newOrder(){ 
+function newOrder(){
     cart = [];
+    while($orderProducs.childNodes.length != 1){        
+        $orderProducs.removeChild($orderProducs.lastChild);
+    }
+    appendFirst();
 }
 
 function setupListeners(){
-    let $sentOrder = document.querySelector("#enviar-venda");
-    let $addProduct = document.querySelector("#add-produto");
-    let $openCart = document.querySelector("#add-prod");
-    let $addProductButton = document.querySelector("#add-venda");
+    const $sentOrder = document.querySelector("#enviar-venda");
+    const $addProduct = document.querySelector("#add-produto");
+    const $openCart = document.querySelector("#add-prod");
+    const $addProductButton = document.querySelector("#add-venda");
+    const $chooseProduct = document.querySelector("#select-products");
 
-    $openCart.onclick = function(){$messageSucess.classList.add("escondido"); $messageError.classList.add("escondido")};
+    $chooseProduct.onchange = resetMessages;
+    $openCart.onclick = resetMessages;
     $addProductButton.onclick = newOrder;
     $addProduct.onclick = addProductToCart;
     $sentOrder.onclick = sendNewOrder;
+}
+
+function resetMessages(){
+    $messageSucess.classList.add("escondido");
+    $messageError.classList.add("escondido");
+}
+function appendFirst(){
+    let template = `   
+        <span class="cabecalho">Produto</span>
+        <span class="cabecalho">Quantidade</span>
+    `
+    let $product = $(template);
+
+    $product.appendTo($orderProducs);
+}
+
+function appendProduct(product){
+    let template = `   
+        <span>${product.product.name}</span>
+        <span>${product.quantity}</span>
+    `
+    let $product = $(template);
+
+    $product.appendTo($orderProducs);
 
 }
 
@@ -56,16 +91,18 @@ function setupDeleteListener(){
 }
 
 async function sendNewOrder(){
-    let precoTotal = await sumAll(cart);
+    let totalPrice = await sumAll(cart);    
 
-    const venda = {
-        "price": precoTotal,
+    const order = {
+        "price": totalPrice,
         "productOrders": cart
     }
     
-    orderService.addOrder(cart);
+    const response = await orderService.addOrder(cart);
+    console.log(response);
+    
+    appendOrder(response);
     $.fancybox.close(true);
-    appendOrder(venda);
 }
 
 
@@ -80,9 +117,8 @@ function sumAll(produtos){
 }
 
 function povoateOrders(){
-
-    if (orders != []) {
-        orders.forEach(_order => {
+    if (all_orders != []) {
+        all_orders.forEach(_order => {
             appendOrder(_order);
         });
     }
@@ -94,7 +130,7 @@ function appendOrder(order){
         <span>${order.id}</span>
         <span>${order.numberOfProducts}</span>
         <span>R$ ${order.price.toFixed(2)}</span>
-        <button class="delete-button delete" value=${order.id}>Deletar venda</button>
+        <button class="delete-button delete" value=${order.id}>Deletar</button>
     </div>
     `
     let $order = $(template);
@@ -102,27 +138,30 @@ function appendOrder(order){
     $order.appendTo($orders);
 }
 
-function removeOrder(id){
-
-    for(let i = 0; i < orders.length; i++){
-        if(orders[i].id == id){
-            orders.splice(i,1);
-        }
-    }
-
-    orderService.removeOrder(id);
+async function removeOrder(id){
+    await orderService.removeOrder(id);
+    removeFromTable(id);
 }
 
-function setOptions(produtos){
-    
+function removeFromTable(id){
+    $orders.childNodes.forEach(order =>{
+        if(order.id == id){
+            $order.removeChild(order);
+        }
+    })
+}
+
+function setOptions(){
     const $select = document.getElementById("select-products");
     
-    produtos.forEach(produto =>{
-
-        let option = document.createElement("option");
-        option.text = produto.name;
-        option.value = produto.id;
-        $select.add(option);
+    all_products.forEach(produto =>{
+        
+        if(produto.amount > 0){
+            let option = document.createElement("option");
+            option.text = produto.name;
+            option.value = produto.id;
+            $select.add(option);
+        }
     })
 }
 
@@ -131,25 +170,23 @@ async function addProductToCart(){
     let $amount = document.querySelector("#amount");
 
     let id = $chooseProduct.value;
-    let produto = await productsService.getProduct(id);
+    let product = await productService.getProduct(id);
     let amount = $amount.value;
 
-    const novoProduto = {
+    const newProduct = {
         "quantity": parseInt(amount, 10),
-        "product": produto
+        "product": product
     }
 
-    if(produto.name != undefined && amount){        
-        cart.push(novoProduto);
-    }
+    await appendProduct(newProduct);
 
-    if(!amount){
+    if(!amount || product.amount < amount || amount < 0){        
         $messageError.classList.remove("escondido");
     }else{
+        cart.push(newProduct);
         $messageError.classList.add("escondido");
         $messageSucess.classList.remove("escondido");
     }
-    
 }
 
 init();

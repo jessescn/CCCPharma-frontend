@@ -46,11 +46,16 @@
                 <div action="#" class="formulario" name="">
                     <div class="text-center">
                         <h3>Registrar venda</h3>
+                        <div class="grid-produtos">
+                            <span class="cabecalho">Produto</span>
+                            <span class="cabecalho">N° de produtos</span>
+                        </div>
                         <a data-fancybox data-touch="false" href="#carrinho">
-                            <button class="button" id="add-prod">Adicionar produto</button>
+                            <button class="button" id="add-prod" >Adicionar produto</button>
                         </a>
-                        <!-- <div class="grid-produtos"></div> -->
-                        <button id="enviar-venda"class="button">Enviar</button>
+                        <a>
+                            <button id="enviar-venda"class="button">Finalizar Venda</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -60,13 +65,15 @@
                         <h3>Produtos</h3>
                         <label>Nome</label>
                         <select id="select-products" class="modal__select modal__input">
-                            <option>Opções</option>
                         </select><br>
                         <label>Quantidade</label>
                         <input id= "amount" class="numero-itens" type="text">
                         <button class="button" id="add-produto" type="submit" href="#carrinho">Adicionar</button>
-                        <p class="mensagem-sucesso escondido">Adicionado!</p>
-                        <p class="mensagem-erro escondido">Quantidade inválida</p>
+                        <div>
+                            <p class="mensagem-sucesso escondido">Adicionado!</p>
+                            <p class="mensagem-erro escondido">Quantidade inválida</p>
+                            <p class="mensagem-erro-opcao escondido">Opção inválida</p>
+                        </div>
                     </div>
                     <div>
                     </div>

@@ -17,7 +17,7 @@
 }
 
 .tabela > div {
-    border-top: px solid #3399ff;
+    border-top: 0px solid #3399ff;
 }
 
 .tabela > header.linha {
@@ -116,16 +116,12 @@ a {
     display: block;
     margin: 0 auto;
     margin-top: 15px;
-    margin-right: 110px;
 }
 
 .botoes {
     margin-top: 10px;
 }
 
-#add-prod {
-    margin-right: 75px;
-}
 
 .numero-itens {
     border-radius: 5px;
@@ -156,3 +152,41 @@ a {
 .mensagem-erro{
     color:red;
 }
+
+.delete-button{
+    font-weight: bold;
+    width: 100px;
+    margin-left: 100px;
+    border-radius: 8px;
+    background-color: white;
+    border: 2px solid red;
+    color:red;
+}
+
+.delete-button:hover{
+    transition-duration: 0.33s;
+    background-color: red;
+    border:2px solid white;
+    color:white;
+}
+
+.grid-produtos{
+    display:grid;
+    border: 1px solid #3399ff;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    margin-left: 40px;
+    grid-template-columns: 1fr 1fr;
+}
+
+#enviar-venda{
+    display: inline-block;
+}
+
+.cabecalho{
+    font-size: 20px;
+    margin: 10px;
+    border-bottom: 1px solid #3399ff;
+}
+
+
