@@ -113,8 +113,7 @@ a {
 }
 
 .formulario .button {
-    display: block;
-    margin: 0 auto;
+    display: inline-block;
     margin-top: 15px;
 }
 
@@ -149,7 +148,7 @@ a {
     display: none;
 }
 
-.mensagem-erro{
+.erro{
     color:red;
 }
 
@@ -179,14 +178,31 @@ a {
     grid-template-columns: 1fr 1fr;
 }
 
-#enviar-venda{
-    display: inline-block;
-}
-
 .cabecalho{
     font-size: 20px;
     margin: 10px;
     border-bottom: 1px solid #3399ff;
 }
 
+.alert{
+    height: 50px;
+    margin-left: 20px;
+}
+
+.btn-cart{
+    font-size: 12px;
+    border: 2px solid   #3399ff  ;
+    border-radius: 50px;
+    background-color: white;
+    padding: 5px 10px;
+    margin: 15px 32px;
+
+    font-weight: bold;
+    color:  #3399ff ;
+}
+
+.btn-cart:hover{
+    background-color: #3399ff;
+    color:white;
+}
 
