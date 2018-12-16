@@ -1,9 +1,12 @@
 import * as orderService from '../services/ordersService.js';
+import * as authService from '../services/authService.js';
 
 const $orders = document.querySelector(".tabela");
 let all_orders = [];
 
 function init() {
+    verifyPermission();
+    setupListeners();
     orderService.orders().then(function (data) {
         console.log(data);
         all_orders = data;
@@ -15,6 +18,26 @@ function loadOrders() {
     all_orders.forEach(function (order) {
         setProducts(order.orderProducts);
     });
+}
+
+function setupListeners() {
+    const $signOut = document.querySelector("#signOut");
+    $signOut.onclick = signOut;
+}
+
+function signOut() {
+    if (authService.isAuth()) {
+        authService.signOut();
+        sendTo("/");
+    }
+}
+
+function verifyPermission() {
+    if (!authService.isAuth() || !authService.currentUserIsAdmin()) sendTo("/");
+}
+
+function sendTo(url) {
+    window.location.href = "/"
 }
 
 function setProducts(products) {
