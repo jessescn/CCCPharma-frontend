@@ -28,17 +28,14 @@ function setupListeners() {
 
 function showMessage(msg, status) {
     const $msg = document.querySelector("#form .message");
-    console.log($msg);
     $msg.classList.remove("hidden");
     $msg.classList.remove("error");
     $msg.classList.remove("success");
     $msg.classList.add(status);
-
     $msg.innerText = msg;
 }
 
 function register(){
-    console.log("register");
     let email = getInfo("email");
     let password = getInfo("password");
     
@@ -49,11 +46,10 @@ function register(){
 
     authService.signUp(user)
     .then(function(success) {
-        console.log(success);
         if (success) {
             showMessage("Conta criada com sucesso", "success");
         } else {
-            showMessage("Falha ao criar conta. Verifique seus dados.", "error")
+            showMessage("Falha ao criar conta. Verifique seus dados.", "error");
         }
     }).catch(function(error) {
         console.log(error);
