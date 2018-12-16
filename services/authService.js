@@ -1,4 +1,4 @@
-const url = "https://cccpharma-api-jjlm.herokuapp.com/users";
+const url = "https://cccpharma-api-jjlm.herokuapp.com";
 
 // WORKING SIGN-UP
 // async function signUp(registerForm){
@@ -18,39 +18,48 @@ const url = "https://cccpharma-api-jjlm.herokuapp.com/users";
 // }
 
 // WORKING SIGN-IN (SERVER ERROR VALIDATION PASSWORD)
-// async function signIn(loginForm){
-//     const config = {
-//         method:'POST',
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(loginForm)
-//     }
-//     const loginUrl = url + "sign-in";
-//     const response = await fetch(loginUrl,config);
-//     const json  = await response.json();
 
-//     return json;
+export async function signIn(loginForm){
+    const config = {
+        method:'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginForm)
+    }
+    const loginUrl = url + "/auth";
+    const response = await fetch(loginUrl,config);
+    const json  = await response.json();
+
+    // IF SUCCESS
+    let success = false;
+    if (json.id) {
+        success = true;
+        sessionStorage.setItem("currentUser", loginForm.email);
+        sessionStorage.setItem("isAdmin", json.admin);
+    }
+
+    return success;
+}
+
+// function signIn(loginForm) {
+//     if (loginForm.email == "admin@admin.com" && loginForm.password == "admin") {
+//         sessionStorage.setItem("currentUser", "admin@admin.com");
+//     }
 // }
 
-function signIn(loginForm) {
-    if (loginForm.email == "admin@admin.com" && loginForm.password == "admin") {
-        sessionStorage.setItem("currentUser", "admin@admin.com");
-    }
-}
+// function signUp(loginForm) {}
 
-function signUp(loginForm) {}
+// function signOut() {
+//     sessionStorage.clear();
+// }
 
-function signOut() {
-    sessionStorage.clear();
-}
-
-function isAuth() {
+export function isAuth() {
     var auth = false;
     if (sessionStorage.getItem("currentUser"))
         auth = true;
     return auth;
 }
 
-export { signIn, signUp, isAuth, signOut };
+// export { signIn, signUp, isAuth, signOut };

@@ -3,19 +3,29 @@ import * as authService from "../services/authService.js";
 const $registerForm = document.forms['registerForm'];
 const $loginForm = document.forms['loginForm'];
 
-function redirectRouter(url){
-    this.window.location.href = url;
+function init() {
+    if (authService.isAuth()) {
+        redirectRouter("/");
+    } else {
+        setupListeners();
+    }
 }
 
-(function(){
-    setFunctions();
-})
+function getModalValue(id, name) {
+    let query = `.${id} input[name=${name}]`;
+    const $component = document.querySelector(query);
+    return $component.value;
+}
 
-function setFunctions(){
+function redirectRouter(url){
+    window.location.href = url;
+}
+
+function setupListeners() {
     let $signUp = document.querySelector("#signUp");
     $signUp.onclick = register;
 
-    let $signIn = document.querySelector("signIn");
+    let $signIn = document.querySelector("#signIn");
     $signIn.onclick = login;
 }
 
@@ -37,13 +47,23 @@ function register(){
 }
 
 function login(){
-    let email = $loginForm["email"].value;
-    let password = $loginForm["senha"].value;
-    
+    let email = getModalValue("login", "email");
+    let password = getModalValue("login", "senha");
+
     const user = {
         "email": email,
         "password": password
     };
     
-    authService.signIn(user);
+    authService.signIn(user)
+    .then(function(success) {
+        console.log(success);
+        if (success) {
+            redirectRouter("/");
+        } else {
+            console.log("Auth failed");
+        }
+    });
 }
+
+init();
