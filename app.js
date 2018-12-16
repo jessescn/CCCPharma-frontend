@@ -70,7 +70,7 @@ function populateHome(listaProdutos){
                 <p class="nome">${element.name}</p>
                 <p><spam class="preco-antigo">De: R$ ${element.price} </spam>
                 <spam class="preco-atual">Por: R$${discountPrice}</spam></p>
-                <div class="escolha" onclick = "redirectRouter('index.html')">Selecionar</div>
+                <div class="escolha">Em estoque</div>
             `
         }else{
             $produto.innerHTML = `
@@ -78,7 +78,7 @@ function populateHome(listaProdutos){
                 <p class="nome">${element.name}</p>
                 <p class="preco-antigo"></p>
                 <p class="preco-atual">R$ ${element.price}</p>
-                <div class="escolha" onclick = "redirectRouter('index.html')">Selecionar</div>
+                <div class="escolha">Em estoque</div>
             `
         }
         $produto.classList.add("produto");
