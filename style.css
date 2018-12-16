@@ -24,8 +24,6 @@ body {
 }
 
 main {
-  padding: 25px 0;
-  overflow: auto;
 }
 
 .cabecalho {
@@ -81,16 +79,15 @@ main {
   }
 }
 
-.logo {
+/*.logo {
   background-image: url("img/logo_nova.png");
   background-repeat: no-repeat;
   display: block;
   width: 260px;
   height: 60px;
-  text-indent: -9999px;
   margin: 0;
   margin-right: 50px;
-}
+}*/
 
 @media (max-width: 768px) {
   .menu-principal--fechar {
@@ -170,18 +167,6 @@ main {
   ;
 }
 
-.menu-principal a {
-  display: none;
-}
-
-.logado-adm .botao-adm {
-  display: block;
-}
-
-.nao-logado #botao-login {
-  display: block;
-}
-
 .home-titulo {
   text-align: center;
   text-transform: uppercase;
@@ -192,7 +177,6 @@ main {
 
 .home_div{
   background-color:#3399ff;
-  margin-top: 50px;
   height: 80px;  
 }
 
@@ -316,3 +300,9 @@ select{
 .desaparecer {
   display: none;
 }
+
+main > section {
+  margin: 0;
+}
+
+

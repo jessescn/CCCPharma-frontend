@@ -17,9 +17,10 @@ body {
 }
 
 body > header {    
-    padding: 0 100px;
+    padding: 10px 100px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
@@ -92,4 +93,8 @@ select {
     width: 210px;
 }
 
+h1.logotipo { margin: 0; }
 
+h1.logotipo span {
+  color: #3399ff;
+}

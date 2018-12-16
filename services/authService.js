@@ -48,15 +48,26 @@ export async function signIn(loginForm){
     return success;
 }
 
-// function signOut() {
-//     sessionStorage.clear();
-// }
+export function signOut() {
+    sessionStorage.clear();
+}
 
 export function isAuth() {
     var auth = false;
     if (sessionStorage.getItem("currentUser"))
         auth = true;
     return auth;
+}
+
+export function currentUserIsAdmin() {
+    let response = false;
+    if (isAuth()) {
+        let isAdmin = sessionStorage.getItem("isAdmin") == "true";
+        if (isAdmin) {
+            response = true;
+        }
+    }
+    return response;
 }
 
 // export { signIn, signUp, isAuth, signOut };

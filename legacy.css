@@ -503,14 +503,6 @@ body {
   display: none;
 }
 
-.logado-adm .botao-adm {
-  display: block;
-}
-
-.nao-logado #botao-login {
-  display: block;
-}
-
 .rodape {
   color: white;
 }

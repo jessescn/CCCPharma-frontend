@@ -1,8 +1,43 @@
 import {addProduct, getProduct, products} from './services/productsService.js';
+import * as authService from "./services/authService.js";
 
 const $produtos = document.querySelector(".products-container");
 
 let allProducts = [];
+
+function init() {
+    setupPermissions();
+    setupListeners();
+}
+
+function setupPermissions() {
+    if (authService.isAuth()) {
+        $(".authenticated").show("fast");
+        $(".non-authenticated").hide("fast");
+
+        if (authService.currentUserIsAdmin()) {
+            $(".admin").show("fast");
+        } else {
+            $(".admin").hide("fast");
+        }
+    } else {
+        $(".authenticated").hide("fast");
+        $(".non-authenticated").show("fast");
+        $(".admin").hide("fast");
+    }
+}
+
+function setupListeners() {
+    let $signOut = document.querySelector("#signOut");
+    $signOut.onclick = signOut;
+}
+
+function signOut() {
+    if (authService.isAuth()) {
+        authService.signOut();
+        setupPermissions();
+    }
+}
 
 /* init home */
 
@@ -89,3 +124,5 @@ function populateHome(listaProdutos){
 function calculateDiscount(price,discount){
     return (price - (price * discount)).toFixed(2);
 }
+
+init();
