@@ -1,6 +1,8 @@
 const url = "https://cccpharma-api-jjlm.herokuapp.com";
 
-// WORKING SIGN-UP
+/**
+ * 
+ */
 export async function signUp(registerForm){
     console.log(registerForm);
     const config = {

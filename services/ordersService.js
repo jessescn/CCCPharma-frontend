@@ -28,6 +28,7 @@ function removeOrder(orderId){
     };
     try{
         fetch(removeUrl, config);
+        return "ok";
     }catch(e){
         return "erro de rede";
     }
