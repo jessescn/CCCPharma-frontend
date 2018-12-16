@@ -1,83 +1,74 @@
-const $productForm = document.forms['productForm'];
+import * as orderService from '../services/ordersService.js';
 
-let currentProducts = [{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 1,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0.4}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}},
-{"id": 2,"name": "Perfume","producer": "KY","barcode": "100002","price": 52.59,"available": false,"category": {"id": 2,"name": "Higiene Pessoal","discount": 0}}];
+const $orders = document.querySelector(".tabela");
+let all_orders = [];
 
+function init() {
+    orderService.orders().then(function (data) {
+        all_orders = data;
+        loadOrders();
+    });
+}
 
-function addProduct(){
-    let name = $productForm['nome'].value;
-    let price = $productForm['preco'].value;
-    let manufacturer = $productForm['fabricante'].value;
-    let situation = $productForm['lote'].value;
-    let category = $productForm['categoria'].value;
+function loadOrders() {
+    all_orders.forEach(function (order) {
+        setProducts(order.orderProducts);
+    });
+}
 
-    const product = {
-        "name": name,
-        "producer":manufacturer,
-        "price":price,
-        "avaliable": situation,
-        "category":{
-            "id": category,
-            "name": categoriaNome(category),
-            "discount": 0
+function setProducts(products) {
+    products.forEach(function (product) {
+        let prices = getAmount(product.product.id, products);
+        let nSale = prices[0];
+        let income = prices[1];
+
+        let template = `
+        <div class = "linha">
+            <span>${product.product.name}</span>
+            <span>${product.product.amount}</span>
+            <span>${product.product.available}</span>
+            <span>${nSale}</span>
+            <span>R$ ${income}</span>
+        </div>
+        `
+
+        let $line = $(template);
+        $line.appendTo($orders);
+    })
+}
+
+function getAmount(id, orders) {
+    let salesData = [0, 0];
+    let ident = id;
+
+    orders.forEach(function (element) {
+        if (element.product.id == ident) {
+            salesData[0] += element.quantity;
+            salesData[1] += element.totalPrice;
         }
-    }
-    return product;
+    });
+
+    return salesData;
 }
 
-function categoriaNome(id){
-    let categorias = ["","Medicamentos","Higiene Pessoal","Cosméticos","Alimentos"];
-    return categorias[id];
-}
+// function generateLine(product) {
+//     let prices = getAmount(product.product.id, products);
+//     let nSale = prices[0];
+//     let income = prices[1];
 
-function povoateTable(){
-    listaDeVendas.forEach(produto => {})
-}
+//     let template = `
+//         <div class = "linha">
+//             <span>${product.product.name}</span>
+//             <span>${product.product.amount}</span>
+//             <span>${product.product.available}</span>
+//             <span>${nSale}</span>
+//             <span>R$ ${income}</span>
+//         </div>
+//         `
 
-function povoateGeneralRelactory(){
-    
-}
-
-// {
-//     "id": 3,
-//     "amount": 10,
-//     "expiration": "01-01-2018",
-//     "product": {
-//         "id": 2,
-//         "name": "Perfume",
-//         "producer": "KY",
-//         "barcode": "100002",
-//         "price": 52.59,
-//         "available": false,
-//         "category": {
-//             "id": 2,
-//             "name": "Higiene Pessoal",
-//             "discount": 0
-//         }
-//     }
-// }{
-//     "id": 3,
-//     "amount": 10,
-//     "expiration": "01-01-2018",
-//     "product": {
-//         "id": 2,
-//         "name": "Perfume",
-//         "producer": "KY",
-//         "barcode": "100002",
-//         "price": 52.59,
-//         "available": false,
-//         "category": {
-//             "id": 2,
-//             "name": "Higiene Pessoal",
-//             "discount": 0
-//         }
-//     }
+//     let $line = $(template);
+//     $line.appendTo($orders);
 // }
 
 
+init();
