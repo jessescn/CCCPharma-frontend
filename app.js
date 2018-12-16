@@ -68,7 +68,7 @@ function populateHome(listaProdutos){
                 <div class="desconto"> -${element.category.discount * 100}%</div>
                 <img class="imagem-produto" src="img/${element.category.id}.jpg">
                 <p class="nome">${element.name}</p>
-                <p><spam class="preco-antigo">De: R$ ${element.price} </spam>
+                <p><spam class="preco-antigo">De: R$ ${element.price.toFixed(2)} </spam>
                 <spam class="preco-atual">Por: R$${discountPrice}</spam></p>
                 <div class="escolha">Em estoque</div>
             `
@@ -77,8 +77,8 @@ function populateHome(listaProdutos){
                 <img class="imagem-produto" src="img/${element.category.id}.jpg">
                 <p class="nome">${element.name}</p>
                 <p class="preco-antigo"></p>
-                <p class="preco-atual">R$ ${element.price}</p>
-                <div class="escolha">Em estoque</div>
+                <p class="preco-atual">R$ ${element.price.toFixed(2)}</p>
+                <div class="escolha">Disponível</div>
             `
         }
         $produto.classList.add("produto");
