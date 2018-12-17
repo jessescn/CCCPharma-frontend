@@ -149,9 +149,9 @@ function clearTable(){
 
     let template = `
     <header class="linha">
-         <span id="date">Data da venda</span>
-         <span id="total-amount">Quantidade de itens</span>
-         <span id="income">Receita arrecadada</span>
+         <span id="date" class="header">Data da venda <i class="fas fa-sort"></i></span>
+         <span id="total-amount" class="header">Quantidade de itens<i class="fas fa-sort"></i></span>
+         <span id="income" class="header">Receita arrecadada<i class="fas fa-sort"></i></span>
          <span>Mais informações</span>
          <span>Cancelar venda</span>
      </header>

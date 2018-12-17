@@ -191,3 +191,11 @@ a {
     padding: 5px;
 
 }
+
+.header{
+    cursor: pointer;
+}
+
+.fa-sort{
+    margin-left: 5px;
+}
