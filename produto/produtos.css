@@ -1,5 +1,10 @@
 .tabela > .linha {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+}
+
+#title-nome-produto, #title-categoria,
+#title-quantidade, #title-price {
+  cursor: pointer;
 }
 
 .button {
