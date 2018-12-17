@@ -82,39 +82,54 @@ function filterProducts(){
     }
 }
 
-function redirectRouter(url){
-    this.window.location.href= url;
-}
-
-
 function populateHome(listaProdutos){
 
     while ($produtos.firstChild) {
         $produtos.removeChild($produtos.firstChild);
     }
     
-    listaProdutos.forEach(element => {
+    listaProdutos.forEach(element => {        
         let $produto = document.createElement("div");
         
         let discountPrice = calculateDiscount(element.price, element.category.discount);
 
-        if(element.category.discount > 0){
-            $produto.innerHTML = `
-                <div class="desconto"> -${element.category.discount * 100}%</div>
-                <img class="imagem-produto" src="img/${element.category.id}.jpg">
-                <p class="nome">${element.name}</p>
-                <p><spam class="preco-antigo">De: R$ ${element.price.toFixed(2)} </spam>
-                <spam class="preco-atual">Por: R$${discountPrice}</spam></p>
-                <div class="escolha">Em estoque</div>
-            `
+        if(element.amount > 0){
+            if(element.category.discount > 0){
+                $produto.innerHTML = `
+                    <div class="desconto"> -${element.category.discount * 100}%</div>
+                    <img class="imagem-produto" src="img/${element.category.id}.jpg">
+                    <p class="nome">${element.name}</p>
+                    <p><spam class="preco-antigo">De: R$ ${element.price.toFixed(2)} </spam>
+                    <spam class="preco-atual">Por: R$${discountPrice}</spam></p>
+                    <div class="escolha">Em estoque</div>
+                `
+            }else{
+                $produto.innerHTML = `
+                    <img class="imagem-produto" src="img/${element.category.id}.jpg">
+                    <p class="nome">${element.name}</p>
+                    <p class="preco-antigo"></p>
+                    <p class="preco-atual">R$ ${element.price.toFixed(2)}</p>
+                    <div class="escolha">Disponível</div>
+             `
+            }
         }else{
-            $produto.innerHTML = `
-                <img class="imagem-produto" src="img/${element.category.id}.jpg">
-                <p class="nome">${element.name}</p>
-                <p class="preco-antigo"></p>
-                <p class="preco-atual">R$ ${element.price.toFixed(2)}</p>
-                <div class="escolha">Disponível</div>
-            `
+            if(element.category.discount > 0){
+                $produto.innerHTML = `
+                    <div class="desconto"> -${element.category.discount * 100}%</div>
+                    <img class="imagem-produto" src="img/${element.category.id}.jpg">
+                    <p class="nome">${element.name}</p>
+                    <spam class="preco-atual">-</spam></p>
+                    <div class="indisponivel">Indisponivel</div>
+                `
+            }else{
+                $produto.innerHTML = `
+                    <img class="imagem-produto" src="img/${element.category.id}.jpg">
+                    <p class="nome">${element.name}</p>
+                    <p>-</p>
+                    <div class="indisponivel">Indisponivel</div>
+                `
+            }
+
         }
         $produto.classList.add("produto");
         $produtos.appendChild($produto);
