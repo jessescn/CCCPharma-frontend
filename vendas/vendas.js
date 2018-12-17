@@ -445,8 +445,7 @@ function filterByAmount(){
     }else{
         all_orders.sort(function(a,b) {return a.numberOfProducts - b.numberOfProducts});
         lessToMore2 = true;
-    } 
-    
+    }   
     redraw();
     
 }
