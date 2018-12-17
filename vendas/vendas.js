@@ -425,19 +425,40 @@ function setfilter(){
     $income.onclick = filterByIncome;
 }
 
+let lessToMore1 = true;
 function filterByDate(){
-    all_orders.sort(function(a,b) {return b.id - a.id}); 
+    if(lessToMore1){
+        all_orders.sort(function(a,b) {return b.id - a.id});
+        lessToMore1 = false;
+    }else{
+        all_orders.sort(function(a,b) {return a.id - b.id});
+        lessToMore1 = true;
+    }
     redraw();
 }
 
+let lessToMore2 = true;
 function filterByAmount(){
-    all_orders.sort(function(a,b) {return b.numberOfProducts - a.numberOfProducts}); 
+    if(lessToMore2){
+        all_orders.sort(function(a,b) {return b.numberOfProducts - a.numberOfProducts});
+        lessToMore2 = false; 
+    }else{
+        all_orders.sort(function(a,b) {return a.numberOfProducts - b.numberOfProducts});
+        lessToMore2 = true;
+    } 
+    
     redraw();
     
 }
-
+let lessToMore3 = true;
 function filterByIncome(){
-    all_orders.sort(function(a,b) {return b.price - a.price});      
+    if(lessToMore3){
+        all_orders.sort(function(a,b) {return b.price - a.price});
+        lessToMore3 = false;
+    }else{
+        all_orders.sort(function(a,b) {return a.price - b.price}); 
+        lessToMore3 = true;
+    }    
     redraw();
 }
 
