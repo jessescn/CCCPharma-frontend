@@ -42,7 +42,7 @@
         <section>
             <div id="adicionar" class="modal">
                 <h3 class="text-center">Adicionar Produto</h3>
-                <div action="#" class="formulario" name="productForm">
+                <div class="formulario" name="productForm">
                     <input class="input" type="text" name="nome" placeholder="Nome">
                     <input class="input" type="text" name="preco" placeholder="Preço">
                     <input class="input" type="text" name="barcode" placeholder="Código de barra">
@@ -62,27 +62,43 @@
             </div>
             <div id="alterar" class="modal">
                 <h3>Alterar preço</h3>
-                <div action="#" class="formulario">
-                    <label for="products-select">Produtos</label>
-                    <select name="products-select" id="products-select"></select>
-                    <label>Novo preço</label>
-                    <input class="input" name="nome" type="text">
+                <div class="formulario">
+                    <label>
+                        <span>Produto: </span>
+                        <select name="products-select" id="products-select"></select>
+                    </label>
+                    <input class="input" name="nome" type="text" placeholder="Novo preço">
                     <input class="button" id="edit" type="submit" value="Enviar">
                 </div>
             </div>
             <div id="promocao" class="modal">
-                <h3 class="radio">Adicionar promoção</h3>
-                <div action="#">
-                    <select class="select-categoria" class="input">
-                        <option>Medicamentos</option>
-                        <option>Higiene Pessoal</option>
-                        <option>Cosméticos</option>
-                        <option>Alimentos</option>
-                    </select><br>
-                    <input type="radio" name="promo" value=0> Sem desconto<br>
-                    <input type="radio" name="promo" value=0.1> Bom desconto (10%)<br>
-                    <input type="radio" name="promo" value=0.25> Ótimo desconto (25%)<br>
-                    <input type="radio" name="promo" value=0.5> Super desconto (50%)<br>
+                <h3>Adicionar promoção</h3>
+                <div class="formulario">
+                    <label>
+                        <span>Categoria</span>
+                        <select class="select-categoria" class="input">
+                            <option>Medicamentos</option>
+                            <option>Higiene Pessoal</option>
+                            <option>Cosméticos</option>
+                            <option>Alimentos</option>
+                        </select><br>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="promo" value=0>
+                        <span>Sem desconto</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="promo" value=0.1> 
+                        <span>Bom desconto (10%)</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="promo" value=0.25> 
+                        <span>Ótimo desconto (25%)</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="promo" value=0.5>
+                        <span>Super desconto (50%)</span>
+                    </label>
                     <input class="button radio" type="submit" value="Enviar">
                 </div>
             </div>
