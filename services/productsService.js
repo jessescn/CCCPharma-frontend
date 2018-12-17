@@ -1,7 +1,9 @@
 const api = "https://cccpharma-api-jjlm.herokuapp.com";
 const url = api + "/products";
 
-// WORKING GET ALL PRODUCTS
+/**
+ * 'POST' request to provide all products to front
+ */
 async function products(){
     const response = await fetch(url);
 
@@ -13,7 +15,9 @@ async function products(){
     }  
 }
 
-// WORKING GET PRODUCT
+/**
+ * 'GET' request to provide a especific item by id
+ */
 async function getProduct(id){
     const produtoUrl = url + "/" + id; 
     const response = await fetch(produtoUrl);
@@ -22,8 +26,9 @@ async function getProduct(id){
     return json;
 }
 
-
-// WORKING ADD PRODUCT
+/**
+ * 'POST' request to add a new item 
+ */
 async function addProduct(produto){
     const config = {
         method: 'POST',
@@ -40,7 +45,9 @@ async function addProduct(produto){
 
 }
 
-// WORKING UPDATE PRODUCT
+/**
+ * 'PUT' request to update a especific product
+ */
 async function updateProduct(produto){
     const config = {
         method: 'PUT',
@@ -59,21 +66,9 @@ async function updateProduct(produto){
 
 }
 
-// NOT WORKING REMOVE PRODUCT (SERVER NOT SUPPORTED)
-async function deleteProduct(id){
-    const config = {
-        method: 'DELETE'
-    }
-
-    const produtoUrl = url + "/" + produto.id;
-    const response = await fetch(produtoUrl,config);
-    const json = await response.json();
-
-    return json;
-
-}
-
-// WORKING GET CATEGORIES
+/**
+ * 'GET' request to provide all categories to front
+ */
 async function categories(){
     const response = await fetch("https://cccpharma-api-jjlm.herokuapp.com/categories");
     try{
@@ -85,6 +80,9 @@ async function categories(){
     }
 }
 
+/**
+ * 'PUT' request to add a discount to especific category
+ */
 async function addDiscount(category){
     const categoryUrl = `https://cccpharma-api-jjlm.herokuapp.com/categories/${category.id}`;
     const config = {

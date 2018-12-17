@@ -1,5 +1,8 @@
 const url = "https://cccpharma-api-jjlm.herokuapp.com/orders";
 
+/**
+ * Responsible to provide the list of orders to frontend 
+ */
 function orders() {
     return fetch(url).then(r => r.json());
 }
@@ -9,10 +12,9 @@ function infoOrders() {
     return fetch(newUrl).then(r => r.json());
 }
 
-/*
-Formato: 
-    orderForm: [{"quantity": 10, "product": {...}}]
-*/
+/**
+ * 'POST' request to add new order
+ */
 function addOrder(orderForm) {
     const config = {
         method: 'POST',
@@ -26,6 +28,9 @@ function addOrder(orderForm) {
     return fetch(url, config).then(r => r.json());
 }
 
+/**
+ * 'DELETE' request to remove a especific order 
+ */
 function removeOrder(orderId){
     const removeUrl = url + "/" + orderId;
     const config = {

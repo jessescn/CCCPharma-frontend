@@ -1,7 +1,7 @@
 const url = "https://cccpharma-api-jjlm.herokuapp.com";
 
 /**
- * 
+ * Responsible to provide the register informations to backend
  */
 export async function signUp(registerForm){
     console.log(registerForm);
@@ -17,15 +17,15 @@ export async function signUp(registerForm){
     const response = await fetch(registerUrl, config);
     const json = await response.json();
 
-    // IF SUCCESS
     let success = false;
     if (json.id) 
         success = true;
     return success;
 }
 
-// WORKING SIGN-IN (SERVER ERROR VALIDATION PASSWORD)
-
+/**
+ * Responsible to provide the login informations to backend 
+ */
 export async function signIn(loginForm){
     const config = {
         method:'POST',
@@ -50,10 +50,16 @@ export async function signIn(loginForm){
     return success;
 }
 
+/**
+ * Responsible to logout the user to system
+ */
 export function signOut() {
     sessionStorage.clear();
 }
 
+/**
+ * Responsible to verify if have some user logged
+ */
 export function isAuth() {
     var auth = false;
     if (sessionStorage.getItem("currentUser"))
@@ -61,6 +67,9 @@ export function isAuth() {
     return auth;
 }
 
+/**
+ * Responsible to verify if the current user is an admin
+ */
 export function currentUserIsAdmin() {
     let response = false;
     if (isAuth()) {
@@ -71,5 +80,3 @@ export function currentUserIsAdmin() {
     }
     return response;
 }
-
-// export { signIn, signUp, isAuth, signOut };

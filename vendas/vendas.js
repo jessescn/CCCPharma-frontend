@@ -415,6 +415,9 @@ function auxDetails(details){
     })
 }
 
+/**
+ * Set sort option to table 
+ */
 function setfilter(){
     let $date = document.getElementById("date");
     let $amount = document.getElementById("total-amount");
@@ -425,6 +428,9 @@ function setfilter(){
     $income.onclick = filterByIncome;
 }
 
+/**
+ * Set sort by create date 
+ */
 let lessToMore1 = true;
 function filterByDate(){
     if(lessToMore1){
@@ -437,6 +443,9 @@ function filterByDate(){
     redraw();
 }
 
+/**
+ * Set sort by itens quantity
+ */
 let lessToMore2 = true;
 function filterByAmount(){
     if(lessToMore2){
@@ -449,6 +458,10 @@ function filterByAmount(){
     redraw();
     
 }
+
+/**
+ * Set sort by total income
+ */
 let lessToMore3 = true;
 function filterByIncome(){
     if(lessToMore3){
