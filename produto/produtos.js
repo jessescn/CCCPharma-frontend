@@ -1,6 +1,8 @@
 import * as productService from '../services/productsService.js';
 import * as authService from '../services/authService.js';
 
+const $container = document.querySelector(".tabela");
+
 let all_products = [];
 let categories = [];
 
@@ -9,7 +11,51 @@ function init() {
     loadCategories();
     loadProducts();
     setupListeners();
+    setupSorters();
     // populateSelectChangePrice();
+}
+
+function reDesignTable() {
+    clearTable();
+    populate();
+    setupSorters();
+}
+
+function clearTable(){
+
+    while( $container.childNodes.length > 0){       
+        $container.removeChild($container.lastChild);
+    };
+
+    $container.innerHTML = "";
+
+    let template = `
+        <header class="linha">
+            <span id="title-nome-produto">
+                Nome do produto
+                <i class="fas fa-sort"></i>
+            </span>
+            <span id="title-categoria">
+                Categoria
+                <i class="fas fa-sort"></i>
+            </span>
+            <span id="title-quantidade">
+                Quantidade
+                <i class="fas fa-sort"></i>
+            </span>
+            <span id="title-price">
+                Preço
+                <i class="fas fa-sort"></i>
+            </span>
+            <span>
+                Alterar preço
+            </span>
+        </header>
+     `;
+
+    let $header = $(template);
+
+    $header.appendTo($container);
 }
 
 function signOut() {
@@ -46,6 +92,9 @@ function loadProducts() {
          all_products = data;
          populate();
     }).then(function() {
+        console.log(all_products);
+        console.log(categories);
+
         populateSelectChangePrice();
         // função para popular o select de alterar preço
     });
@@ -61,6 +110,66 @@ function loadProducts() {
     });
 }
 
+function setupSorters() {
+    let spanName = document.querySelector("#title-nome-produto");
+    let spanCategory = document.querySelector("#title-categoria");
+    let spanQuantity = document.querySelector("#title-quantidade");
+    let spanPrice = document.querySelector("#title-price");
+
+    spanName.onclick = sortByName;
+    spanCategory.onclick = sortByCategory;
+    spanQuantity.onclick = sortByQuantity;
+    spanPrice.onclick = sortByPrice;
+}
+
+let lessToMoreName = true;
+function sortByName() {
+    if(lessToMoreName) {
+        all_products.sort((e1, e2) => e1.name.localeCompare(e2.name));
+        lessToMoreName = false;
+    } else {
+        all_products.sort((e1, e2) => e2.name.localeCompare(e1.name));
+        lessToMoreName = true;
+    }
+    reDesignTable();
+}
+
+let lessToMoreCategory = true;
+function sortByCategory() {
+    if (lessToMoreCategory) {
+        all_products.sort((e1, e2) => e1.category.name.localeCompare(e2.category.name));
+        lessToMoreCategory = false;
+    } else {
+        all_products.sort((e1, e2) => e2.category.name.localeCompare(e1.category.name));
+        lessToMoreCategory = true;
+    }
+    reDesignTable();
+}
+
+let lessToMoreQuantity = true;
+function sortByQuantity() {
+    if (lessToMoreQuantity) {
+        all_products.sort((e1, e2) => e1.amount - e2.amount);
+        lessToMoreQuantity = false;
+    } else {
+        all_products.sort((e1, e2) => e2.amount - e1.amount);
+        lessToMoreQuantity = true;
+    }
+    reDesignTable();
+}
+
+let lessToMorePrice = true;
+function sortByPrice() {
+    if (lessToMorePrice) {
+        all_products.sort((e1, e2) => e1.price - e2.price);
+        lessToMorePrice = false;
+    } else {
+        all_products.sort((e1, e2) => e2.price - e1.price);
+        lessToMorePrice = true;
+    }
+    reDesignTable();
+}
+
 function loadCategories() {
     productService.categories().then(function(data){
         categories = data;
@@ -68,7 +177,6 @@ function loadCategories() {
 }
 
 function appendProduct(product) {
-    const $container = $(".tabela");   
     let template = `
     <div class="linha">
         <span>${product.name}</span>
@@ -119,9 +227,11 @@ function saveProduct(){
     };
 
     productService.addProduct(product);
-    appendProduct(product);
-    // loadProducts();
     $.fancybox.close(true);
+
+    setTimeout(function () {
+        location.reload()
+    }, 300);
 }
 
 function addDiscount() {
@@ -144,6 +254,7 @@ function changePriceProduct() {
     }
 
     $.fancybox.close(true);
+    
     setTimeout(function () {
         location.reload()
     }, 300);

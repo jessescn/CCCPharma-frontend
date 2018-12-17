@@ -199,3 +199,7 @@ a {
 .fa-sort{
     margin-left: 5px;
 }
+
+.fa-minus-circle {
+    cursor: pointer;
+}
