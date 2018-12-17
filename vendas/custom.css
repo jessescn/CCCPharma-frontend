@@ -184,3 +184,16 @@ a {
     color:white;
 }
 
+#details-order {
+    display: none;
+    width: 100%;
+    max-width: 400px;
+    background-color: rgb(209, 239, 245); 
+    border-radius: 10px;
+}
+
+#details-order div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+}

@@ -143,7 +143,9 @@ function changePriceProduct() {
     }
 
     $.fancybox.close(true);
-    location.reload();
+    setTimeout(function () {
+        location.reload()
+    }, 300);
 }
 
 init();
