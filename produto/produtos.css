@@ -1,37 +1,5 @@
-.tabela {
-    border: 2px solid #3399ff;
-    border-radius: 10px;
-    padding: 10px 0;
-}
-
 .tabela > .linha {
-    display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-flow: column;
-    text-align: center;
-    padding: 5px 0;
-}
-
-.tabela > .linha:hover {
-    font-weight: bold;
-    transition-duration: 0.5s;
-}
-
-.tabela > .linha a {
-    color: #3399ff;
-}
-
-.tabela > div {
-    border-top: px solid #3399ff;
-}
-
-.tabela > header.linha {
-    font-weight: bold;
-}
-
-.tabela > .linha:nth-child(even) {
-    background: #3399ff;
-    color: white;
 }
 
 .button {
@@ -93,39 +61,67 @@ a {
 }
 
 .formulario {
-    display: block;
-    margin-left: -45px;
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
 }
 
-.formulario label {
-  display: inline-block;
-  width: 100px;
-  text-align: right;
-  color: #303030;
+.formulario > div {
+  display: flex;
+  flex-direction: column;
 }
 
 .input {
-  border-radius: 5px;
-  margin: 4px 7px;
-  border: 1px solid #c4c4c4;
-  border-radius: 5px;
-  padding: 5px;
+  border: 2px solid transparent;
+  text-align: center;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  color: #252525;
+}
+
+.input:focus {
+  border-color: #3399ff;
+  color: #3399ff;
+}
+
+.formulario label {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formulario label > span {
+  align-self: center;
+  margin-right: 10px;
 }
 
 .formulario select {
-    width: 210px;
+  border: none !important;
+  margin: 0 !important;
+  background: white;
+  width: 100%;
+  text-align: center;
+  align-self: center;
+  padding: 5px 10px;
 }
 
 .radio {
     margin-top: 25px;
 }
 
-.formulario .button {
-    display: block;
-    margin: 0 auto;
-    margin-top: 15px;
-    margin-right: 110px;
+.formulario > .button {
+  margin-top: 10px;
+  border-radius: 0;
+  background-color: #3399ff;
+  color: white;
+}
+
+.formulario > .button:hover {
+  border: 2px solid #236bb2;
+  background-color: #236bb2;
+  transition-duration: 0.15s;
 }
 
 .botoes {

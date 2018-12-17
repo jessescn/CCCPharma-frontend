@@ -104,6 +104,7 @@ function saveProduct(){
     let price = getModalValue("adicionar", "preco");
     let producer = getModalValue("adicionar", "fabricante");
     let amount = getModalValue("adicionar", "amount");
+    let barcode = getModalValue("adicionar", "barcode");
 
     let categoryIndex = document.querySelector("#adicionar .select-categoria").selectedIndex;
     let category = categories[categoryIndex];
@@ -111,7 +112,7 @@ function saveProduct(){
     const product = {
         "name": name,
         "producer": producer,
-        "barcode": "0000-0000",
+        "barcode": barcode,
         "price": price,
         "amount": amount,
         "category": category

@@ -43,24 +43,20 @@
             <div id="adicionar" class="modal">
                 <h3 class="text-center">Adicionar Produto</h3>
                 <div action="#" class="formulario" name="productForm">
-                    <div class="text-center">
-                        <label>Nome</label>
-                        <input class="input" name="nome" type="text"><br>
-                        <label>Preço </label>
-                        <input class="input" type="text" name="preco"><br>
-                        <label>Fabricante </label>
-                        <input class="input" type="text" name="fabricante"><br>
-                        <label>Quantidade </label>
-                        <input class="input" type="text" name="amount">
-                        <br>
-                        <label class="modal-label">Categoria</label>
-                        <select class="select-categoria" class="input">
-                            <option>Medicamentos</option>
+                    <input class="input" type="text" name="nome" placeholder="Nome">
+                    <input class="input" type="text" name="preco" placeholder="Preço">
+                    <input class="input" type="text" name="barcode" placeholder="Código de barra">
+                    <input class="input" type="text" name="fabricante" placeholder="Fabricante">
+                    <input class="input" type="text" name="amount" placeholder="Quantidade">
+                    <label>
+                        <span>Categoria: </span>
+                        <select class="select-categoria" class="input" required>
+                            <option selected>Medicamentos</option>
                             <option>Higiene Pessoal</option>
                             <option>Cosméticos</option>
                             <option>Alimentos</option>
                         </select>
-                    </div>
+                    </label>
                     <input class="button" type="submit" value="Enviar">
                 </div>
             </div>
