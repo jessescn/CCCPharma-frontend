@@ -220,3 +220,30 @@ main > section {
   padding-top: 5px;
   border-radius: 8px;
 }
+
+.filter-options ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.filter-options ul li {
+  padding: 5px;
+  background: #3399ff;
+}
+
+.filter-options ul li.active {
+  background: #236bb2;
+}
+
+.filter-options ul li:hover {
+  transform: scale(1.1, 1.1);
+  background: #2d89e5;
+  transition-duration: 0.25s;
+}
+
+.filter-options ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
