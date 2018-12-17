@@ -12,13 +12,13 @@ function init() {
     loadProducts();
     setupListeners();
     setupSorters();
-    // populateSelectChangePrice();
 }
 
 function reDesignTable() {
     clearTable();
     populate();
     setupSorters();
+    setupChangeListener();
 }
 
 function clearTable(){
@@ -80,35 +80,29 @@ function setupListeners() {
     const $btnDiscount = document.querySelector("#promocao input[type=submit]");
     $btnDiscount.onclick = addDiscount;
 
-    const $btnAlterar = document.querySelector("#alterar input[type=submit]");
-    $btnAlterar.onclick = changePriceProduct;
-
     const $signOut = document.querySelector("#signOut");
     $signOut.onclick = signOut;
 }
 
+function setupChangeListener() {
+    let $changePriceBtns = document.getElementsByClassName("btn-alterar");
+    
+    for(let i = 0; i < $changePriceBtns.length; i++){
+        let $changePrice = $changePriceBtns[i];
+        
+        let id = parseInt($changePrice.attributes.value.value);
+        $changePrice.onclick = function() { showModalWithId(id); };
+    }
+}
+
 function loadProducts() {
     productService.products().then(function(data) {
-         all_products = data;
-         populate();
-    }).then(function() {
-        console.log(all_products);
-        console.log(categories);
-
-        populateSelectChangePrice();
-        // função para popular o select de alterar preço
+        all_products = data;
+        console.log("finished");
+        populate();
+        setupChangeListener();
     });
  }
-
- function populateSelectChangePrice() {
-    let productsSelect = document.querySelector('#products-select');
-
-    all_products.forEach(element => {
-        let option = document.createElement("option");
-        option.text = element.name;
-        productsSelect.add(option);
-    });
-}
 
 function setupSorters() {
     let spanName = document.querySelector("#title-nome-produto");
@@ -183,9 +177,9 @@ function appendProduct(product) {
         <span>${product.category.name}</span>
         <span>${product.amount}</span>
         <span>R$ ${product.price}</span>
-        <!-- <a data-fancybox data-touch="false" href="#alterar">
+        <a class="btn-alterar" value="${product.id}" data-fancybox data-touch="false" href="#alterar">
             <i class="fas fa-marker"></i>
-        </a> -->
+        </a>
     </div>
     `;
     let $product = $(template);
@@ -244,13 +238,32 @@ function addDiscount() {
     $.fancybox.close(true);
 }
 
-function changePriceProduct() {
+function getProductById(id) {
+    return all_products.filter(function (element) { return element.id == id });
+}
+
+function showModalWithId(id) {
+    let product = getProductById(id);
+
+    let $titleModal = document.querySelector("#alterar h3");
+    const $btnAlterar = document.querySelector("#alterar input[type=submit]");
+
+    $titleModal.innerHTML = `Alterar preço de ${product[0].name}`;
+    console.log("antes da alteração");
+    console.log(product);
+
+    $btnAlterar.onclick = function() {
+        changePriceProduct(product);
+    };
+}
+
+function changePriceProduct(product) {
     const $newPrice = getModalValue("alterar", "nome");
-    let productIndex = document.querySelector("#products-select").selectedIndex;
 
     if ($newPrice && !isNaN($newPrice)) {
-        all_products[productIndex].price = $newPrice;
-        productService.updateProduct(all_products[productIndex]);
+        product[0].price = $newPrice;
+        console.log(product);
+        productService.updateProduct(product[0]);
     }
 
     $.fancybox.close(true);
