@@ -18,7 +18,7 @@ let all_products = [];
 function init(){
     loadOrders();
     verifyPermission();    
-    loadProducts();
+    loadProducts();    
 }
 
 /*
@@ -185,14 +185,25 @@ function appendProduct(product){
 *  Set the orders to "lister" the function removerOrder()
 */
 function setupDeleteListener(){
+    let $details =  document.getElementsByClassName("details-btn");
     let $deleteOrders = document.getElementsByClassName("delete-button");
 
     for(let i = 0; i < $deleteOrders.length; i++){
         
         let $order = $deleteOrders[i];
         let id = $order.value;
-        $order.onclick = function(){ removeOrder(id) };
+        $order.onclick = function(){ removeOrder(id)};
+
     }
+
+    for(let j = 0; j < $details.length; j++){
+        
+        let $detail = $details[j];
+        let id = parseInt($detail.attributes.value.value);      
+        $detail.onclick = function(){ showDetails(id) };
+    }
+
+
 }
 
 /*
@@ -212,18 +223,6 @@ async function sendNewOrder(){
     }
 }
 
-/**
- * Sum all products price in the little car  
- */
-function sumAll(cart){
-    let total = 0;
-
-    cart.forEach(product => {
-        total += product.product.price;
-    });
-
-    return total;
-}
 
 /**
  * Povoate the orders table
@@ -243,7 +242,9 @@ function appendOrder(order){
     let template = `
     <div class = "linha">    
         <span>${order.id}</span>
-        <span>${order.numberOfProducts}</span>
+        <a class="details-btn" value=${order.id} data-fancybox data-touch="false" href="#details-order">
+            <i class="fas fa-marker"></i>
+        </a>
         <span>R$ ${order.price.toFixed(2)}</span>
         <button class="delete-button delete" value=${order.id}>Deletar</button>
     </div>
@@ -294,7 +295,7 @@ async function addProductToCart(){
         "product": product
     }
 
-    if(amount > 0 && product.amount >= amount){     
+    if(amount > 0 && product.amount >= amount){ 
         await addToCart(newProduct);
         updateCart();
         $messageError.classList.add("escondido");
@@ -335,6 +336,48 @@ function addToCart(newProduct){
 
     let $amount = document.getElementById("amount");
     $amount.value = 0; 
+}
+
+function showDetails(id){ 
+
+    let productDetails = [];
+    let order = "";
+
+    all_orders.forEach(_order =>{
+        if(_order.id == id){
+            order = _order;
+        }
+    })
+
+    console.log(productDetails);
+    
+
+    order.orderProducts.forEach(product =>{
+        let details  = {
+            name: product.product.name,
+            quantity: product.quantity
+        }
+        productDetails.push(details);
+    })
+
+    auxDetails(productDetails);
+
+}
+
+function auxDetails(details){
+    let $detailsOrder = document.querySelector("#details-order");
+
+    details.forEach(detail =>{
+        let template = `
+        <div>
+            <spam>${detail.name}</spam>
+            <spam>${detail.quantity}</spam>
+        </div>
+        `;
+
+        let $detail = $(template);
+        $detail.appendTo($detailsOrder);
+    })
 }
 
 init();
