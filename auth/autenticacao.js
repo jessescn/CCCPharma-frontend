@@ -1,5 +1,8 @@
 import * as authService from "../services/authService.js";
 
+/**
+ * Functions to initializate with the application
+ */
 function init() {
     if (authService.isAuth()) {
         redirectRouter("/");
@@ -8,16 +11,25 @@ function init() {
     }
 }
 
+/**
+ * Get the html component representing some input form
+ */
 function getInfo(name) {
     let query = `#form input[name=${name}]`;
     const $component = document.querySelector(query);
     return $component.value;
 }
 
+/**
+ * Redirect the user to especific url
+ */
 function redirectRouter(url){
     window.location.href = url;
 }
 
+/**
+ * Setup html components to "listen" functions to especific events 
+ */
 function setupListeners() {
     let $signUp = document.querySelector("#signUp");
     $signUp.onclick = register;
@@ -26,6 +38,9 @@ function setupListeners() {
     $signIn.onclick = login;
 }
 
+/**
+ * Set the display for alert messages
+ */
 function showMessage(msg, status) {
     const $msg = document.querySelector("#form .message");
     $msg.classList.remove("hidden");
@@ -35,6 +50,9 @@ function showMessage(msg, status) {
     $msg.innerText = msg;
 }
 
+/**
+ * Function to send a new registerForm to service
+ */
 function register(){
     let email = getInfo("email");
     let password = getInfo("password");
@@ -56,11 +74,17 @@ function register(){
     });
 }
 
+/**
+ * Validate the email structure
+ */
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
 
+/**
+ * Function to send a loginForm to service
+ */
 function login(){
     let email = getInfo("email");
     let password = getInfo("password");
