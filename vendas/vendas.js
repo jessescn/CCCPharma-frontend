@@ -136,12 +136,9 @@ function clearTable(id){
         }
     }
 
-    console.log(all_orders);
-    
     all_orders.splice(index,1);
     
-    while($orders.childNodes.length > 0){ 
-        console.log($orders.lastChild);       
+    while($orders.childNodes.length > 0){       
         $orders.removeChild($orders.lastChild);
     };
         
@@ -206,6 +203,7 @@ async function sendNewOrder(){
 
         const response = await orderService.addOrder(cart);
         await appendOrder(response);
+        all_orders.push(response);
         setupDeleteListener();
         $.fancybox.close(true);
 
