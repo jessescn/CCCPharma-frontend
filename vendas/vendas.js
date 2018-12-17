@@ -8,6 +8,7 @@ const $messageSucess = document.querySelector(".mensagem-sucesso");
 const $messageError = document.querySelector(".mensagem-erro");
 const $messageCarEmptyError = document.querySelector(".emptyCart-erro")
 
+
 let all_orders = [];
 let cart = [];
 let all_products = [];
@@ -18,7 +19,8 @@ let all_products = [];
 function init(){
     loadOrders();
     verifyPermission();    
-    loadProducts();    
+    loadProducts();
+    setfilter();    
 }
 
 /*
@@ -119,24 +121,24 @@ function reset(){
 *   Reset the table after some change, cleaning the html, repovoate and setup listeners
 */
 function redrawTable(id){    
-    clearTable(id);
+    clearTable();
+    removeFromList(id);
     povoateTable();    
     setupDeleteListener();
+    setfilter();
+}
+
+function redraw(){    
+    clearTable();
+    povoateTable();    
+    setupDeleteListener();
+    setfilter();
 }
 
 /**
  *  Remove all html related to '$order' and remove order from 'all_orders'
  */
-function clearTable(id){
-    let index = 0;
-
-    for(let i = 0; i < all_orders.length; i++){
-        if(all_orders[i].id == id){
-            index = i;
-        }
-    }
-
-    all_orders.splice(index,1);
+function clearTable(){
     
     while($orders.childNodes.length > 0){       
         $orders.removeChild($orders.lastChild);
@@ -147,9 +149,9 @@ function clearTable(id){
 
     let template = `
     <header class="linha">
-         <span>Data da venda</span>
-         <span>Quantidade de itens</span>
-         <span>Receita arrecadada</span>
+         <span id="date">Data da venda</span>
+         <span id="total-amount">Quantidade de itens</span>
+         <span id="income">Receita arrecadada</span>
          <span>Mais informações</span>
          <span>Cancelar venda</span>
      </header>
@@ -158,6 +160,18 @@ function clearTable(id){
     let $header = $(template);
 
     $header.appendTo($container);
+}
+
+function removeFromList(id){
+    let index = 0;
+
+    for(let i = 0; i < all_orders.length; i++){
+        if(all_orders[i].id == id){
+            index = i;
+        }
+    }
+
+    all_orders.splice(index,1);
 }
 
 /*
@@ -240,7 +254,6 @@ function povoateTable(){
  * Create a template representing the order and add to HTML ($order)  
  */
 function appendOrder(order){
-    console.log(order);
     
     let template = `
     <div class = "linha">    
@@ -299,7 +312,7 @@ async function addProductToCart(){
     const newProduct = {
         "quantity": parseInt(amount, 10),
         "product": product
-    }
+    }    
 
     if(amount > 0 && product.amount >= amount){ 
         await addToCart(newProduct);
@@ -400,6 +413,32 @@ function auxDetails(details){
         let $detail = $(template);
         $detail.appendTo($detailsOrder);
     })
+}
+
+function setfilter(){
+    let $date = document.getElementById("date");
+    let $amount = document.getElementById("total-amount");
+    let $income = document.getElementById("income");
+
+    $date.onclick = filterByDate;
+    $amount.onclick = filterByAmount;
+    $income.onclick = filterByIncome;
+}
+
+function filterByDate(){
+    all_orders.sort(function(a,b) {return b.id - a.id}); 
+    redraw();
+}
+
+function filterByAmount(){
+    all_orders.sort(function(a,b) {return b.numberOfProducts - a.numberOfProducts}); 
+    redraw();
+    
+}
+
+function filterByIncome(){
+    all_orders.sort(function(a,b) {return b.price - a.price});      
+    redraw();
 }
 
 init();
