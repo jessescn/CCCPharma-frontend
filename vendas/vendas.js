@@ -128,7 +128,6 @@ function redrawTable(id){
  *  Remove all html related to '$order' and remove order from 'all_orders'
  */
 function clearTable(id){
-    console.log(all_orders);
     let index = 0;
 
     for(let i = 0; i < all_orders.length; i++){
@@ -136,8 +135,6 @@ function clearTable(id){
             index = i;
         }
     }
-
-    console.log(all_orders);
     
     all_orders.splice(index,1);
     
@@ -147,6 +144,7 @@ function clearTable(id){
     };
         
     const $container = $(".tabela");
+    $container.innerHTML = "";
 
     let template = `
     <header class="linha">
@@ -232,8 +230,6 @@ function sumAll(cart){
  */
 function povoateTable(){
     orderService.orders();
-    console.log(all_orders);
-        
     if (all_orders != []) {
         all_orders.forEach(_order => {
             appendOrder(_order);
