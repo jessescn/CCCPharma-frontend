@@ -4,6 +4,10 @@ import * as authService from '../services/authService.js';
 const $orders = document.querySelector(".tabela");
 let all_orders = [];
 
+
+/*
+* Make the request to the backend, and start some initial functions.
+*/
 function init() {
     verifyPermission();
     setupListeners();
@@ -13,17 +17,27 @@ function init() {
     });
 }
 
+/*
+* Function that starts setProducts for each element of the array.
+*/
 function loadOrders() {
     all_orders.forEach(function (order) {
         setProducts(order);
     });
 }
 
+/*
+*    Set the functions call in html components
+*/
 function setupListeners() {
     const $signOut = document.querySelector("#signOut");
     $signOut.onclick = signOut;
 }
 
+
+/*
+*   Sign out the user and redirect to home
+*/
 function signOut() {
     if (authService.isAuth()) {
         authService.signOut();
@@ -31,14 +45,23 @@ function signOut() {
     }
 }
 
+/*
+*  Verify user permission
+*/
 function verifyPermission() {
     if (!authService.isAuth() || !authService.currentUserIsAdmin()) sendTo("/");
 }
 
+/*
+*   Send user to especific url
+*/
 function sendTo(url) {
     window.location.href = "/"
 }
 
+/*
+* Create a template that represent the general information and add to HTML
+*/
 function setProducts(orderInfo) {
     let available = "Indisponível";
 
