@@ -147,9 +147,10 @@ function clearTable(id){
 
     let template = `
     <header class="linha">
-         <span>Id da venda</span>
-         <span>N° de produtos</span>
-         <span>Valor arrecadado</span>
+         <span>Data da venda</span>
+         <span>Quantidade de itens</span>
+         <span>Receita arrecadada</span>
+         <span>Mais informações</span>
          <span>Cancelar venda</span>
      </header>
      `;
@@ -191,7 +192,7 @@ function setupDeleteListener(){
     for(let i = 0; i < $deleteOrders.length; i++){
         
         let $order = $deleteOrders[i];
-        let id = $order.value;
+        let id = parseInt($order.attributes.value.value);
         $order.onclick = function(){ removeOrder(id)};
 
     }
@@ -239,14 +240,19 @@ function povoateTable(){
  * Create a template representing the order and add to HTML ($order)  
  */
 function appendOrder(order){
+    console.log(order);
+    
     let template = `
     <div class = "linha">    
-        <span>${order.id}</span>
-        <a class="details-btn" value=${order.id} data-fancybox data-touch="false" href="#details-order">
-            <i class="fas fa-marker"></i>
-        </a>
+        <span>${order.dateCreated}</span>
+        <span>${order.numberOfProducts}</span>
         <span>R$ ${order.price.toFixed(2)}</span>
-        <button class="delete-button delete" value=${order.id}>Deletar</button>
+        <a class="details-btn" value=${order.id} data-fancybox data-touch="false" href="#details-order">
+            <i class="fas fa-list-ul"></i>
+        </a>
+        <a class="delete-button delete" value=${order.id}>
+            <i class="fas fa-minus-circle"></i>
+        </a>
     </div>
     `
     let $order = $(template);
@@ -338,6 +344,9 @@ function addToCart(newProduct){
     $amount.value = 0; 
 }
 
+/*
+* Show the list of products of a especific order   
+*/
 function showDetails(id){ 
 
     let productDetails = [];
@@ -348,10 +357,7 @@ function showDetails(id){
             order = _order;
         }
     })
-
-    console.log(productDetails);
     
-
     order.orderProducts.forEach(product =>{
         let details  = {
             name: product.product.name,
@@ -364,14 +370,30 @@ function showDetails(id){
 
 }
 
+/**
+ * Aux function for showDetails 
+ */
 function auxDetails(details){
     let $detailsOrder = document.querySelector("#details-order");
+
+    while($detailsOrder.childNodes.length > 0){
+        $detailsOrder.removeChild($detailsOrder.lastChild);
+    }
+
+    let header = `<div>
+        <span class="header-line">Nome</span>
+        <span class="header-line">Quantidade</span>
+    </div>`;
+
+    let $header = $(header);
+    $header.appendTo($detailsOrder);
+
 
     details.forEach(detail =>{
         let template = `
         <div>
-            <spam>${detail.name}</spam>
-            <spam>${detail.quantity}</spam>
+            <span class="line">${detail.name}</span>
+            <span class="line">${detail.quantity}</span>
         </div>
         `;
 

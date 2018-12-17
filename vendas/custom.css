@@ -1,5 +1,5 @@
 .tabela > .linha {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .button {
@@ -130,22 +130,6 @@ a {
     color:red;
 }
 
-.delete-button{
-    font-weight: bold;
-    width: 100px;
-    margin-left: 100px;
-    border-radius: 8px;
-    background-color: white;
-    border: 2px solid red;
-    color:red;
-}
-
-.delete-button:hover{
-    transition-duration: 0.33s;
-    background-color: red;
-    border:2px solid white;
-    color:white;
-}
 
 .grid-produtos{
     display:grid;
@@ -159,7 +143,6 @@ a {
 .cabecalho{
     font-size: 20px;
     margin: 10px;
-    border-bottom: 1px solid #3399ff;
 }
 
 .alert{
@@ -186,7 +169,6 @@ a {
 
 #details-order {
     display: none;
-    width: 100%;
     width: 450px;
     background-color: rgb(209, 239, 245); 
     border-radius: 10px;
@@ -196,4 +178,16 @@ a {
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
+}
+
+.header-line{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.line{
+    margin: 10px;
+    padding: 5px;
+
 }
