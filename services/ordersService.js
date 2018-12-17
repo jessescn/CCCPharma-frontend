@@ -4,6 +4,11 @@ function orders() {
     return fetch(url).then(r => r.json());
 }
 
+function infoOrders() {
+    const newUrl = url + "/info";
+    return fetch(newUrl).then(r => r.json());
+}
+
 /*
 Formato: 
     orderForm: [{"quantity": 10, "product": {...}}]
@@ -34,4 +39,4 @@ function removeOrder(orderId){
     }
 }
 
-export { orders , addOrder, removeOrder };
+export { orders, infoOrders , addOrder, removeOrder };

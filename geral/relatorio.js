@@ -7,7 +7,7 @@ let all_orders = [];
 function init() {
     verifyPermission();
     setupListeners();
-    orderService.ordersInfo().then(function (data) {
+    orderService.infoOrders().then(function (data) {
         all_orders = data;
         loadOrders();
     });
