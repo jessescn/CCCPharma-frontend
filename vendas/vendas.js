@@ -135,6 +135,8 @@ function clearTable(id){
             index = i;
         }
     }
+
+    console.log(all_orders);
     
     all_orders.splice(index,1);
     
@@ -229,7 +231,6 @@ function sumAll(cart){
  * Povoate the orders table
  */
 function povoateTable(){
-    orderService.orders();
     if (all_orders != []) {
         all_orders.forEach(_order => {
             appendOrder(_order);
