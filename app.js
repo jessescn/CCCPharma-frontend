@@ -42,41 +42,52 @@ function signOut() {
 /* init home */
 
 (function(){ 
-    products().then(response => allProducts = response)
-    .then(() => {
-        setFunctions();
-        filterProducts();
-    });
-})();
+     products().then(function(response){
+         allProducts = response;
+         populateHome(allProducts);
+         setFunctions(); 
+   })
+})()
 
-
-function update(){
-    filterProducts();
-}
 
 function setFunctions(){
-    let $select = document.querySelector("#input-categoria");
-    $select.onchange = update;
-    $select.value = 1;
+    let $buttons = document.getElementsByClassName("btn-filter");
+    
+    for(let i = 0; i < $buttons.length; i++){
+
+        let id = parseInt($buttons[i].attributes.value.value);      
+        $buttons[i].onclick = function(){resetAllMarks(); filterProducts(id); $buttons[i].classList.add("active")};
+        
+    }
 }
 
-function filterProducts(){
+function resetAllMarks(){
+    let $buttons = document.getElementsByClassName("btn-filter");
+    
+    for(let i = 0; i < $buttons.length; i++){     
+        $buttons[i].classList.remove("active");
+        
+    }
+}
+
+function filterProducts(id){
     let $messageNotFound = document.querySelector("#not-found-message");
     $messageNotFound.classList.remove("desaparecer");
 
     let filteredProducts = [];
-    let indexCategory = document.getElementById("input-categoria").selectedIndex;
 
     allProducts.forEach(product =>
-        {
-            if(product.category.id == indexCategory || indexCategory == 0){
+        {   
+            console.log(product.category.id + " : "  + id);
+            
+            if(product.category.id == id || id == 0){
                 filteredProducts.push(product);
             }
         });
 
     
     populateHome(filteredProducts);
-
+     
     if(filteredProducts.length > 0){
         $messageNotFound.classList.add("desaparecer");
     }
