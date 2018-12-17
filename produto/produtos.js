@@ -1,7 +1,7 @@
 import * as productService from '../services/productsService.js';
 import * as authService from '../services/authService.js';
 
-const $container = document.querySelector(".tabela");
+let $container = document.querySelector(".tabela");
 
 let all_products = [];
 let categories = [];
@@ -31,15 +31,23 @@ function clearTable(){
 
     let template = `
         <header class="linha">
-            <span id="title-nome-produto">
+            <span id="title-barcode">
+                Código de barra
+                <i class="fas fa-sort"></i>
+            </span>
+            <span id="title-product-name">
                 Nome do produto
                 <i class="fas fa-sort"></i>
             </span>
-            <span id="title-categoria">
+            <span id="title-producer">
+                Fabricante
+                <i class="fas fa-sort"></i>
+            </span>
+            <span id="title-category">
                 Categoria
                 <i class="fas fa-sort"></i>
             </span>
-            <span id="title-quantidade">
+            <span id="title-amount">
                 Quantidade
                 <i class="fas fa-sort"></i>
             </span>
@@ -48,7 +56,7 @@ function clearTable(){
                 <i class="fas fa-sort"></i>
             </span>
             <span>
-                Alterar preço
+                Editar
             </span>
         </header>
      `;
@@ -70,7 +78,7 @@ function verifyPermission() {
 }
 
 function sendTo(url) {
-    window.location.href = "/"
+    window.location.href = url;
 }
 
 function setupListeners() {
@@ -105,15 +113,31 @@ function loadProducts() {
  }
 
 function setupSorters() {
-    let spanName = document.querySelector("#title-nome-produto");
-    let spanCategory = document.querySelector("#title-categoria");
-    let spanQuantity = document.querySelector("#title-quantidade");
+    let spanBarcode = document.querySelector("#title-barcode");
+    let spanName = document.querySelector("#title-product-name");
+    let spanCategory = document.querySelector("#title-category");
+    let spanProducer = document.querySelector("#title-producer");
+    let spanAmount = document.querySelector("#title-amount");
     let spanPrice = document.querySelector("#title-price");
 
     spanName.onclick = sortByName;
     spanCategory.onclick = sortByCategory;
-    spanQuantity.onclick = sortByQuantity;
+    spanAmount.onclick = sortByAmount;
     spanPrice.onclick = sortByPrice;
+    spanProducer.onclick = sortByProducer;
+    spanBarcode.onclick = sortByBarcode;
+}
+
+let lessToMoreBarcode = true;
+function sortByBarcode() {
+    if(lessToMoreBarcode) {
+        all_products.sort((e1, e2) => e1.barcode.localeCompare(e2.barcode));
+        lessToMoreBarcode = false;
+    } else {
+        all_products.sort((e1, e2) => e2.barcode.localeCompare(e1.barcode));
+        lessToMoreBarcode = true;
+    }
+    reDesignTable();
 }
 
 let lessToMoreName = true;
@@ -124,6 +148,18 @@ function sortByName() {
     } else {
         all_products.sort((e1, e2) => e2.name.localeCompare(e1.name));
         lessToMoreName = true;
+    }
+    reDesignTable();
+}
+
+let lessToMoreProducer = true;
+function sortByProducer() {
+    if(lessToMoreProducer) {
+        all_products.sort((e1, e2) => e1.producer.localeCompare(e2.producer));
+        lessToMoreProducer = false;
+    } else {
+        all_products.sort((e1, e2) => e2.producer.localeCompare(e1.producer));
+        lessToMoreProducer = true;
     }
     reDesignTable();
 }
@@ -140,14 +176,14 @@ function sortByCategory() {
     reDesignTable();
 }
 
-let lessToMoreQuantity = true;
-function sortByQuantity() {
-    if (lessToMoreQuantity) {
+let lessToMoreAmount = true;
+function sortByAmount() {
+    if (lessToMoreAmount) {
         all_products.sort((e1, e2) => e1.amount - e2.amount);
-        lessToMoreQuantity = false;
+        lessToMoreAmount = false;
     } else {
         all_products.sort((e1, e2) => e2.amount - e1.amount);
-        lessToMoreQuantity = true;
+        lessToMoreAmount = true;
     }
     reDesignTable();
 }
@@ -173,13 +209,17 @@ function loadCategories() {
 function appendProduct(product) {
     let template = `
     <div class="linha">
+        <span>${product.barcode}</span>
         <span>${product.name}</span>
+        <span>${product.producer}</span>
         <span>${product.category.name}</span>
         <span>${product.amount}</span>
-        <span>R$ ${product.price}</span>
-        <a class="btn-alterar" value="${product.id}" data-fancybox data-touch="false" href="#alterar">
-            <i class="fas fa-marker"></i>
-        </a>
+        <span>R$ ${product.price.toFixed(2)}</span>
+        <span>
+            <a class="btn-alterar" value="${product.id}" data-fancybox data-touch="false" href="#alterar">
+                <i class="fas fa-marker"></i>
+            </a>
+        </span>
     </div>
     `;
     let $product = $(template);

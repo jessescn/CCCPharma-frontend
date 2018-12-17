@@ -1,9 +1,8 @@
 .tabela > .linha {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
 }
 
-#title-nome-produto, #title-categoria,
-#title-quantidade, #title-price {
+.tabela > header > span {
   cursor: pointer;
 }
 
@@ -112,7 +111,7 @@ a {
   padding: 5px 10px;
 }
 
-.formulario > :first-child {
+#promocao .formulario > :first-child {
   margin-bottom: 10px;
 }
 

@@ -105,6 +105,11 @@ main > header {
     color: #3399ff;
 }
 
+.tabela > .linha a:hover {
+    color: #236bb2;
+    transition-duration: 0.33s;
+}
+
 .tabela > div {
     border-top: px solid #3399ff;
 }
